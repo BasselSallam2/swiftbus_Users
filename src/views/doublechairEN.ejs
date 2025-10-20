@@ -1,0 +1,1908 @@
+
+    <!DOCTYPE html>
+    <!-- Lang AR -->
+    <!-- <html dir="ltr"> -->
+    <html dir="rtl">
+    
+    <head>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta charset="utf-8">
+        <meta name="author" content="Arboon">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="theme-color" content="#0D3558">
+        <title>Home Page - Booking</title>
+        <link rel="shortcut icon" type="image/x-icon" href="assets/images/logo.png" />
+        <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+        <!-- <link href="assets/css/style-en.css" rel="stylesheet" type="text/css" /> -->
+        <link href="assets/css/mobile.css" rel="stylesheet" type="text/css" />
+    </head>
+    
+    <body>
+    <!-- Start Header -->
+    <header class="sticky">
+        <!-- Start Header-med -->
+        <div class="header-med">
+            <div class="container">
+                <div class="row">
+                    <!-- Col -->
+                    <div class="col-md-12">
+                        <div class="head-inner">
+                            <div class="logo-h">
+                                <a href="/en">
+                                    <img src="assets/images/logo.png" alt="#" />
+                                </a>
+                            </div>
+
+                            <div class="menu-left">
+                                <div class="info-h">
+                                    <div class="info-item">
+                                        <i class="fa fa-business-time"></i>
+                                        <div class="details">
+                                            <h3>
+                                                Working Hours
+                                             </h3>
+                                             <span>
+                                                 <%=EnglishFrontpage.WorkingHours%>
+                                             </span>
+                                         </div>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fa fa-phone"></i>
+                                        <div class="details">
+                                            <h3>
+                                                Calling Center
+                                            </h3>
+                                            <span>
+                                                <u>
+                                                    <%=EnglishFrontpage.phone%>
+                                                </u>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Col -->
+                </div>
+            </div>
+        </div>
+        <!-- End Header-Med -->
+    </header>
+    
+        <main class="main-content">
+    
+            <!-- Start Booking-page -->
+            <section class="booking-page body-inner">
+                <div class="container">
+                    <div class="row  justify-content-between">
+                        <!-- Col -->
+                        <div class="col-md-7">
+                            <div class="bookig-inner row">
+                                <!-- Col -->
+                                <div class="col-md-5">
+                                    <div class="booking-details">
+                                        <h4>
+                                            <%= Data.trip_day1 %> <%= Data.trip_date1 %>
+                                        </h4>
+                                        <h5>
+                                            <strong>
+                                               at <%= Data.trip_takeoff1.split(" ")[0] %> <%= Data.trip_takeoff1.split(" ")[1] %>
+                                            </strong>
+                                         
+                                        </h5>
+                                        <span class="alert-h">
+                                            <%=Data.bus_type1 %>
+                                        </span>
+                                        <h4>
+                                             travel from: <%= Data.trip_from1 %>
+                                        </h4>
+                                        <h4>
+                                              arrive to: <%= Data.trip_to1 %>
+                                        </h4>
+                                    </div>
+                                </div>
+                                <!-- /Col -->
+                            <% if(Data.bus_type1 == "super-jet") { %>     
+    
+                                <!-- Col -->
+                                <div class="col-md-7">
+                                    <div class="booking-bus">
+                                        <div class="all-chairs">
+                                            <div class="driver">
+                                                <span class="driver-h">
+                                                    <i class="far fa-steering-wheel"></i>
+                                                </span>
+    
+                                                <div class="chair-h spcial-chair">
+                                                   
+                                                   
+                                                </div>
+                                            </div>
+    
+                                            <div class="items">
+                                                <div class="chair-h spcial-chair">
+                                                    
+                                                </div>
+    
+                                                <div class="chair-h">
+                                                   
+                                                
+                                                </div>
+                                            </div>
+    
+                                            <div class="items">
+                                                <div class="chair-h">
+                                                  
+                                                   
+                                                </div>
+    
+                                                <div class="chair-h">
+                                                   
+                                                 
+                                                </div>
+                                            </div>
+    
+                                            <div class="items">
+                                                <div class="chair-h booking-chair">
+                                                   
+                                                
+                                                </div>
+    
+                                                <div class="chair-h booking-chair">
+                                                   
+                                                   
+                                                </div>
+                                            </div>
+    
+                                            <div class="items">
+                                                <div class="chair-h booking-chair">
+                                                  
+                                                </div>
+    
+                                                <div class="chair-h booking-chair">
+                                                   
+                                                  
+                                                </div>
+                                            </div>
+    
+                                            <% let chairsCounter = 1; %>
+                                            <% for (; chairsCounter <= 21; chairsCounter += 2) { %>
+                                                <div class="items go-group">
+                                                 <% if( (Reservations && Reservations.reservedSeats.includes(chairsCounter)) || (tempReservation && tempReservation.reservedSeats.includes(chairsCounter)) ) {%>
+                                                       <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio<%= chairsCounter %>" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                        <div class="chair-h">
+                                                        <input type="checkbox" name="radio<%= chairsCounter %>" data-price="<%= Data.trip_fare %>" />
+                                                        <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num"><%= chairsCounter %></u> 
+                                                        </span>
+                                                    </div>
+    
+                                                    <% if( (Reservations && Reservations.reservedSeats.includes(chairsCounter+1)) || (tempReservation && tempReservation.reservedSeats.includes(chairsCounter+1)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                         <input type="checkbox" name="radio<%= chairsCounter+1 %>" data-price="<%= Data.trip_fare %>" disabled />
+                                                         <% }else { %>
+                                                         <div class="chair-h">
+                                                         <input type="checkbox" name="radio<%= chairsCounter+1 %>" data-price="<%= Data.trip_fare %>" />
+                                                         <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num"><%= chairsCounter + 1 %></u>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            <% } %>
+                                            
+    
+                                            <div class="items go-group">
+                                                <div class="chair-h">
+                                                    
+                                                </div>
+    
+                                                <div class="chair-h">
+                                                    
+                                                    <span>
+                                                        <img src="assets/images/toiletico.png" alt="Toilet Icon" style="width: 70px; height: 40px;" />
+                                                    </span>
+                                                </div>
+                                            </div>
+    
+                                            <% let chairsCounter2 = 23; %>
+                                            <% for (; chairsCounter2 <= 23; chairsCounter2 += 2) { %>
+                                                <div class="items go-group">
+                                                    <% if( (Reservations && Reservations.reservedSeats.includes(chairsCounter2)) || (tempReservation && tempReservation.reservedSeats.includes(chairsCounter2)) ) {%>
+                                                          <div class="chair-h booking-chair">
+                                                           <input type="checkbox" name="radio<%= chairsCounter2 %>" data-price="<%= Data.trip_fare %>" disabled />
+                                                           <% }else { %>
+                                                           <div class="chair-h">
+                                                           <input type="checkbox" name="radio<%= chairsCounter2 %>" data-price="<%= Data.trip_fare %>" />
+                                                           <% } %>
+                                                           <span>
+                                                               <i class="fal fa-loveseat"></i>
+                                                               <u class="num"><%= chairsCounter2 %></u> 
+                                                           </span>
+                                                       </div>
+       
+                                                       <% if( (Reservations && Reservations.reservedSeats.includes(chairsCounter2+1)) || (tempReservation && tempReservation.reservedSeats.includes(chairsCounter2+1)) ) {%>
+                                                           <div class="chair-h booking-chair">
+                                                            <input type="checkbox" name="radio<%= chairsCounter2+1 %>" data-price="<%= Data.trip_fare %>" disabled />
+                                                            <% }else { %>
+                                                            <div class="chair-h">
+                                                            <input type="checkbox" name="radio<%= chairsCounter2+1 %>" data-price="<%= Data.trip_fare %>" />
+                                                            <% } %>
+                                                           <span>
+                                                               <i class="fal fa-loveseat"></i>
+                                                               <u class="num"><%= chairsCounter2 + 1 %></u>
+                                                           </span>
+                                                       </div>
+                                                   </div>
+                                               <% } %>
+                                               
+    
+                                            <div class="items go-group">
+                                                <div class="chair-h">
+                                                   
+                                                   
+                                                </div>
+    
+                                                <div class="chair-h">
+                                                   
+                                                    <span>
+                                                        <img src="assets/images/toiletico.png" alt="Toilet Icon" style="width: 70px; height: 40px;" />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <% let chairsCounter3 = 25; %>
+                                            <% for (; chairsCounter3 <= 44; chairsCounter3 += 2) { %>
+                                                <div class="items go-group">
+                                                    <% if( (Reservations && Reservations.reservedSeats.includes(chairsCounter3)) || (tempReservation && tempReservation.reservedSeats.includes(chairsCounter3)) ) {%>
+                                                       <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio<%= chairsCounter3 %>" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                        <div class="chair-h">
+                                                        <input type="checkbox" name="radio<%= chairsCounter3 %>" data-price="<%= Data.trip_fare %>" />
+                                                        <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num"><%= chairsCounter3 %></u> 
+                                                        </span>
+                                                    </div>
+    
+                                                    <% if( (Reservations && Reservations.reservedSeats.includes(chairsCounter3+1)) || (tempReservation && tempReservation.reservedSeats.includes(chairsCounter3+1)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                         <input type="checkbox" name="radio<%= chairsCounter3+1 %>" data-price="<%= Data.trip_fare %>" disabled />
+                                                         <% }else { %>
+                                                         <div class="chair-h">
+                                                         <input type="checkbox" name="radio<%= chairsCounter3+1 %>" data-price="<%= Data.trip_fare %>" />
+                                                         <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num"><%= chairsCounter3 + 1 %></u>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            <% } %>
+                                            
+                                          
+                                            <div class="items go-group">
+                                             <% let chairsCounter4 = 45; %>
+                                            <% for (; chairsCounter4 <= 49; chairsCounter4 += 1) { %>
+                                                <% if( (Reservations && Reservations.reservedSeats.includes(chairsCounter4)) || (tempReservation && tempReservation.reservedSeats.includes(chairsCounter4)) ) {%>
+                                                    <div class="chair-h booking-chair">
+                                                     <input type="checkbox" name="radio<%= chairsCounter4 %>" data-price="<%= Data.trip_fare %>" disabled />
+                                                     <% }else { %>
+                                                     <div class="chair-h">
+                                                     <input type="checkbox" name="radio<%= chairsCounter4 %>" data-price="<%= Data.trip_fare %>" />
+                                                     <% } %>
+                                                     <span>
+                                                         <i class="fal fa-loveseat"></i>
+                                                         <u class="num"><%= chairsCounter4 %></u> 
+                                                     </span>
+                                                </div>
+                                            <% } %>
+                                            </div>
+                                        </div>
+    
+                                        <div class="chairs-deatils">
+                                            <span class="booking-chair">
+                                                <i class="fal fa-loveseat"></i>
+                                                <span>Booked</span>
+                                            </span>
+                                            <span class="available-chair">
+                                                <i class="fal fa-loveseat"></i>
+                                                <span>Available</span>
+                                            </span>
+                                           
+                                            <span class="my-chair">
+                                                <i class="fal fa-loveseat"></i>
+                                                <span>Selected</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Col -->
+                                <% } %>
+
+                                <% if( Data.bus_type1 == "HI-ACE") { %>
+                                
+                            <!-- Col -->
+                            <div class="col-md-7">
+                                <div class="booking-bus">
+                                    <div class="all-chairs all-chairs24">
+                                        <div class="driver">
+                                            <span class="driver-h">
+                                                <i class="far fa-steering-wheel"></i>
+                                            </span>
+                                            <% if( (Reservations && Reservations.reservedSeats.includes(1)) || (tempReservation && tempReservation.reservedSeats.includes(1)) ) {%>
+                                                <div class="chair-h booking-chair">
+                                            <input type="checkbox" name="radio1" data-price="<%= Data.trip_specialfare %>" disabled />
+                                            <% }else { %>
+                                                    <div class="chair-h spcial-chair">
+                                                        <input type="checkbox" id="myCheckbox1" name="radio1" data-price="<%= Data.trip_specialfare %>">
+                                                        <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num">1</u>
+                                                        </span>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="items go-group">
+                                           
+                                                    <% if( (Reservations && Reservations.reservedSeats.includes(2)) || (tempReservation && tempReservation.reservedSeats.includes(2)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio2" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                            <div class="chair-h">
+                                                                <input type="checkbox" name="radio2" data-price="<%= Data.trip_fare %>" />
+                                                                <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num">2</u>
+                                                        </span>
+                                                    </div>
+        
+                                                    <% if( (Reservations && Reservations.reservedSeats.includes(3)) || (tempReservation && tempReservation.reservedSeats.includes(3)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio3" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                            <div class="chair-h">
+                                                                <input type="checkbox" name="radio3" data-price="<%= Data.trip_fare %>" />
+                                                                <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num">3</u>
+                                                        </span>
+                                                    </div>
+        
+                                                   
+                                                    <% if( (Reservations && Reservations.reservedSeats.includes(4)) || (tempReservation && tempReservation.reservedSeats.includes(4)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio4" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                            <div class="chair-h">
+                                                                <input type="checkbox" name="radio4" data-price="<%= Data.trip_fare %>" />
+                                                                <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num">4</u>
+                                                        </span>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="items go-group">
+                                                    
+                                                    <% if( (Reservations && Reservations.reservedSeats.includes(5)) || (tempReservation && tempReservation.reservedSeats.includes(5)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio5" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                            <div class="chair-h">
+                                                                <input type="checkbox" name="radio5" data-price="<%= Data.trip_fare %>" />
+                                                                <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num">5</u>
+                                                        </span>
+                                                    </div>
+                                                
+                                                    <% if( (Reservations && Reservations.reservedSeats.includes(6)) || (tempReservation && tempReservation.reservedSeats.includes(6)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio6" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                            <div class="chair-h">
+                                                                <input type="checkbox" name="radio6" data-price="<%= Data.trip_fare %>" />
+                                                                <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num">6</u>
+                                                        </span>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="items go-group">
+                                                    <% if( (Reservations && Reservations.reservedSeats.includes(7)) || (tempReservation && tempReservation.reservedSeats.includes(7)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio7" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                            <div class="chair-h">
+                                                                <input type="checkbox" name="radio7" data-price="<%= Data.trip_fare %>" />
+                                                                <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num">7</u>
+                                                        </span>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="items go-group">
+                                                    
+                                                    <% if( (Reservations && Reservations.reservedSeats.includes(8)) || (tempReservation && tempReservation.reservedSeats.includes(8)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio8" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                            <div class="chair-h">
+                                                                <input type="checkbox" name="radio8" data-price="<%= Data.trip_fare %>" />
+                                                                <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num">8</u>
+                                                        </span>
+                                                    </div>
+        
+                                                  
+                                                    <% if( (Reservations && Reservations.reservedSeats.includes(9)) || (tempReservation && tempReservation.reservedSeats.includes(9)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio9" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                            <div class="chair-h">
+                                                                <input type="checkbox" name="radio9" data-price="<%= Data.trip_fare %>" />
+                                                                <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num">9</u>
+                                                        </span>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="items go-group">
+                                                   
+                                                    <% if( (Reservations && Reservations.reservedSeats.includes(10)) || (tempReservation && tempReservation.reservedSeats.includes(10)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio10" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                            <div class="chair-h">
+                                                                <input type="checkbox" name="radio10" data-price="<%= Data.trip_fare %>" />
+                                                                <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num">10</u>
+                                                        </span>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="items go-group">
+                                                    <% if( (Reservations && Reservations.reservedSeats.includes(11)) || (tempReservation && tempReservation.reservedSeats.includes(11)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio11" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                            <div class="chair-h">
+                                                                <input type="checkbox" name="radio11" data-price="<%= Data.trip_fare %>" />
+                                                                <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num">11</u>
+                                                        </span>
+                                                    </div>
+        
+                                                   
+                                                    <% if( (Reservations && Reservations.reservedSeats.includes(12)) || (tempReservation && tempReservation.reservedSeats.includes(12)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio12" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                            <div class="chair-h">
+                                                                <input type="checkbox" name="radio12" data-price="<%= Data.trip_fare %>" />
+                                                                <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num">12</u>
+                                                        </span>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="items go-group">
+                                                    <% if( (Reservations && Reservations.reservedSeats.includes(13)) || (tempReservation && tempReservation.reservedSeats.includes(13)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio13" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                            <div class="chair-h">
+                                                                <input type="checkbox" name="radio13" data-price="<%= Data.trip_fare %>" />
+                                                                <% } %>
+                                                <span>
+                                                    <i class="fal fa-loveseat"></i>
+                                                    <u class="num">13</u>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="chairs-deatils">
+                                        <span class="booking-chair">
+                                            <i class="fal fa-loveseat"></i>
+                                            <span>Booked</span>
+                                        </span>
+                                        <span class="available-chair">
+                                            <i class="fal fa-loveseat"></i>
+                                            <span>Available</span>
+                                        </span>
+                                        <span class="spcial-chair">
+                                            <i class="fal fa-loveseat"></i>
+                                            <span>special</span>
+                                        </span>
+                                        <span class="my-chair">
+                                            <i class="fal fa-loveseat"></i>
+                                            <span>selected</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Col -->
+                             <% } %>
+
+                             
+                            <div class="bookig-inner row">
+                                <!-- Col -->
+                                <div class="col-md-5">
+                                    <div class="booking-details">
+                                        <h4>
+                                            <%= Data.trip_day2 %> <%= Data.trip_date2 %>
+                                        </h4>
+                                        <h5>
+                                            <strong>
+                                               at <%= Data.trip_takeoff2.split(" ")[0] %> <%= Data.trip_takeoff2.split(" ")[1] %>
+                                            </strong>
+                                         
+                                        </h5>
+                                        <span class="alert-h">
+                                            <%=Data.bus_type2 %>
+                                        </span>
+                                        <h4>
+                                             travel from: <%= Data.trip_from2 %>
+                                        </h4>
+                                        <h4>
+                                            arrive to: <%= Data.trip_to2 %>
+                                        </h4>
+                                    </div>
+                                </div>
+                                <!-- /Col -->
+
+                                                        <!-- /Col -->
+                            <% if(Data.bus_type2 == "super-jet") { %>     
+    
+                                <!-- Col -->
+                                <div class="col-md-7">
+                                    <div class="booking-bus">
+                                        <div class="all-chairs">
+                                            <div class="driver">
+                                                <span class="driver-h">
+                                                    <i class="far fa-steering-wheel"></i>
+                                                </span>
+    
+                                                <div class="chair-h spcial-chair">
+                                                   
+                                                   
+                                                </div>
+                                            </div>
+    
+                                            <div class="items">
+                                                <div class="chair-h spcial-chair">
+                                                    
+                                                </div>
+    
+                                                <div class="chair-h">
+                                                   
+                                                
+                                                </div>
+                                            </div>
+    
+                                            <div class="items">
+                                                <div class="chair-h">
+                                                  
+                                                   
+                                                </div>
+    
+                                                <div class="chair-h">
+                                                   
+                                                 
+                                                </div>
+                                            </div>
+    
+                                            <div class="items">
+                                                <div class="chair-h booking-chair">
+                                                   
+                                                
+                                                </div>
+    
+                                                <div class="chair-h booking-chair">
+                                                   
+                                                   
+                                                </div>
+                                            </div>
+    
+                                            <div class="items">
+                                                <div class="chair-h booking-chair">
+                                                  
+                                                </div>
+    
+                                                <div class="chair-h booking-chair">
+                                                   
+                                                  
+                                                </div>
+                                            </div>
+    
+                                            <% let chairsCounter = 1; %>
+                                            <% for (; chairsCounter <= 21; chairsCounter += 2) { %>
+                                                <div class="items back-group">
+                                                 <% if( (Reservations2 && Reservations2.reservedSeats.includes(chairsCounter)) || (tempReservation2 && tempReservation2.reservedSeats.includes(chairsCounter)) ) {%>
+                                                       <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio<%= chairsCounter %>" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                        <div class="chair-h">
+                                                        <input type="checkbox" name="radio<%= chairsCounter %>" data-price="<%= Data.trip_fare %>" />
+                                                        <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num"><%= chairsCounter %></u> 
+                                                        </span>
+                                                    </div>
+    
+                                                    <% if( (Reservations2 && Reservations2.reservedSeats.includes(chairsCounter+1)) || (tempReservation2 && tempReservation2.reservedSeats.includes(chairsCounter+1)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                         <input type="checkbox" name="radio<%= chairsCounter+1 %>" data-price="<%= Data.trip_fare %>" disabled />
+                                                         <% }else { %>
+                                                         <div class="chair-h">
+                                                         <input type="checkbox" name="radio<%= chairsCounter+1 %>" data-price="<%= Data.trip_fare %>" />
+                                                         <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num"><%= chairsCounter + 1 %></u>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            <% } %>
+                                            
+    
+                                            <div class="items back-group">
+                                                <div class="chair-h">
+                                                    
+                                                </div>
+    
+                                                <div class="chair-h">
+                                                    
+                                                    <span>
+                                                        <img src="assets/images/toiletico.png" alt="Toilet Icon" style="width: 70px; height: 40px;" />
+                                                    </span>
+                                                </div>
+                                            </div>
+    
+                                            <% let chairsCounter2 = 23; %>
+                                            <% for (; chairsCounter2 <= 23; chairsCounter2 += 2) { %>
+                                                <div class="items back-group">
+                                                    <% if( (Reservations2 && Reservations2.reservedSeats.includes(chairsCounter2)) || (tempReservation2 && tempReservation2.reservedSeats.includes(chairsCounter2)) ) {%>
+                                                          <div class="chair-h booking-chair">
+                                                           <input type="checkbox" name="radio<%= chairsCounter2 %>" data-price="<%= Data.trip_fare %>" disabled />
+                                                           <% }else { %>
+                                                           <div class="chair-h">
+                                                           <input type="checkbox" name="radio<%= chairsCounter2 %>" data-price="<%= Data.trip_fare %>" />
+                                                           <% } %>
+                                                           <span>
+                                                               <i class="fal fa-loveseat"></i>
+                                                               <u class="num"><%= chairsCounter2 %></u> 
+                                                           </span>
+                                                       </div>
+       
+                                                       <% if( (Reservations2 && Reservations2.reservedSeats.includes(chairsCounter2+1)) || (tempReservation2 && tempReservation2.reservedSeats.includes(chairsCounter2+1)) ) {%>
+                                                           <div class="chair-h booking-chair">
+                                                            <input type="checkbox" name="radio<%= chairsCounter2+1 %>" data-price="<%= Data.trip_fare %>" disabled />
+                                                            <% }else { %>
+                                                            <div class="chair-h">
+                                                            <input type="checkbox" name="radio<%= chairsCounter2+1 %>" data-price="<%= Data.trip_fare %>" />
+                                                            <% } %>
+                                                           <span>
+                                                               <i class="fal fa-loveseat"></i>
+                                                               <u class="num"><%= chairsCounter2 + 1 %></u>
+                                                           </span>
+                                                       </div>
+                                                   </div>
+                                               <% } %>
+                                               
+    
+                                            <div class="items back-group">
+                                                <div class="chair-h">
+                                                   
+                                                   
+                                                </div>
+    
+                                                <div class="chair-h">
+                                                   
+                                                    <span>
+                                                        <img src="assets/images/toiletico.png" alt="Toilet Icon" style="width: 70px; height: 40px;" />
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <% let chairsCounter3 = 25; %>
+                                            <% for (; chairsCounter3 <= 44; chairsCounter3 += 2) { %>
+                                                <div class="items back-group">
+                                                    <% if( (Reservations2 && Reservations2.reservedSeats.includes(chairsCounter3)) || (tempReservation2 && tempReservation2.reservedSeats.includes(chairsCounter3)) ) {%>
+                                                       <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio<%= chairsCounter3 %>" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                        <div class="chair-h">
+                                                        <input type="checkbox" name="radio<%= chairsCounter3 %>" data-price="<%= Data.trip_fare %>" />
+                                                        <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num"><%= chairsCounter3 %></u> 
+                                                        </span>
+                                                    </div>
+    
+                                                    <% if( (Reservations2 && Reservations2.reservedSeats.includes(chairsCounter3+1)) || (tempReservation2 && tempReservation2.reservedSeats.includes(chairsCounter3+1)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                         <input type="checkbox" name="radio<%= chairsCounter3+1 %>" data-price="<%= Data.trip_fare %>" disabled />
+                                                         <% }else { %>
+                                                         <div class="chair-h">
+                                                         <input type="checkbox" name="radio<%= chairsCounter3+1 %>" data-price="<%= Data.trip_fare %>" />
+                                                         <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num"><%= chairsCounter3 + 1 %></u>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            <% } %>
+                                            
+                                          
+                                            <div class="items back-group">
+                                             <% let chairsCounter4 = 45; %>
+                                            <% for (; chairsCounter4 <= 49; chairsCounter4 += 1) { %>
+                                                <% if( (Reservations2 && Reservations2.reservedSeats.includes(chairsCounter4)) || (tempReservation2 && tempReservation2.reservedSeats.includes(chairsCounter4)) ) {%>
+                                                    <div class="chair-h booking-chair">
+                                                     <input type="checkbox" name="radio<%= chairsCounter4 %>" data-price="<%= Data.trip_fare %>" disabled />
+                                                     <% }else { %>
+                                                     <div class="chair-h">
+                                                     <input type="checkbox" name="radio<%= chairsCounter4 %>" data-price="<%= Data.trip_fare %>" />
+                                                     <% } %>
+                                                     <span>
+                                                         <i class="fal fa-loveseat"></i>
+                                                         <u class="num"><%= chairsCounter4 %></u> 
+                                                     </span>
+                                                </div>
+                                            <% } %>
+                                            </div>
+                                        </div>
+    
+                                        <div class="chairs-deatils">
+                                            <span class="booking-chair">
+                                                <i class="fal fa-loveseat"></i>
+                                                <span>Booked</span>
+                                            </span>
+                                            <span class="available-chair">
+                                                <i class="fal fa-loveseat"></i>
+                                                <span>Available</span>
+                                            </span>
+                                           
+                                            <span class="my-chair">
+                                                <i class="fal fa-loveseat"></i>
+                                                <span>Selected</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Col -->
+                                <% } %>
+
+                                <% if( Data.bus_type2 == "HI-ACE") { %>
+                                
+                            <!-- Col -->
+                            <div class="col-md-7">
+                                <div class="booking-bus">
+                                    <div class="all-chairs all-chairs24">
+                                        <div class="driver">
+                                            <span class="driver-h">
+                                                <i class="far fa-steering-wheel"></i>
+                                            </span>
+                                            <% if( (Reservations2 && Reservations2.reservedSeats.includes(1)) || (tempReservation2 && tempReservation2.reservedSeats.includes(1)) ) {%>
+                                                <div class="chair-h booking-chair">
+                                            <input type="checkbox" name="radio1" data-price="<%= Data.trip_specialfare %>" disabled />
+                                            <% }else { %>
+                                                    <div class="chair-h spcial-chair">
+                                                        <input type="checkbox" id="myCheckbox2" name="radio1" data-price="<%= Data.trip_specialfare %>">
+                                                        <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num">1</u>
+                                                        </span>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="items back-group">
+                                           
+                                                    <% if( (Reservations2 && Reservations2.reservedSeats.includes(2)) || (tempReservation2 && tempReservation2.reservedSeats.includes(2)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio2" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                            <div class="chair-h">
+                                                                <input type="checkbox" name="radio2" data-price="<%= Data.trip_fare %>" />
+                                                                <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num">2</u>
+                                                        </span>
+                                                    </div>
+        
+                                                    <% if( (Reservations2 && Reservations2.reservedSeats.includes(3)) || (tempReservation2 && tempReservation2.reservedSeats.includes(3)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio3" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                            <div class="chair-h">
+                                                                <input type="checkbox" name="radio3" data-price="<%= Data.trip_fare %>" />
+                                                                <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num">3</u>
+                                                        </span>
+                                                    </div>
+        
+                                                   
+                                                    <% if( (Reservations2 && Reservations2.reservedSeats.includes(4)) || (tempReservation2 && tempReservation2.reservedSeats.includes(4)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio4" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                            <div class="chair-h">
+                                                                <input type="checkbox" name="radio4" data-price="<%= Data.trip_fare %>" />
+                                                                <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num">4</u>
+                                                        </span>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="items back-group">
+                                                    
+                                                    <% if( (Reservations2 && Reservations2.reservedSeats.includes(5)) || (tempReservation2 && tempReservation2.reservedSeats.includes(5)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio5" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                            <div class="chair-h">
+                                                                <input type="checkbox" name="radio5" data-price="<%= Data.trip_fare %>" />
+                                                                <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num">5</u>
+                                                        </span>
+                                                    </div>
+                                                
+                                                    <% if( (Reservations2 && Reservations2.reservedSeats.includes(6)) || (tempReservation2 && tempReservation2.reservedSeats.includes(6)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio6" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                            <div class="chair-h">
+                                                                <input type="checkbox" name="radio6" data-price="<%= Data.trip_fare %>" />
+                                                                <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num">6</u>
+                                                        </span>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="items back-group">
+                                                    <% if( (Reservations2 && Reservations2.reservedSeats.includes(7)) || (tempReservation2 && tempReservation2.reservedSeats.includes(7)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio7" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                            <div class="chair-h">
+                                                                <input type="checkbox" name="radio7" data-price="<%= Data.trip_fare %>" />
+                                                                <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num">7</u>
+                                                        </span>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="items back-group">
+                                                    
+                                                    <% if( (Reservations2 && Reservations2.reservedSeats.includes(8)) || (tempReservation2 && tempReservation2.reservedSeats.includes(8)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio8" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                            <div class="chair-h">
+                                                                <input type="checkbox" name="radio8" data-price="<%= Data.trip_fare %>" />
+                                                                <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num">8</u>
+                                                        </span>
+                                                    </div>
+        
+                                                  
+                                                    <% if( (Reservations2 && Reservations2.reservedSeats.includes(9)) || (tempReservation2 && tempReservation2.reservedSeats.includes(9)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio9" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                            <div class="chair-h">
+                                                                <input type="checkbox" name="radio9" data-price="<%= Data.trip_fare %>" />
+                                                                <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num">9</u>
+                                                        </span>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="items back-group">
+                                                   
+                                                    <% if( (Reservations2 && Reservations2.reservedSeats.includes(10)) || (tempReservation2 && tempReservation2.reservedSeats.includes(10)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio10" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                            <div class="chair-h">
+                                                                <input type="checkbox" name="radio10" data-price="<%= Data.trip_fare %>" />
+                                                                <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num">10</u>
+                                                        </span>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="items back-group">
+                                                    <% if( (Reservations2 && Reservations2.reservedSeats.includes(11)) || (tempReservation2 && tempReservation2.reservedSeats.includes(11)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio11" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                            <div class="chair-h">
+                                                                <input type="checkbox" name="radio11" data-price="<%= Data.trip_fare %>" />
+                                                                <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num">11</u>
+                                                        </span>
+                                                    </div>
+        
+                                                   
+                                                    <% if( (Reservations2 && Reservations2.reservedSeats.includes(12)) || (tempReservation2 && tempReservation2.reservedSeats.includes(12)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio12" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                            <div class="chair-h">
+                                                                <input type="checkbox" name="radio12" data-price="<%= Data.trip_fare %>" />
+                                                                <% } %>
+                                                        <span>
+                                                            <i class="fal fa-loveseat"></i>
+                                                            <u class="num">12</u>
+                                                        </span>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="items back-group">
+                                                    <% if( (Reservations2 && Reservations2.reservedSeats.includes(13)) || (tempReservation2 && tempReservation2.reservedSeats.includes(13)) ) {%>
+                                                        <div class="chair-h booking-chair">
+                                                        <input type="checkbox" name="radio13" data-price="<%= Data.trip_fare %>" disabled />
+                                                        <% }else { %>
+                                                            <div class="chair-h">
+                                                                <input type="checkbox" name="radio13" data-price="<%= Data.trip_fare %>" />
+                                                                <% } %>
+                                                <span>
+                                                    <i class="fal fa-loveseat"></i>
+                                                    <u class="num">13</u>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="chairs-deatils">
+                                        <span class="booking-chair">
+                                            <i class="fal fa-loveseat"></i>
+                                            <span>Booked</span>
+                                        </span>
+                                        <span class="available-chair">
+                                            <i class="fal fa-loveseat"></i>
+                                            <span>Available</span>
+                                        </span>
+                                        <span class="spcial-chair">
+                                            <i class="fal fa-loveseat"></i>
+                                            <span>special</span>
+                                        </span>
+                                        <span class="my-chair">
+                                            <i class="fal fa-loveseat"></i>
+                                            <span>Selected</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Col -->
+                             <% } %>
+                            </div>
+
+
+
+    
+                                <!-- Col -->
+                                <div class="col-md-12">
+                                    <div class="booking-bus">
+                                        <div class="booking-payment">
+                                            <div class="stepone" id="stepone">
+                                                <div class="title-payment">
+                                                    <h3>
+                                                        The selected seats should be confirmed before payment
+                                                    </h3>
+                                                    <button class="btn" type="button" id="btn-one" >
+                                                        <span>
+                                                            Confirm the seats
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </div>
+    
+                                            <div class="steptwo" id="steptwo" style="display: none; direction: ltr;">
+                                                <div class="payment-faq">
+                                                    <div class="payment-title">
+                                                        <h2>
+                                                            Travel instructions
+                                                        </h2>
+                                                    </div>
+                                                    <div class="payment-content">
+                                                        <ul>
+                                                            <% instructions.forEach((instruct) => { %>
+                                                                <li>
+                                                                    <%= instruct.Instructions %>
+                                                                </li>
+                                                                <% }) %>
+                                                            </ul>
+                                                    </div>
+                                                    <div class="payment-foot">
+                                                        <div class="input-flex">
+                                                            <input type="checkbox" id="termsCheckbox" required />
+                                                            <p>
+                                                                I agree to all 
+                                                                <a data-bs-toggle="modal" data-bs-target="#faqModal">Terms and Conditions</a>
+                                                            </p>
+                                                        </div>
+                                                        <button type="button" class="btn btn-form" id="btn-two" disabled>
+                                                            <span>
+                                                                Book Now
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                            <div class="stepthree" id="stepthree" style="display: none;">
+                                                <div class="payment-faq">
+                                                    <div class="payment-title">
+                                                        <h2>
+                                                            Please select the appropriate payment method and click on the payment icon
+                                                        </h2>
+                                                    </div>
+                                                    <form id="paymentForm" action="/doublepayment" method="POST">
+                                                        <!-- Form-group -->
+                                                        <div class="form-group">
+                                                            <div class="checkH">
+                                                                <div class="radio">
+                                                                <% if (paymentMethods.includes('Visa')) {%>    
+                                                                    <label>
+                                                                        <input type="radio" class="action" name="action"
+                                                                            value="visa" />
+                                                                        <span><img src="assets/images/visa.svg"
+                                                                                alt="#" /></span>
+                                                                    </label>
+                                                                    <% } %>
+                                                                </div>
+                                                                <div class="radio">
+                                                                    <% if (paymentMethods.includes('VFcash')) {%>  
+                                                                    <label>
+                                                                        <input type="radio" class="action" name="action"
+                                                                            value="VFcash" />
+                                                                        <span><img src="assets/images/mobileE.png"
+                                                                                alt="#" /></span>
+                                                                    </label>
+                                                                    <% } %>
+                                                                </div>
+                                                                <div class="radio">
+                                                                    <% if (paymentMethods.includes('Cash')) {%>  
+                                                                    <label>
+                                                                        <input type="radio" class="action" name="action"
+                                                                            value="cash" />
+                                                                        <span><img src="assets/images/cash.png"
+                                                                                alt="#" /></span>
+                                                                    </label>
+                                                                    <% } %>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /Form-group -->
+    
+                                                        <!-- Form-group -->
+                                                        <div id="visa" class="show-hide">
+                                                            <div class="form-group">
+                                                                <label>
+                                                                    name
+                                                                </label>
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="Full name" id="visibleNameInput" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>
+                                                                    phone number
+                                                                </label>
+                                                                <input type="tel" class="form-control"
+                                                                    placeholder="please enter what's app number to recive the confirmation message" id="visiblePhoneInput"/>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /Form-group -->
+    
+                                                        <!-- Form-group -->
+                                                        <div id="VFcash" class="show-hide">
+                                                            <div class="form-group">
+                                                                <label>
+                                                                    name
+                                                                </label>
+                                                                <input type="text" class="form-control"
+                                                                placeholder="Full Name" id="visibleNameInput2" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>
+                                                                    phone number
+                                                                </label>
+                                                                <input type="tel" class="form-control"
+                                                                placeholder="please enter what's app number to recive the confirmation message"  id="visiblePhoneInput2" />
+                                                            </div>
+                                                        </div>
+                                                        <!-- /Form-group -->
+    
+                                                        <!-- Form-group -->
+                                                        <div id="cash" class="show-hide">
+                                                            <div class="form-group">
+                                                                <label>
+                                                                    name
+                                                                </label>
+                                                                <input type="text" class="form-control"
+                                                                placeholder="Full Name"  id="visibleNameInput3" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>
+                                                                    phone number
+                                                                </label>
+                                                                <input type="tel" class="form-control"
+                                                                placeholder="please enter what's app number to recive the confirmation message"  id="visiblePhoneInput3" />
+                                                            </div>
+                                                        </div>
+                                                        <!-- /Form-group -->
+                                                        <form id="paymentForm" action="/doublepayment" method="POST">
+                                                            <!-- Hidden Inputs to Store Data -->
+                                                            <input type="hidden" name="name" id="nameInput">
+                                                            <input type="hidden" name="phone" id="phoneInput">
+                                                            <input type="hidden" name="trip_id1" value="<%= Data.trip_id1%>">
+                                                            <input type="hidden" name="trip_id2" value="<%= Data.trip_id2%>">
+                                                            <input type="hidden" name="date1" value="<%=Data.trip_date1%>">
+                                                            <input type="hidden" name="date2" value="<%=Data.trip_date2%>">
+                                                            <input type="hidden" name="station_from1" value="<%=Data.trip_from1%>">
+                                                            <input type="hidden" name="station_from2" value="<%=Data.trip_from2%>">
+                                                            <input type="hidden" name="station_to1" value="<%=Data.trip_to1%>">
+                                                            <input type="hidden" name="station_to2" value="<%=Data.trip_to2%>">
+                                                            <input type="hidden" name="city_from1" value="<%=Data.city_from1%>">
+                                                            <input type="hidden" name="city_from2" value="<%=Data.city_from2%>">
+                                                            <input type="hidden" name="city_to1" value="<%=Data.city_to1%>">
+                                                            <input type="hidden" name="city_to2" value="<%=Data.city_to2%>">
+                                                            <input type="hidden" name="take_off1" value="<%=Data.trip_takeoff1%>">
+                                                            <input type="hidden" name="take_off2" value="<%=Data.trip_takeoff2%>">
+                                                            <input type="hidden" name="arrive1" value="<%=Data.trip_arrive1%>">
+                                                            <input type="hidden" name="arrive2" value="<%=Data.trip_arrive2%>">
+                                                            <input type="hidden" name="chairs1" id="chairsInput1">
+                                                            <input type="hidden" name="chairs2" id="chairsInput2">
+                                                            <input type="hidden" name="chairsQTY" value="<%=Data.chairsNumber1%>"
+                                                        
+                                                            <!-- Form-group -->
+                                                            <div class="form-group">
+                                                                <button type="submit" class="btn" id="payButton" disabled>
+                                                                    <span>pay now</span>
+                                                                </button>
+                                                            </div>
+                                                            <!-- /Form-group -->
+                                                        </form>
+                                                        
+                                                      <script>
+                                const paymentForm1 = document.getElementById("paymentForm");
+                                const payButton1 = document.getElementById("payButton");
+
+                                paymentForm1.addEventListener("submit", function () {
+                                    payButton1.disabled = true; // يقفل الزرار
+                                    payButton1.innerText = "جاري حجز تذكرتك برجاء الانتظار"; // يغير النص
+                                });
+                                </script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Col -->
+                            </div>
+                        </div>
+                        <!-- /Col -->
+    
+                        <!-- Col -->
+                        <div class="col-md-4">
+                            <div class="sidebar-booking">
+                                <div class="sidebar-title">
+                                    <h3>
+                                        <%=Data.chairsNumber1 %> traveller
+                                    </h3>
+                                </div>
+                                <div class="sidebar-content">
+                                    <ul>
+                                        <li>
+                                            <strong>
+                                                <%=Data.trip_date1 %> <%=Data.trip_day1 %>
+                                            </strong>
+                                        </li>
+                                        
+                                        <li>
+                                            Outbound Trip    
+                                          </li>
+
+                                        <li>
+                                            <strong>
+                                                <%=Data.trip_date2 %> <%=Data.trip_day2 %>
+                                            </strong>
+                                        </li>
+                                        
+                                        <li>
+                                            Return Trip
+                                        </li>
+                                        
+                                        <li>
+                                            <span>
+                                               from <%=Data.city_from1 %> to <%=Data.city_to1 %>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            (  <%=Data.trip_specialfare1 %>   for special seat) <%=Data.trip_fare1 %> EGP 
+                                        </li>
+
+                                        <li>
+                                            <span>
+                                               from <%=Data.city_from2 %> to <%=Data.city_to2 %>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            (  <%=Data.trip_specialfare2 %>   for special seat) <%=Data.trip_fare2 %> EGP 
+                                        </li>
+                                    </ul>
+                                    <div class="sidebar-total">
+                                        <h4>
+                                            Total
+                                        </h4>
+                                        <h3 id="totalPriceee">
+                                            EGP 0.00
+                                            <h3 id="oldPrice" style="text-decoration: line-through; color: gray;font-size:100%;display: none;">EGP 0.00</h3> 
+                                            
+                                        </h3>
+                                        
+                                        <span></span>
+                                        <% if(Data.twowaydiscount1 == 0 || Data.twowaydiscount2 == 0) { %>
+                                            includes Tax  
+                                        <% } else { %>
+                                           includes Tax with special discount   <%=Data.twowaydiscount1 < Data.twowaydiscount2 ? Data.twowaydiscount1 : Data.twowaydiscount2  %>%
+                                        <% } %>
+                                        </span>
+                                    </div>
+                                    <div class="sidebar-code">
+                                        <!-- <form onsubmit="return false;">
+                                            <h4>
+                                                كود الخصم
+                                            </h4>
+                                            <input type="text" id="discountInput" placeholder="كود الخصم" />
+                                            <button type="button" id="discountButton">
+                                                <span>خصم</span>
+                                            </button>
+                                        </form> -->
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Col -->
+                    </div>
+                </div>
+            </section>
+            <!-- End Booking-page -->
+    
+        </main>
+    
+        <!-- Modal -->
+        <div class="modal faqModal fade" id="faqModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Terms And Conditions</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="faq-text">
+                            <h3>
+                                Introduction
+                            </h3>
+                            <p>
+                                By using the Swift Bus website, you agree to comply with these Terms and Conditions. Please read these terms carefully before making any booking, and if you do not agree with any clause, please stop using the website immediately.
+                            </p>
+                            <h3>
+                                Definitions
+                            </h3>
+                            <p>
+                                The term "Company" refers to the entity that owns and operates the Swift Bus website and provides bus travel reservation services, while "User" means any person who uses the website to book trips or view related information. The term "Reservation" refers to the process of booking one or more seats for travel on the buses available on the website, and "Services" include all procedures related to booking tickets, processing payments, and providing travel-related information.
+                            </p>
+                            <h3>
+                                Booking and Confirmation
+                            </h3>
+                            <p>
+                                The user is required to provide accurate and complete information when making a reservation, such as name, phone number, and payment details. All reservations are subject to availability according to the policies approved by the Company. Upon acceptance and confirmation of the reservation, it becomes binding and non-transferable except in special cases agreed upon in writing with the Company.
+                            </p>
+                            <h3>
+                                Payment Terms
+                            </h3>
+                            <p>
+                                The user must pay the full value of the reservation during the booking process unless otherwise stated, with prices quoted in Egyptian Pounds (EGP) and subject to modification by the Company without prior notice, taking into account reservations that have already been confirmed.
+                            </p>
+                            <h3>
+                                Cancellation and Refund
+                            </h3>
+                            <p>
+                                The cancellation policy is applied according to the type of reservation and the booked route, with the user being informed of the specific conditions during the booking process. If a refund is due, the refund process will be carried out within a specified number of business days after cancellation confirmation. However, no refund will be provided for cancellations made less than 24 hours before the scheduled trip. Additionally, the user is not entitled to claim a refund if they do not show up at the scheduled
+                            </p>
+                            <h3>
+                                Passenger Responsibilities
+                            </h3>
+                            <p>
+                                The passenger is responsible for arriving at the departure point on time, and must carry a valid identity card along with any required travel documents. The Company is not responsible for any delays, cancellations, or changes that may occur in the trip due to circumstances beyond its control or because of contracted service providers.
+                            </p>
+                            <h3>
+                                Liability and Disclaimer
+                            </h3>
+                            <p>
+                                The Company's responsibility is limited to providing the reservation service through the website, and it does not guarantee the quality, safety, or accuracy of the schedules of services provided by bus operators. It is also not liable for any direct or indirect damages or losses that may result from using the website or the associated services, and the user undertakes to indemnify the Company against any claims or losses arising from the use of the website in violation of these terms.
+                            </p>
+                            <h3>
+                                Privacy Policy
+                            </h3>
+                            <p>
+                                The collection and use of personal data are carried out in accordance with the Company's Privacy Policy, which explains how the information is processed and secured. By using the website, the user acknowledges and agrees to the terms of the Privacy Policy as stated on the website.
+                            </p>
+                            <h3>
+                                Governing Law and Jurisdiction
+                            </h3>
+                            <p>
+                                These Terms and Conditions are interpreted and governed in accordance with the laws of the Arab Republic of Egypt. In case any dispute arises related to the use of the website or the services provided through it, the exclusive jurisdiction shall belong to the Egyptian courts.
+                            </p>
+                            <h3>
+                                Amendments
+                            </h3>
+                            <p>
+                                The Company reserves the right to modify these Terms and Conditions at any time without prior notice, and the user will be informed of any material changes via the website or by email, if available. Continued use of the website after such modifications shall be deemed acceptance of the revised terms.
+                            </p>
+                            <h3>
+                                Contact Information
+                            </h3>
+                            <p>
+                                For any inquiries, complaints, or comments, you can contact the customer service team via email at [info@swiftbus.com] or by phone at [01060092211].
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+    <!-- Start Footer -->
+    <footer>
+        <!-- Start Footer-top -->
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <!-- Col -->
+                    <div class="col-md-6">
+                        <a href="#" class="logo-f">
+                            <img src="assets/images/logo.png" alt="#" />
+                        </a>
+                        <p>
+                            <%=EnglishFrontpage.FooterTitle%>
+                        </p>
+                        <a href="tel:01541" class="callNow2">
+                            <i class="fa fa-phone"></i>
+                            <span>
+                                <%=EnglishFrontpage.phone%>
+                            </span>
+                        </a>
+                    </div>
+                    <!-- /Col -->
+
+                    <!-- Col -->
+                    <div class="col-md-6">
+                        <div class="foot-block">
+                            <h3>
+                                Contact us
+                            </h3>
+                            <div class="info-f">
+                                <ul>
+                                    <li>
+                                        <i class="fa fa-map-marker-alt" style="color: white;"></i>
+                                        <span style="color: white;"><%= EnglishFrontpage.address %></span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-envelope" style="color: white;"></i>
+                                        <span style="color: white;"><%= footerinfo.email %></span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-phone" style="color: white;"></i>
+                                        <span style="color: white;"><%= EnglishFrontpage.phone %></span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            
+                            <div class="s-h">
+                                <span>
+                                    Follow us on:
+                                </span>
+                                <% if (footerinfo.facebook) { %>
+                                <a href="<%=footerinfo.facebook%>" target="_blank" rel="noopener">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <% } %>
+                                <% if (footerinfo.instegram) { %>
+                                <a href="<%=footerinfo.instegram%>" target="_blank" rel="noopener">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <% } %>
+                                <% if (footerinfo.twiter) { %>
+                                <a href="<%=footerinfo.twiter%>" target="_blank" rel="noopener">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <% } %>
+                                <% if (footerinfo.youtube) { %>
+                                <a href="<%=footerinfo.youtube%>" target="_blank" rel="noopener">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Col -->
+                </div>
+            </div>
+        </div>
+        <!-- End Footer-top -->
+
+        <div id="chair-container" data-max-chairs="<%= Data.chairsNumber1 %>"></div>
+        <div id="price-container" data-max-price="<%= Data.trip_fare1 %>"></div>
+        <div id="price-container2" data-max-price2="<%= Data.trip_fare2 %>"></div>
+        <div id="specialprice-container" data-max-sprice="<%= Data.trip_specialfare1%>"></div>
+        <div id="specialprice-container2" data-max-sprice2="<%= Data.trip_specialfare2%>"></div>
+        <div id="voucher-container" data-max-voucher='<%= JSON.stringify(vouchers) %>'></div>
+        <div id="towwaydiscount-container1" data-max-disc1='<%= Data.twowaydiscount1 %>'></div>
+        <div id="towwaydiscount-container2" data-max-disc2='<%= Data.twowaydiscount2 %>'></div>
+
+        </footer>
+        <!-- End Footer -->
+        </div>
+    
+     <!-- CDN JS Libraries -->
+   <script src="assets/vendor/jquery/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+   <script src="assets/js/wow.min.js"></script>
+   <script src="assets/vendor/fancyBox/jquery.fancybox.js"></script>
+   <script src="assets/vendor/slick/slick.min.js"></script>
+   <script src="assets/vendor/odometer/odometer.min.js"></script>
+   <script src="assets/vendor/odometer/viewport.jquery.js"></script>
+   <script src="assets/vendor/niceSelect/jquery.nice-select.min.js"></script>
+   <script src="assets/vendor/jqueryUi/jquery-ui.js"></script>
+   <script src="assets/js/main.js"></script>
+
+       
+        <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+       // Get elements
+const goGroupChairs = document.querySelectorAll('.go-group .chair-h input[type="checkbox"]');
+const backGroupChairs = document.querySelectorAll('.back-group .chair-h input[type="checkbox"]');
+const selectedQty = parseInt(document.getElementById('chair-container').dataset.maxChairs || 1);
+const ChairPrice = parseInt(document.getElementById('price-container').dataset.maxPrice || 1);
+const ChairSpecialPrice = parseInt(document.getElementById('specialprice-container').dataset.maxSprice || 1);
+const ChairPrice2 = parseInt(document.getElementById('price-container2').dataset.maxPrice2 || 1);
+const ChairSpecialPrice2 = parseInt(document.getElementById('specialprice-container2').dataset.maxSprice2 || 1);
+const vouchers = JSON.parse(document.getElementById('voucher-container').dataset.maxVoucher); // Parse JSON
+const confirmButton = document.getElementById("btn-one");
+const discountInput = document.getElementById("discountInput"); 
+const discountButton = document.getElementById("discountButton"); 
+const oldPriceElement = document.getElementById("oldPrice");
+const totalPriceElement = document.getElementById("totalPriceee");
+const termsCheckbox = document.getElementById("termsCheckbox");
+const bookButton = document.getElementById("btn-two");
+const payButton = document.getElementById("payButton");
+const paymentMethods = document.querySelectorAll('input[name="action"]');
+const Diffrence = ChairSpecialPrice - ChairPrice;
+const Diffrence2 = ChairSpecialPrice2 - ChairPrice2;
+const seat1 = document.getElementById("myCheckbox1");
+const seat2 = document.getElementById("myCheckbox2");
+const Twowaydiscount1 = parseInt(document.getElementById('towwaydiscount-container1').dataset.maxDisc1 || 1);
+const Twowaydiscount2 = parseInt(document.getElementById('towwaydiscount-container2').dataset.maxDisc2 || 1);
+const actualtwowaydiscount = Twowaydiscount1 < Twowaydiscount2 ? Twowaydiscount1 : Twowaydiscount2 ; 
+const steptwo = document.getElementById("steptwo") ;
+const stepthree = document.getElementById("stepthree") ;
+const visaform = document.getElementById("visa") ;
+const vfform = document.getElementById("VFcash") ;
+const cashform = document.getElementById("cash") ;
+console.log("Go Group Chairs Count:", goGroupChairs.length);
+console.log("Back Group Chairs Count:", backGroupChairs.length);
+
+const paymentOptions = document.querySelectorAll('input[name="action"]'); // Select all radio buttons
+ const sections = document.querySelectorAll('.show-hide'); // Select all payment sections
+
+// Hidden inputs
+const visibleNameInput = document.getElementById("visibleNameInput");
+const hiddenNameInput = document.getElementById("nameInput");
+const visiblePhoneInput = document.getElementById("visiblePhoneInput");
+const hiddenphoneInput = document.getElementById("phoneInput");
+const hiddenvoucherInput = document.getElementById("voucherInput");
+const hiddenchairsInput1 = document.getElementById("chairsInput1");
+const hiddenchairsInput2 = document.getElementById("chairsInput2");
+const visibleNameInput2 = document.getElementById("visibleNameInput2");
+const visiblePhoneInput2 = document.getElementById("visiblePhoneInput2");
+const visibleNameInput3 = document.getElementById("visibleNameInput3");
+const visiblePhoneInput3 = document.getElementById("visiblePhoneInput3");
+
+let selectedGoGroupChairs = [];
+let selectedBackGroupChairs = [];
+let discountPercentage = 0;
+let discountMaxValue = 0;
+
+// Function to disable all chairs in a group
+function disableChairs(chairs) {
+    chairs.forEach(checkbox => {
+        checkbox.disabled = true;
+    });
+
+    if(seat1) {
+        seat1.disabled = true ;
+    }
+
+    if(seat2) {
+        seat2.disabled = true ;
+    }
+}
+
+// Function to uncheck all chairs in a group
+function uncheckChairs() {
+    goGroupChairs.forEach(checkbox => {
+        checkbox.checked = false;
+    });
+
+    backGroupChairs.forEach(checkbox => {
+        checkbox.checked = false;
+    });
+    if(seat1) {
+        seat1.checked = false ;
+    }
+
+    if(seat2) {
+        seat2.checked = false ;
+    }
+}
+
+window.addEventListener("pageshow", function(event) {
+            uncheckChairs();
+            confirmButton.disabled = true;
+        bookButton.disabled = true;
+        payButton.disabled = true;
+        steptwo.style.display = "none" ;
+        stepthree.style.display = "none" ;
+        updateTotalPrice();
+});
+      
+
+// // Function to update total price
+// function updateTotalPrice() {
+//     let totalPrice = (ChairPrice * selectedGoGroupChairs.length ) + ( ChairPrice2 * selectedBackGroupChairs.length) + (seat1 && seat1.checked ? Diffrence : 0) + (seat2 && seat2.checked ? Diffrence2 : 0);
+
+
+    
+//     if (discountPercentage > 0) {
+//         let discountValue = totalPrice * (discountPercentage / 100);
+//         if (discountValue > discountMaxValue) {
+//             discountValue = discountMaxValue;
+//         }
+//         totalPrice -= discountValue;
+//     }
+//     totalPriceElement.textContent = `EGP ${totalPrice.toFixed(2)}`;
+// }
+
+function updateTotalPrice() {
+    let totalPrice = (ChairPrice * selectedGoGroupChairs.length ) + ( ChairPrice2 * selectedBackGroupChairs.length) + (seat1 && seat1.checked ? Diffrence : 0) + (seat2 && seat2.checked ? Diffrence2 : 0);
+    totalPrice = totalPrice * (100 - actualtwowaydiscount)/100 ;
+    totalPriceElement.textContent = `EGP ${totalPrice.toFixed(2)}`;
+
+}
+
+// Event listener for seat1
+    if(seat1) {
+        seat1.addEventListener('change', () => {
+        if(seat1 && seat1.checked) {
+            selectedGoGroupChairs.push(seat1);
+        }else{
+            selectedGoGroupChairs = selectedGoGroupChairs.filter(item => item !== seat1);
+        }
+       
+        
+        if (selectedGoGroupChairs.length > selectedQty) {
+            const removedChair = selectedGoGroupChairs.shift();
+            removedChair.checked = false;
+        }
+
+        
+        oldPriceElement.textContent = `EGP ${(ChairPrice * selectedGoGroupChairs.length ) + ( ChairPrice2 * selectedBackGroupChairs.length) + (seat1 && seat1.checked ? Diffrence : 0) + (seat2 && seat2.checked ? Diffrence2 : 0)} `;
+        if(actualtwowaydiscount > 0) {
+            oldPriceElement.style.display = "block";
+        }
+      
+        updateTotalPrice();
+
+    });
+    }
+   
+
+    if(seat2) {
+        seat2.addEventListener('change', () => {
+        if(seat2 && seat2.checked) {
+            selectedBackGroupChairs.push(seat2);
+        }else{
+            selectedBackGroupChairs = selectedBackGroupChairs.filter(item => item !== seat2);
+        }
+       
+        
+        if (selectedBackGroupChairs.length > selectedQty) {
+            const removedChair = selectedBackGroupChairs.shift();
+            removedChair.checked = false;
+        }
+
+        
+        oldPriceElement.textContent = `EGP ${(ChairPrice * selectedGoGroupChairs.length ) + ( ChairPrice2 * selectedBackGroupChairs.length) + (seat1 && seat1.checked ? Diffrence : 0) + (seat2 && seat2.checked ? Diffrence2 : 0)}`;
+        if(actualtwowaydiscount > 0) {
+            oldPriceElement.style.display = "block";
+        }
+        
+        updateTotalPrice();
+
+    });
+    }
+    
+
+
+// Event listeners for GoGroup chairs
+goGroupChairs.forEach(chair => {
+    chair.addEventListener('change', () => {
+        
+        if (chair.checked) {
+            selectedGoGroupChairs.push(chair);
+        } else {
+            selectedGoGroupChairs = selectedGoGroupChairs.filter(item => item !== chair);
+        }
+
+        if (selectedGoGroupChairs.length > selectedQty) {
+            const removedChair = selectedGoGroupChairs.shift();
+            removedChair.checked = false;
+        }
+
+        hiddenchairsInput1.value = JSON.stringify([
+            ...selectedGoGroupChairs.map(chair => parseInt(chair.name.replace(/\D/g, ''), 10)),
+        ]);
+
+        
+
+        
+        oldPriceElement.textContent = `EGP ${(ChairPrice * selectedGoGroupChairs.length ) + ( ChairPrice2 * selectedBackGroupChairs.length) + (seat1 && seat1.checked ? Diffrence : 0) + (seat2 && seat2.checked ? Diffrence2 : 0)}`;
+        if(actualtwowaydiscount > 0) {
+            oldPriceElement.style.display = "block";
+        }
+
+        updateTotalPrice();
+        console.log(selectedGoGroupChairs);
+        confirmButton.disabled = (selectedGoGroupChairs.length + selectedBackGroupChairs.length) !== 2 * selectedQty;
+    });
+});
+
+// Event listeners for BackGroup chairs
+backGroupChairs.forEach(chair => {
+    chair.addEventListener('change', () => {
+        if (chair.checked) {
+            selectedBackGroupChairs.push(chair);
+        } else {
+            selectedBackGroupChairs = selectedBackGroupChairs.filter(item => item !== chair);
+        }
+
+        if (selectedBackGroupChairs.length > selectedQty) {
+            const removedChair = selectedBackGroupChairs.shift();
+            removedChair.checked = false;
+        }
+
+        hiddenchairsInput2.value = JSON.stringify([
+        ...selectedBackGroupChairs.map(chair => parseInt(chair.name.replace(/\D/g, ''), 10))
+        ]);
+
+        
+        oldPriceElement.textContent = `EGP ${(ChairPrice * selectedGoGroupChairs.length ) + ( ChairPrice2 * selectedBackGroupChairs.length) + (seat1 && seat1.checked ? Diffrence : 0) + (seat2 && seat2.checked ? Diffrence2 : 0)}`;
+        if(actualtwowaydiscount > 0) {
+            oldPriceElement.style.display = "block";
+        }
+
+        updateTotalPrice();
+        confirmButton.disabled = (selectedGoGroupChairs.length + selectedBackGroupChairs.length) !== 2 * selectedQty;
+    });
+});
+
+// // Apply discount when button is clicked
+// discountButton.addEventListener("click", () => {
+//     const discountCode = discountInput.value.trim();
+//     const voucher = vouchers.find(v => v.code === discountCode);
+    
+//     if (voucher) {
+//         discountPercentage = voucher.percentage;
+//         discountMaxValue = voucher.maximum;
+
+//         if ((selectedGoGroupChairs.length + selectedBackGroupChairs.length) !== selectedQty * 2) {
+//             alert(`برجاء اختيار ${selectedQty} كراسي`);
+//         } else {
+//             discountButton.style.display = "none";
+//             discountInput.readOnly = true;
+//             hiddenvoucherInput.value = voucher.code;
+//             alert(`تم تطبيق خصم ${discountPercentage}% بقيمة اقصي ${discountMaxValue} EGP!`);
+            
+        
+//             oldPriceElement.textContent = `EGP ${(ChairPrice * selectedGoGroupChairs.length ) + ( ChairPrice2 * selectedBackGroupChairs.length) + (seat1 && seat1.checked ? Diffrence : 0) + (seat2 && seat2.checked ? Diffrence2 : 0)}`;
+//             oldPriceElement.style.display = "block";
+
+//             updateTotalPrice();
+//             disableChairs([...goGroupChairs, ...backGroupChairs]);
+//         }
+//     } else {
+//         discountPercentage = 0;
+//         discountMaxValue = 0;
+//         alert("كود الخصم غير صحيح، حاول مرة أخرى.");
+//     }
+// });
+
+// Validation function
+function validateInputs() {
+    const nameValid = hiddenNameInput.value.trim().length >= 7;
+    const phoneValid = hiddenphoneInput.value.trim().length == 11;
+    payButton.disabled = !(nameValid && phoneValid);
+}
+
+// Event listeners for name and phone inputs
+visibleNameInput.addEventListener("input", () => {
+    if (getSelectedPaymentMethod() === 'visa') {
+        hiddenNameInput.value = visibleNameInput.value;
+        validateInputs();
+    }
+});
+
+visibleNameInput2.addEventListener("input", () => {
+    if (getSelectedPaymentMethod() === 'VFcash') {
+        hiddenNameInput.value = visibleNameInput2.value;
+        validateInputs();
+    }
+});
+
+visibleNameInput3.addEventListener("input", () => {
+    if (getSelectedPaymentMethod() === 'cash') {
+        hiddenNameInput.value = visibleNameInput3.value;
+        validateInputs();
+    }
+});
+
+visiblePhoneInput.addEventListener("input", () => {
+    if (getSelectedPaymentMethod() === 'visa') {
+        hiddenphoneInput.value = visiblePhoneInput.value;
+        validateInputs();
+    }
+});
+
+visiblePhoneInput2.addEventListener("input", () => {
+    if (getSelectedPaymentMethod() === 'VFcash') {
+        hiddenphoneInput.value = visiblePhoneInput2.value;
+        validateInputs();
+    }
+});
+
+visiblePhoneInput3.addEventListener("input", () => {
+    if (getSelectedPaymentMethod() === 'cash') {
+        hiddenphoneInput.value = visiblePhoneInput3.value;
+        validateInputs();
+    }
+});
+
+// On page load, set hidden inputs based on selected payment method
+window.addEventListener('load', () => {
+    let method = getSelectedPaymentMethod();
+    if (method === 'visa') {
+        hiddenNameInput.value = visibleNameInput.value;
+        hiddenphoneInput.value = visiblePhoneInput.value;
+    } else if (method === 'VFcash') {
+        hiddenNameInput.value = visibleNameInput2.value;
+        hiddenphoneInput.value = visiblePhoneInput2.value;
+    } else if (method === 'cash') {
+        hiddenNameInput.value = visibleNameInput3.value;
+        hiddenphoneInput.value = visiblePhoneInput3.value;
+    }
+    validateInputs();
+});
+
+// Function to get selected payment method
+function getSelectedPaymentMethod() {
+    const selectedMethod = document.querySelector('input[name="action"]:checked');
+    return selectedMethod ? selectedMethod.value : null;
+}
+
+// Function to update button state based on terms checkbox
+function updatePolicyState() {
+    bookButton.disabled = !termsCheckbox.checked;
+    if( !termsCheckbox.checked) {
+        stepthree.style.display = "none" ;
+    }
+   
+}
+
+confirmButton.addEventListener("click" , () => {
+    steptwo.style.display = "block" ;
+})
+
+bookButton.addEventListener("click" , () => {
+    stepthree.style.display = "block" ;
+   
+})
+
+termsCheckbox.addEventListener("change", updatePolicyState);
+
+paymentOptions.forEach(option => {
+            option.addEventListener('change', function () {
+                sections.forEach(section => section.style.display = 'none'); // Hide all sections
+
+                const selectedMethod = this.value; // Get selected payment method
+                const selectedSection = document.getElementById(selectedMethod); // Find corresponding section
+
+                if (selectedSection) {
+                    selectedSection.style.display = 'block'; // Show the corresponding section
+                }
+            });
+        });
+  
+
+// Initial state setup
+confirmButton.disabled = true;
+bookButton.disabled = true;
+payButton.disabled = true;
+});
+    
+    
+        </script>
+        
+    </body>
+    
+    </html>
+  

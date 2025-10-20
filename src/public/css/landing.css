@@ -1,0 +1,432 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body{
+    font-family: Poppins;
+    margin: 0;
+    background-color: #f2f9f9;
+    color: #eee;
+}
+svg{
+    width: 25px;
+}
+header{
+    width: 1200px;
+    max-width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 50px 1fr 50px;
+    grid-template-rows: 50px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+}
+header .logo{
+    font-weight: bold;
+}
+header .menu{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-weight: 500;
+}
+/* css slider */
+.slider{
+    height: 100vh;
+    margin-top: -50px;
+    position: relative;
+}
+.slider .list .item{
+    position: absolute;
+    inset: 0 0 0 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: .5s;
+}
+.slider .list .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.slider .list .item::after{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-image: linear-gradient(
+        to top, #000 40%, transparent
+    );
+}
+.slider .list .item .content{
+    position: absolute;
+    left: 10%;
+    top: 20%;
+    width: 500px;
+    max-width: 80%;
+    z-index: 1;
+}
+.slider .list .item .content p:nth-child(1){
+    text-transform: uppercase;
+    letter-spacing: 10px;
+}
+.slider .list .item .content h2{
+    font-size: 100px;
+    margin: 0;
+}
+.slider .list .item.active{
+    opacity: 1;
+    z-index: 10;
+}
+@keyframes showContent {
+    to{
+        transform: translateY(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+.slider .list .item.active p:nth-child(1),
+.slider .list .item.active h2,
+.slider .list .item.active p:nth-child(3){
+    transform: translateY(30px);
+    filter: blur(20px);
+    opacity: 0;
+    animation: showContent .5s .7s ease-in-out 1 forwards;
+}
+.slider .list .item.active h2{
+    animation-delay: 1s;
+}
+.slider .list .item.active p:nth-child(3){
+    animation-duration: 1.3s;
+}
+.arrows{
+    position: absolute;
+    top: 30%;
+    right: 50px;
+    z-index: 100;
+}
+.arrows button{
+    background-color: #eee5;
+    border: none;
+    font-family: monospace;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: x-large;
+    color: #eee;
+    transition: .5s;
+}
+.arrows button:hover{
+    background-color: #eee;
+    color: black;
+}
+.thumbnail{
+    position: absolute;
+    bottom: 50px;
+    z-index: 11;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    height: 250px;
+    padding: 0 50px;
+    box-sizing: border-box;
+    overflow: auto;
+    justify-content: center;
+}
+.thumbnail::-webkit-scrollbar{
+    width: 0;
+}
+.thumbnail .item{
+    width: 150px;
+    height: 220px;
+    filter: brightness(.5);
+    transition: .5s;
+    flex-shrink: 0;
+}
+.thumbnail .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.thumbnail .item.active{
+    filter: brightness(1.5);
+}
+.thumbnail .item .content{
+    position: absolute;
+    inset: auto 10px 10px 10px;
+}
+@media screen and (max-width: 678px) {
+    .thumbnail{
+        justify-content: start;
+    }
+    .slider .list .item .content h2{
+        font-size: 60px;
+    }
+    .arrows{
+        top: 10%;
+    }
+}
+
+/* صندوق النموذج */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    animation: floatUpDown 3s ease-in-out infinite;
+}
+@keyframes floatUpDown {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px); /* يتحرك للأعلى */
+    }
+}
+
+.booking-form {
+    margin-top: 200px;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: #c4dbe7;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 400px; 
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeIn 0.8s ease-in-out forwards;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* العنوان */
+.form-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header {
+    font-size: 22px;
+    color: #021226;
+    margin-bottom: 10px;
+}
+
+.form-option {
+    border-radius: 7px;
+    background-color: white;
+    margin-right: 90px;
+    margin-left: 90px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.form-option button {
+    border: none;
+    padding: 8px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    background: white;
+    color: #023652;
+    border-radius: 8px;
+    transition: 0.3s;
+    transition: back-ground 0.3s ease, color 0.3s ease, transform 0.2s ease-in-out;
+
+}
+
+.form-option button:active {
+    transform: scale(0.95);
+}
+
+.form-option .active {
+    animation: switchButton 0.3s ease-in-out;
+    background: #035c8c;
+    color: white;
+}
+@keyframes switchButton {
+    from {
+        transform: scale(0.9);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.form-option .go{
+    margin: 10px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/* تنسيق مجموعات الإدخال */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #03045e;
+}
+
+select, input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* تنسيق العدّاد */
+.passenger-count {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.passenger-count button {
+    border: none;
+    background: #084769;
+    color: white;
+    font-size: 18px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.passenger-count input {
+    width: 50px;
+    text-align: center;
+}
+
+.input-group input, .input-group select {
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.input-group input:focus, .input-group select:focus {
+    box-shadow: 0 0 10px rgba(3, 92, 140, 0.5);
+    border-color: #035c8c;
+}
+
+.search-button {
+    width: 100%;
+    padding: 10px;
+    background: #023652;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    transition: back-ground 0.3s ease, transform 0.2s ease-in-out;
+
+}
+
+.search-button:hover {
+    transform: scale(1.05);
+    background: #023e8a;
+}
+
+.search-button:active {
+    transform: scale(0.95);
+}
+
+/* 🌟 تحسين التصميم للشاشات الكبيرة */
+@media (min-width: 768px) {
+    .booking-form {
+        max-width: 600px;
+        padding: 30px;
+    }
+
+    .header {
+        font-size: 26px;
+    }
+
+    label {
+        font-size: 16px;
+    }
+
+    select, input {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .form-option button {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    .search-button {
+        font-size: 18px;
+        padding: 12px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .booking-form {
+        max-width: 700px;
+        padding: 40px;
+    }
+
+    .header {
+        font-size: 30px;
+    }
+
+    label {
+        font-size: 18px;
+    }
+
+    select, input {
+        font-size: 18px;
+        padding: 12px;
+    }
+
+    .form-option button {
+        font-size: 18px;
+        padding: 12px 25px;
+    }
+
+    .search-button {
+        font-size: 20px;
+        padding: 14px;
+    }
+}
+
+.payment-option{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.payment-options {
+
+    margin-top: 70px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .payment-option {
+    margin: 10px;
+    text-align: center;
+  }
+  .payment-option img {
+    width: 50px;
+    height: 50px;
+  }

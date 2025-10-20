@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<!-- Lang AR -->
+<!-- <html dir="ltr"> -->
+<html dir="rtl">
+
+<head>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta charset="utf-8">
+    <meta name="author" content="Arboon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0D3558">
+    <title>Home Page - Booking</title>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/logo.png" />
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="assets/css/style-en.css" rel="stylesheet" type="text/css" /> -->
+    <link href="assets/css/mobile.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+    <!-- Start Header -->
+    <header class="sticky">
+        <!-- Start Header-med -->
+        <div class="header-med">
+            <div class="container">
+                <div class="row">
+                    <!-- Col -->
+                    <div class="col-md-12">
+                        <div class="head-inner">
+                            <div class="logo-h">
+                                <a href="/">
+                                    <img src="assets/images/logo.png" alt="#" />
+                                </a>
+                            </div>
+
+                            <div class="menu-left">
+                                <div class="info-h">
+                                    <div class="info-item">
+                                        <i class="fa fa-business-time"></i>
+                                        <div class="details">
+                                            <h3>
+                                                ساعات العمل
+                                            </h3>
+                                            <span>
+                                                <%=ArabicFrontpage.WorkingHours%>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fa fa-phone"></i>
+                                        <div class="details">
+                                            <h3>
+                                                مركز الاتصال
+                                            </h3>
+                                            <span>
+                                                <u>
+                                                    <%=ArabicFrontpage.phone%>
+                                                </u>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Col -->
+                </div>
+            </div>
+        </div>
+        <!-- End Header-Med -->
+    </header>
+
+    <main class="main-content">
+        <div style="text-align: center; margin: 20px 0;">
+            <a href="#" id="english-ticket-btn" class="btn-english-ticket">
+                Click Here for English Ticket
+            </a>
+        </div>
+
+        <style>
+            .btn-english-ticket {
+                display: inline-block;
+                background-color: #0D3558; /* Dark blue */
+                color: white;
+                font-size: 18px;
+                padding: 10px 20px;
+                border-radius: 5px;
+                text-decoration: none;
+                font-weight: bold;
+                transition: 0.3s;
+            }
+            
+            .btn-english-ticket:hover {
+                background-color: #092649; /* Darker blue */
+            }
+        </style>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var btn = document.getElementById("english-ticket-btn");
+                var currentUrl = window.location.href;
+        
+                // Extracting the base URL and query parameters
+                var url = new URL(currentUrl);
+                var pathname = url.pathname; // e.g., "/ticket"
+                var searchParams = url.search; // e.g., "?id=1740160701421687"
+        
+                // Ensure "/en/" is added correctly before "ticket"
+                if (!pathname.startsWith("/en")) {
+                    var newPath = "/en" + pathname;
+                    btn.href = newPath + searchParams;
+                } else {
+                    btn.href = currentUrl;
+                }
+            });
+        </script>
+
+        <!-- Start Booking-page -->
+        <section class="booking-page ticket-page body-inner">
+            <div class="container">
+                <div class="row  justify-content-between">
+                    <!-- Col -->
+                    <div class="col-md-7">
+                        <div class="ticket-h row">
+                            <!-- Col -->
+                            <div class="col-md-12">
+                                <div class="trip-route-component">
+                                    <div class="trip-route-con">
+                                        <div class="list-component">
+                                            <h3 class="head-in">
+                                                تم حجز رحلتك بنجاح رقم تذكرتك هو <%=ticket.ticket_code%>
+                                            </h3>
+                                            <h3 style="text-align: center; font-size: 18px;">وسيلة الدفع : <%=ticket.paymentMethod%></h3>
+                                            <div class="list-head">
+                                                <h4><span>رقم التذكرة محجوزة ب رقم :</span><%=ticket.CoustmerID.phone%></h4>
+                                                <div>
+                                                    <i class="far fa-user"></i>
+                                                </div>
+                                                <h4><span>  ب اسم : </span> <%=ticket.CoustmerID.name%> </h4>
+                                            </div>
+                                            <div class="trip-date">برجاء الاحتفاظ بهذه التذكرة سواء بتصويرها او تحميلها</div>
+                                            <div class="list-component-con">        
+                                                <!-- Start List -->
+                                                <div class="list">
+                                                    <div class="list-con">
+                                                        <div class="right-side">
+                                                            <h4>
+                                                                <p style="font-size: 18px;">
+                                                             سفر من <%=takeoffstation.city.Arabicname%>  بتاريخ <%=ticket.trip_date%>
+                                                                </p>
+                                                                <%=ticket.takeoff.split(" ")[0]%> <%=ticket.takeoff.split(" ")[1] == "AM" ? "صباحاً" : "مساءً" %>
+                                                                <span></span>
+                                                            </h4>
+                                                            <strong class="bus-class-name bus-class-name-deluxe">
+                                                               <%=trip.Bus.type%>
+                                                            </strong>
+                                                            <div class="bus-icon">
+                                                                <i class="fa fa-bus"></i>
+                                                                <span></span>
+                                                            </div>
+                                                            <div class="position-relative">
+                                                                <h5>
+                                                                    <p>  وصول إلى  <%=arrivestation.city.Arabicname%>  </p>
+                                                                    <div class="time-soon-in">
+                                                                        <%=ticket.arrive.split(" ")[0]%> <%=ticket.arrive.split(" ")[1] == "AM" ? "صباحاً" : "مساءً" %>
+                                                                        <span></span>
+                                                                        <span class="text-muted"></span>
+                                                                    </div>
+                                                                </h5>
+                                                            </div>
+                                                        </div>  
+                                                        <div class="left-side">
+                                                            <h4>
+                                                                <%=ticket.seats%>
+                                                                <span>رقم الكرسي</span>
+                                                            </h4>
+                                                        </div>      
+                                                        <div class="services">
+                                                            <ul>
+                                                                <li>
+                                                                    <img class="svc-img" title="تلفزيون" src="assets/images/tv.png"
+                                                                        alt="svcimg" />
+                                                                    <span class="title">تلفزيون</span>
+                                                                </li>
+                                                                <li>
+                                                                    <img class="svc-img" title="مكيف"
+                                                                        src="assets/images/conditioner.png" alt="svcimg" />
+                                                                    <span class="title">مكيف</span>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End List -->
+                                            <% if(ticket.Back_trip_id) { %>
+                                                  <!-- Start List -->
+                                                  <div class="list">
+                                                    <div class="list-con">
+                                                        <div class="right-side">
+                                                            <h4>
+                                                                <p style="font-size: 18px;">
+                                                             سفر من <%=arrivestation.city.Arabicname%> بتاريخ <%=ticket.Back_trip_date%>
+                                                                </p>
+                                                                <%=ticket.Back_takeoff.split(" ")[0]%> <%=ticket.Back_takeoff.split(" ")[1] == "AM" ? "صباحاً" : "مساءً" %>
+                                                                <span></span>
+                                                            </h4>
+                                                            <strong class="bus-class-name bus-class-name-deluxe">
+                                                               <%=trip2.Bus.type%>
+                                                            </strong>
+                                                            <div class="bus-icon">
+                                                                <i class="fa fa-bus"></i>
+                                                                <span></span>
+                                                            </div>
+                                                            <div class="position-relative">
+                                                                <h5>
+                                                                    <p>  وصول إلى  <%=takeoffstation.city.Arabicname%> </p>
+                                                                    <div class="time-soon-in">
+                                                                        <%=ticket.Back_arrive.split(" ")[0]%> <%=ticket.Back_arrive.split(" ")[1] == "AM" ? "صباحاً" : "مساءً" %>
+                                                                        <span></span>
+                                                                        <span class="text-muted"></span>
+                                                                    </div>
+                                                                </h5>
+                                                            </div>
+                                                        </div>  
+                                                        <div class="left-side">
+                                                            <h4>
+                                                                <%=ticket.Backseats%>
+                                                                <span>رقم الكرسي</span>
+                                                            </h4>
+                                                        </div>      
+                                                        <div class="services">
+                                                            <ul>
+                                                                <li>
+                                                                    <img class="svc-img" title="تلفزيون" src="assets/images/tv.png"
+                                                                        alt="svcimg" />
+                                                                    <span class="title">تلفزيون</span>
+                                                                </li>
+                                                                <li>
+                                                                    <img class="svc-img" title="مكيف"
+                                                                        src="assets/images/conditioner.png" alt="svcimg" />
+                                                                    <span class="title">مكيف</span>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End List -->
+                                                 <% } %>
+                                                  <!-- Start List -->
+                                                <div class="list">
+                                                    <div class="list-con">
+                                                        <div class="right-side">
+                                                            <h4>عنوان محطة <%=takeoffstation.Arabicname%> : <%=takeoffstation.address%> </h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End List -->
+
+                                                 <!-- Start List -->
+                                                 <div class="list">
+                                                    <div class="list-con">
+                                                        <div class="right-side">
+                                                            <h4>عنوان محطة <%=arrivestation.Arabicname%> : <%=arrivestation.address%> </h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End List -->
+                                                 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Col -->
+                        </div>
+                    </div>
+                    <!-- /Col -->
+                     
+                    <!-- Col -->
+                    <div class="col-md-4">
+                        <div class="sidebar-booking">
+                            <div class="sidebar-title">
+                                <h3>
+                                    <%=ticket.seats.length%> مسافر
+                                </h3>
+                            </div>
+                            <div class="sidebar-content">
+                                <ul>
+                                    <li>
+                                        <strong>
+                                            رقم التواصل
+                                        </strong>
+                                    </li>
+                                    <li>
+                                        <a href="tel:0123459" target="_blank">
+                                            <i class="fa fa-phone"></i>
+                                            <span><%=ArabicFrontpage.phone%></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="sidebar-total">
+                                    <h4>
+                                        الأجمالي
+                                    </h4>
+                                    <h3 id="totalPrice">
+                                        <%=ticket.price%> EGP
+                                    </h3>
+                                    <span>
+                                        جنيه شامل الضرائب
+                                    </span>
+                                </div>
+                                <div class="sidebar-btns">
+                                    <a href="<%=takeoffstation.location%>" class="btn" target="_blank">
+                                        <i class="fa fa-map-marker-alt"></i>
+                                        <span>لوكيشن مكان الركوب</span>
+                                    </a>
+                                    <a href="ticketDownload/<%=ticket.id%>" class="btn"  target="_blank" >
+                                        <i class="fa fa-download"></i>
+                                        <span>تحميل PDF</span>
+                                    </a>
+                                    
+                                </div>
+                                <div class="sidebar-btns">
+                                    <a href="<%=arrivestation.location%>" class="btn" target="_blank">
+                                        <i class="fa fa-map-marker-alt"></i>
+                                        <span>لوكيشن مكان النزول</span>
+                                    </a>
+                                   
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Col -->
+                </div>
+            </div>
+        </section>
+        <!-- End Booking-page -->
+
+    </main>
+
+    <!-- Modal -->
+    <div class="modal faqModal fade" id="faqModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">الشروط والأحكام</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="faq-text">
+                        <h3>
+                            هناك حقيقة مثبتة منذ زمن طويل 
+                        </h3>
+                        <p>
+                            هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم لأنها تعطي توزيعاَ طبيعياَ -إلى حد ما- 
+                        </p>
+                        <h3>
+                            هناك حقيقة مثبتة منذ زمن طويل 
+                        </h3>
+                        <p>
+                            هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم لأنها تعطي توزيعاَ طبيعياَ -إلى حد ما- 
+                        </p>
+                        <h3>
+                            هناك حقيقة مثبتة منذ زمن طويل 
+                        </h3>
+                        <p>
+                            هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم لأنها تعطي توزيعاَ طبيعياَ -إلى حد ما- 
+                        </p>
+                        <h3>
+                            هناك حقيقة مثبتة منذ زمن طويل 
+                        </h3>
+                        <p>
+                            هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم لأنها تعطي توزيعاَ طبيعياَ -إلى حد ما- 
+                        </p>
+                        <h3>
+                            هناك حقيقة مثبتة منذ زمن طويل 
+                        </h3>
+                        <p>
+                            هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم لأنها تعطي توزيعاَ طبيعياَ -إلى حد ما- 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Start Footer -->
+    <footer>
+        <!-- Start Footer-top -->
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <!-- Col -->
+                    <div class="col-md-6">
+                        <a href="#" class="logo-f">
+                            <img src="assets/images/logo.png" alt="#" />
+                        </a>
+                        <p>
+                            <%=ArabicFrontpage.FooterTitle%>
+                        </p>
+                        <a href="tel:01541" class="callNow2">
+                            <i class="fa fa-phone"></i>
+                            <span>
+                                <%=ArabicFrontpage.phone%>
+                            </span>
+                        </a>
+                    </div>
+                    <!-- /Col -->
+
+                    <!-- Col -->
+                    <div class="col-md-6">
+                        <div class="foot-block">
+                            <h3>
+                                تواصل معنا
+                            </h3>
+                            <div class="info-f">
+                                <ul>
+                                    <li>
+                                        <i class="fa fa-map-marker-alt" style="color: white;"></i>
+                                        <span style="color: white;"><%= ArabicFrontpage.address %></span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-envelope" style="color: white;"></i>
+                                        <span style="color: white;"><%= footerinfo.email %></span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-phone" style="color: white;"></i>
+                                        <span style="color: white;"><%= ArabicFrontpage.phone %></span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            
+                            <div class="s-h">
+                                <span>
+                                    تابعنا علي:
+                                </span>
+                                <% if (footerinfo.facebook) { %>
+                                <a href="<%=footerinfo.facebook%>" target="_blank" rel="noopener">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <% } %>
+                                <% if (footerinfo.instegram) { %>
+                                <a href="<%=footerinfo.instegram%>" target="_blank" rel="noopener">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <% } %>
+                                <% if (footerinfo.twiter) { %>
+                                <a href="<%=footerinfo.twiter%>" target="_blank" rel="noopener">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <% } %>
+                                <% if (footerinfo.youtube) { %>
+                                <a href="<%=footerinfo.youtube%>" target="_blank" rel="noopener">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Col -->
+                </div>
+            </div>
+        </div>
+        <!-- End Footer-top -->
+
+    </footer>
+    <!-- End Footer -->
+    </div>
+
+     <!-- CDN JS Libraries -->
+   <script src="assets/vendor/jquery/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+   <script src="assets/js/wow.min.js"></script>
+   <script src="assets/vendor/fancyBox/jquery.fancybox.js"></script>
+   <script src="assets/vendor/slick/slick.min.js"></script>
+   <script src="assets/vendor/odometer/odometer.min.js"></script>
+   <script src="assets/vendor/odometer/viewport.jquery.js"></script>
+   <script src="assets/vendor/niceSelect/jquery.nice-select.min.js"></script>
+   <script src="assets/vendor/jqueryUi/jquery-ui.js"></script>
+   <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

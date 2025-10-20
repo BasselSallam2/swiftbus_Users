@@ -1,0 +1,167 @@
+.no-js .multi-step-form fieldset button,
+.no-js .multi-step-form h2,
+.multi-step-form.edit-form fieldset button,
+.multi-step-form.edit-form h2 {
+    display: none !important;
+}
+
+.no-js .multi-step-form fieldset,
+.multi-step-form.edit-form fieldset {
+    display: block !important;
+}
+
+.no-js .multi-step-form [type=submit],
+.no-js .multi-step-form [type=reset],
+.multi-step-form.edit-form [type=submit],
+.multi-step-form.edit-form [type=reset] {
+    display: inline-block !important;
+}
+
+.no-js .multi-step-form .steps,
+.multi-step-form.edit-form .steps {
+    display: none;
+}
+
+.multi-step-form fieldset {
+    display: none;
+}
+
+.multi-step-form fieldset:first-of-type {
+    display: block;
+}
+
+.multi-step-form fieldset.hidden {
+    display: none;
+}
+
+.multi-step-form fieldset.visible {
+    display: block;
+}
+
+.multi-step-form .steps button {
+    border: 0;
+}
+
+.multi-step-form .steps [disabled] {
+    background: none;
+}
+
+.multi-step-form .steps .active {
+    background: #eee;
+}
+
+.steps {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    flex: 0 1;
+    margin: 0 0 13px;
+    z-index: 2;
+    justify-content: space-between;
+}
+
+.steps button {
+    width: 33.33%;
+    flex: 0 0 33.33%;
+    padding: 0;
+    background: transparent !important;
+    position: relative;
+    display: flex;
+    align-items: center;
+    -webkit-align-items: center;
+    text-align: start;
+}
+
+.steps button .icon {
+    width: 29px;
+    height: 28px;
+    background: var(--main-color);
+    border: none;
+    display: flex;
+    margin: 0;
+    border-radius: 50%;
+    margin-inline-end: 10px;
+    padding: 0;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 16.42px;
+    opacity: 0.6;
+    background: #000D2A;
+    transition: all .4s;
+}
+
+.steps button .icon img {
+    max-height: 44px;
+}
+
+.steps button:nth-child(2) .icon img {
+    max-width: 27px;
+}
+
+.steps button.active .icon {
+    background: var(--main-color);
+    color: #fff;
+    opacity: 1;
+}
+
+.steps button.active .icon img {
+    filter: brightness(0) invert(1);
+}
+
+.steps button:nth-child(1) .icon {
+    line-height: 58px;
+}
+
+.steps button h6 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16.42px;
+    color: #000D2A;
+    opacity: .6;
+    transition: all .4s;
+    width: calc(100% - 104px);
+}
+
+
+.multi-step-form .steps button:last-child::after {
+    display: none;
+}
+
+.multi-step-form .steps button::after {
+    content: "";
+    position: absolute;
+    left: 100%;
+    width: 100%;
+    height: 1px;
+    background: #000D2A4D;
+    top: 14px;
+    z-index: -1;
+}
+
+.steps button.active h6 {
+    opacity: 1;
+}
+
+.multi-step-form .form-group span.error-text {
+    color: red;
+    font-size: 12px;
+    margin-top: 10px;
+    display: block;
+}
+
+.multi-step-form .form-group .choose-input span.error-text {
+    display: none;
+}
+
+.multi-step-form .form-group .choose-input input.error-text~i::before {
+    border-color: red;
+}
+
+.career-form .form-group .form-control.error-text {
+    border-color: red;
+}

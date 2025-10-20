@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html dir="ltr">
+
+<head>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta charset="utf-8">
+    <meta name="author" content="Arboon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0D3558">
+    <title>Home Page - Booking</title>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/logo.png" />
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="assets/css/style-en.css" rel="stylesheet" type="text/css" /> -->
+    <link href="assets/css/mobile.css" rel="stylesheet" type="text/css" />
+    <style>
+        .xXbQ12f {
+            font-family: "Poppins", sans-serif;
+            background: var(--bg-grad);
+            color: var(--dark-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .Yz9QaPp {
+            max-width: 900px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .Uj7MkTq {
+            color: var(--main-color);
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .RtXo88D {
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            background: #f1dd9e;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .VvK3lMq {
+            color: var(--sec-color);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .PpF8NzY {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .ZoPq1l9 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: var(--dark-color);
+        }
+    </style>
+</head>
+
+<body>
+ 
+    <!-- Start Header -->
+    <header class="sticky">
+        <!-- Start Header-med -->
+        <div class="header-med">
+            <div class="container">
+                <div class="row">
+                    <!-- Col -->
+                    <div class="col-md-12">
+                        <div class="head-inner">
+                            <div class="logo-h">
+                                <a href="/">
+                                    <img src="assets/images/logo.png" alt="#" />
+                                </a>
+                            </div>
+
+                            <div class="menu-left">
+                                <div class="info-h">
+                                    <div class="info-item">
+                                        <i class="fa fa-business-time"></i>
+                                        <div class="details">
+                                            <h3>
+                                                ساعات العمل
+                                            </h3>
+                                            <span>
+                                                <%=ArabicFrontpage.WorkingHours%>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fa fa-phone"></i>
+                                        <div class="details">
+                                            <h3>
+                                                مركز الاتصال
+                                            </h3>
+                                            <span>
+                                                <u>
+                                                    <%=ArabicFrontpage.phone%>
+                                                </u>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Col -->
+                </div>
+            </div>
+        </div>
+        <!-- End Header-Med -->
+    </header>
+
+    <div class="Yz9QaPp">
+        <h1 class="Uj7MkTq">الشروط والأحكام</h1>
+
+        <div class="RtXo88D">
+            <h2 class="VvK3lMq">مقدمة</h2>
+            <p class="PpF8NzY">
+                باستخدامك لموقع Swift Bus، فإنك توافق على الالتزام بهذه الشروط والأحكام. يُرجى قراءة هذه الشروط بعناية قبل إجراء أي حجز، وإذا كنت لا توافق على أي بند، يُرجى التوقف عن استخدام الموقع فورًا.
+            </p>
+        </div>
+
+        <div class="RtXo88D">
+            <h2 class="VvK3lMq">التعريفات</h2>
+            <p class="PpF8NzY">
+                يشير مصطلح "الشركة" إلى الكيان الذي يمتلك ويدير موقع Swift Bus ويقدم خدمات حجز رحلات الحافلات، بينما يشير مصطلح "المستخدم" إلى أي شخص يستخدم الموقع لحجز الرحلات أو الاطلاع على المعلومات ذات الصلة. ويشير مصطلح "الحجز" إلى عملية حجز مقعد أو أكثر للسفر على الحافلات المتاحة على الموقع، وتشمل "الخدمات" جميع الإجراءات المتعلقة بحجز التذاكر، ومعالجة المدفوعات، وتوفير المعلومات المتعلقة بالسفر.
+            </p>
+        </div>
+
+        <div class="RtXo88D">
+            <h2 class="VvK3lMq">الحجز والتأكيد</h2>
+            <p class="PpF8NzY">
+                يتعين على المستخدم تقديم معلومات دقيقة وكاملة عند إجراء الحجز، مثل الاسم ورقم الهاتف وتفاصيل الدفع. جميع الحجوزات تخضع للتوافر وفقًا للسياسات المعتمدة من قبل الشركة. بمجرد قبول وتأكيد الحجز، يصبح ملزمًا وغير قابل للتحويل إلا في حالات خاصة يتم الاتفاق عليها كتابيًا مع الشركة.
+            </p>
+        </div>
+
+        <div class="RtXo88D">
+            <h2 class="VvK3lMq">شروط الدفع</h2>
+            <p class="PpF8NzY">
+                يجب على المستخدم دفع القيمة الكاملة للحجز أثناء عملية الحجز ما لم يُنص على خلاف ذلك، وتُعرض الأسعار بالجنيه المصري (EGP) وتخضع للتغيير من قبل الشركة دون إشعار مسبق، مع مراعاة الحجوزات التي تم تأكيدها بالفعل.
+            </p>
+        </div>
+
+        <div class="RtXo88D">
+            <h2 class="VvK3lMq">الإلغاء والاسترداد</h2>
+            <p class="PpF8NzY">
+                يتم تطبيق سياسة الإلغاء وفقًا لنوع الحجز والمسار المحجوز، ويتم إبلاغ المستخدم بالشروط المحددة أثناء عملية الحجز. في حال كان هناك استحقاق لاسترداد الأموال، فسيتم تنفيذ العملية خلال عدد محدد من أيام العمل بعد تأكيد الإلغاء. ومع ذلك، لن يتم تقديم أي استرداد للأموال في حال الإلغاء قبل أقل من 24 ساعة من موعد الرحلة المجدول. بالإضافة إلى ذلك، لا يحق للمستخدم المطالبة باسترداد الأموال إذا لم يحضر في وقت المغادرة المحدد (عدم الحضور).
+            </p>
+        </div>
+
+        <div class="RtXo88D">
+            <h2 class="VvK3lMq">مسؤوليات المسافر</h2>
+            <p class="PpF8NzY">
+                يتحمل المسافر مسؤولية الوصول إلى نقطة الانطلاق في الوقت المحدد، كما يجب عليه حمل بطاقة هوية سارية المفعول مع أي مستندات سفر مطلوبة. لا تتحمل الشركة أي مسؤولية عن أي تأخيرات أو إلغاءات أو تغييرات قد تحدث في الرحلة بسبب ظروف خارجة عن إرادتها أو بسبب مزودي الخدمة المتعاقدين معها.
+            </p>
+        </div>
+
+        <div class="RtXo88D">
+            <h2 class="VvK3lMq">المسؤولية وإخلاء المسؤولية</h2>
+            <p class="PpF8NzY">
+                تقتصر مسؤولية الشركة على توفير خدمة الحجز عبر الموقع، ولا تضمن جودة أو سلامة أو دقة جداول الخدمات المقدمة من مشغلي الحافلات. كما أنها غير مسؤولة عن أي أضرار أو خسائر مباشرة أو غير مباشرة قد تنتج عن استخدام الموقع أو الخدمات المرتبطة به، ويتعهد المستخدم بتعويض الشركة عن أي مطالبات أو خسائر تنشأ عن استخدام الموقع بما يخالف هذه الشروط.
+            </p>
+        </div>
+
+        <div class="RtXo88D">
+            <h2 class="VvK3lMq">سياسة الخصوصية</h2>
+            <p class="PpF8NzY">
+                يتم جمع واستخدام البيانات الشخصية وفقًا لسياسة الخصوصية الخاصة بالشركة، والتي توضح كيفية معالجة المعلومات وحمايتها. باستخدام الموقع، يُقر المستخدم ويوافق على شروط سياسة الخصوصية كما هو مذكور على الموقع.
+            </p>
+        </div>
+
+        <div class="RtXo88D">
+            <h2 class="VvK3lMq">القانون المعمول به والاختصاص القضائي</h2>
+            <p class="PpF8NzY">
+                يتم تفسير هذه الشروط والأحكام وفقًا لقوانين جمهورية مصر العربية. وفي حالة نشوء أي نزاع يتعلق باستخدام الموقع أو الخدمات المقدمة من خلاله، يكون الاختصاص القضائي الحصري للمحاكم المصرية.
+            </p>
+        </div>
+
+        <div class="RtXo88D">
+            <h2 class="VvK3lMq">التعديلات</h2>
+            <p class="PpF8NzY">
+                تحتفظ الشركة بالحق في تعديل هذه الشروط والأحكام في أي وقت دون إشعار مسبق. يُعتبر استمرار استخدام الموقع بعد هذه التعديلات بمثابة قبول للشروط المعدلة.
+            </p>
+        </div>
+
+        <div class="ZoPq1l9">&copy; 2025 Swift Bus. جميع الحقوق محفوظة.</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+document.addEventListener("DOMContentLoaded",function(){const departureDateInput=document.getElementById("from");const returnDateInput=document.getElementById("to");function parseDate(dateString){const parts=dateString.split("/");if(parts.length===3){const month=parseInt(parts[0],10)-1;const day=parseInt(parts[1],10);const year=parseInt(parts[2],10);return new Date(year,month,day)}
+return null}
+function formatDate(date){const month=(date.getMonth()+1).toString().padStart(2,"0");const day=date.getDate().toString().padStart(2,"0");const year=date.getFullYear();return `${month}/${day}/${year}`}
+function validateDates(){const departureDate=parseDate(departureDateInput.value);const returnDate=parseDate(returnDateInput.value);const today=new Date();today.setHours(0,0,0,0);if(departureDate<today){alert("تم ادخال تاريخ قديم سيتم تغيير التاريخ تلقائيا الي اليوم");departureDateInput.value=formatDate(today);return}
+if(!departureDate||isNaN(departureDate.getTime())){alert("الرجاء إدخال تاريخ سفر صالح بتنسيق MM/DD/YYYY");departureDateInput.value="";return}
+if(returnDate&&!isNaN(returnDate.getTime())&&returnDate<departureDate){const newReturnDate=new Date(departureDate);newReturnDate.setDate(departureDate.getDate());returnDateInput.value=formatDate(newReturnDate);alert("خطأ : تم ادخال تاريخ العودة قبل تاريخ السفر")}}
+departureDateInput.addEventListener("input",validateDates);returnDateInput.addEventListener("input",validateDates);if($(".datepicker").length){$(".datepicker").on("change",function(){validateDates()})}})

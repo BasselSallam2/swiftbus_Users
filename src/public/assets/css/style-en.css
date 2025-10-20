@@ -1,0 +1,30 @@
+body {
+    direction: ltr;
+}
+
+form {
+    direction: ltr;
+}
+
+body.animated .img-bus {
+    left: auto;
+    right: -26vw;
+}
+
+.img-bus {
+    right: -65vw;
+    left: auto;
+    transform: scaleX(-1);
+}
+
+.booking-form-inner {
+    background-image: linear-gradient(229deg, var(--main-color) 5%, #ffffff 5%);
+}
+
+.form-group.dropdown-container .dropdown .has-submenu span::after {
+    content: "\f105";
+}
+
+.submenu button.back-button i {
+    transform: scaleX(-1);
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html dir="ltr">
+
+<head>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta charset="utf-8">
+    <meta name="author" content="Arboon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0D3558">
+    <title>Home Page - booking</title>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/logo.png" />
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="assets/css/style-en.css" rel="stylesheet" type="text/css" /> -->
+    <link href="assets/css/mobile.css" rel="stylesheet" type="text/css" />
+ <style>
+    /* small overrides to match the original design and center the download block */
+    .app-download-section{
+      padding: 60px 0;
+      background: #f7f9fb;
+      position: relative;
+    }
+    .download-card{
+      max-width: 980px;
+      margin: 0 auto;
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      background: rgba(13,53,88,0.03);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 6px 18px rgba(13,53,88,0.06);
+    }
+    .download-left{
+      flex: 1;
+      min-width: 260px;
+      text-align: left;
+    }
+    .download-left h1{ font-size: 28px; margin: 0 0 8px; color: #0D3558; }
+    .download-left p{ margin:0 0 16px; color: #333; }
+    .android-badge {
+      display: inline-block;
+      text-decoration: none;
+      text-align: center;
+      margin-top: 8px;
+    }
+    .android-badge img{
+      width: 110px;
+      height: auto;
+      display:block;
+      margin: 0 auto 8px;
+      cursor: pointer;
+    }
+    .android-badge .download-text{
+      display:block;
+      font-weight:700;
+      padding: 8px 12px;
+      border-radius: 6px;
+      background:#0D3558;
+      color:white;
+      cursor:pointer;
+      text-decoration:none;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .download-right{
+      width: 360px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      flex-direction: column;
+    }
+    .placeholder-img{
+      width: 320px;
+      height: 200px;
+      border-radius:8px;
+      border: 2px dashed rgba(13,53,88,0.15);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: #666;
+      font-size: 14px;
+      background: #fff;
+    }
+
+    /* responsive */
+    @media (max-width: 880px){
+      .download-card{flex-direction: column; text-align:center;}
+      .download-right{width:100%;}
+    }
+  </style>
+
+  <div class="mt-4">
+              <a href="/" class="btn btn-outline-primary">Home</a>
+            </div>
+</head>
+
+<body>
+
+
+  <main class="main-content">
+    <!-- App Download Section -->
+    <section class="app-download-section">
+      <div class="container">
+        <div class="download-card">
+          <!-- Left: Title + Android badge -->
+          <div class="download-left">
+            <h1>Swift Bus App</h1>
+            <p>Book your trips, manage tickets and enjoy fast secure payments — get the Swift Bus app now.</p>
+
+            <!-- Android badge: both the image and the text link to the provided URL -->
+            <a class="android-badge" href="https://www.swiftbusegypt.com/downloadAPP" target="_blank" rel="noopener noreferrer">
+              <!-- Android icon (you can replace with your local asset) -->
+              <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg" alt="Android" />
+              <span class="download-text">Download Now</span>
+            </a>
+          </div>
+
+          <!-- Right: placeholder for an image you will add -->
+          <div class="download-right">
+            <!-- replace the contents of the div below with your actual screenshot/image.
+                 Example: <img src="/uploads/my-app-screenshot.png" alt="App screenshot" style="width:320px;border-radius:8px" /> -->
+                 <img src="/assets/images/dimage.jpg" alt="App screenshot" style="width:320px;border-radius:8px" />
+           
+            <!-- optional small caption -->
+            
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- scripts (same as original) -->
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+  <script src="assets/js/main.js"></script>
+

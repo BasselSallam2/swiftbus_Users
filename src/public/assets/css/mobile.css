@@ -1,0 +1,444 @@
+@media only screen and (min-width: 2500px) {}
+
+@media (max-width: 1200px) {}
+
+@media (max-width: 1024px) {}
+
+@media (max-width: 991px) {
+
+    .col,
+    .col-1,
+    .col-10,
+    .col-11,
+    .col-12,
+    .col-2,
+    .col-3,
+    .col-4,
+    .col-5,
+    .col-6,
+    .col-7,
+    .col-8,
+    .col-9,
+    .col-auto,
+    .col-lg,
+    .col-lg-1,
+    .col-lg-10,
+    .col-lg-11,
+    .col-lg-12,
+    .col-lg-2,
+    .col-lg-3,
+    .col-lg-4,
+    .col-lg-5,
+    .col-lg-6,
+    .col-lg-7,
+    .col-lg-8,
+    .col-lg-9,
+    .col-lg-auto,
+    .col-md,
+    .col-md-1,
+    .col-md-10,
+    .col-md-11,
+    .col-md-12,
+    .col-md-2,
+    .col-md-3,
+    .col-md-4,
+    .col-md-5,
+    .col-md-6,
+    .col-md-7,
+    .col-md-8,
+    .col-md-9,
+    .col-md-auto,
+    .col-sm,
+    .col-sm-1,
+    .col-sm-10,
+    .col-sm-11,
+    .col-sm-12,
+    .col-sm-2,
+    .col-sm-3,
+    .col-sm-4,
+    .col-sm-5,
+    .col-sm-6,
+    .col-sm-7,
+    .col-sm-8,
+    .col-sm-9,
+    .col-sm-auto,
+    .col-xl,
+    .col-xl-1,
+    .col-xl-10,
+    .col-xl-11,
+    .col-xl-12,
+    .col-xl-2,
+    .col-xl-3,
+    .col-xl-4,
+    .col-xl-5,
+    .col-xl-6,
+    .col-xl-7,
+    .col-xl-8,
+    .col-xl-9,
+    .col-xl-auto {
+        width: 100%;
+        max-width: 100%;
+        flex: auto;
+    }
+
+    .nav-inner {
+        display: none;
+    }
+
+    header .btn {
+        display: none;
+    }
+
+    .item.res-menu {
+        display: block;
+    }
+
+    .head-inner {
+        flex-direction: column;
+        justify-content: center;
+        /* text-align: center; */
+    }
+
+    .head-inner .logo-h {
+        margin: 0 auto 20px;
+        max-width: 191px;
+    }
+
+    .head-inner .menu-left {
+        margin: 0;
+    }
+
+    .head-inner .menu-left .info-h .info-item {
+        /* width: 50%; */
+    }
+
+    .img-bus {
+        top: 0;
+        width: 100%;
+        height: 300px;
+        display: none;
+    }
+
+    .img-bus img {
+        max-width: 100%;
+        height: 100%;
+    }
+
+    .banner-h .row {
+        padding-top: 18em;
+        padding: 50px 5px;
+        min-height: 450px;
+    }
+
+    .banner-text h1 {
+        font-size: 30px;
+        line-height: 40px;
+    }
+
+    .banner-text p {
+        font-size: 17px;
+    }
+
+    .booking-form {
+        flex-direction: column-reverse;
+    }
+
+    .booking-form-inner {
+        padding: 20px;
+    }
+
+    .booking-form-inner .col-md-4 {
+        width: 50%;
+    }
+
+    .about-h {
+        padding: 40px 0;
+    }
+
+    .text-about h3 {
+        font-size: 28px;
+        line-height: 38px;
+    }
+
+    .text-booking {
+        padding: 20px;
+    }
+
+    .text-booking h3 {
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    .text-booking .callNow {
+        gap: 10px;
+    }
+
+    .text-booking .callNow .icon {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+
+    .text-booking .callNow .details span {
+        font-size: 12px;
+    }
+
+    .text-booking .callNow .details h2 {
+        font-size: 26px;
+        line-height: 36px;
+        margin: 0;
+    }
+
+    .text-about .all-items .about-count .counter-item {
+        font-size: 34px;
+    }
+
+    .text-about .all-items .about-count h4 {
+        font-size: 16px;
+        line-height: 26px;
+        margin: 0 0 2px;
+    }
+
+    .text-about .all-items .about-count p {
+        font-size: 13px;
+        line-height: 23px;
+    }
+
+    .about-h .row {
+        flex-direction: column-reverse;
+    }
+
+    .img-about .img {
+        height: 320px;
+        margin: 0px;
+        max-width: calc(100% - 10px);
+        bottom: 10px;
+    }
+
+    .img-about {
+        max-width: 400px;
+        margin: 0;
+        height: 320px;
+        margin-bottom: 30px;
+    }
+
+    .clients-h .title {
+        text-align: center;
+        margin-bottom: 21px;
+    }
+
+
+    .clients-h .title h3 {
+        justify-content: center;
+    }
+
+    .all-clients .col-md-4 {
+        max-width: 33.33%;
+        padding: 0 5px;
+    }
+
+    .clients-h {
+        padding-bottom: 40px;
+    }
+
+    .chooseUs-h {
+        padding: 50px 0;
+    }
+
+    .text-choose .title h3 {
+        font-size: 25px;
+        line-height: 35px;
+    }
+
+    .title h3::after {
+        width: 77px;
+        mask-size: 25px 100%;
+        /* opacity: 0; */
+    }
+
+    .title h3 {
+        display: flex;
+    }
+
+    .choose-list .item .icon {
+        width: 30px;
+        height: 30px;
+        font-size: 18px;
+    }
+
+    .choose-list .item .details {
+        width: calc(100% - 40px);
+        margin-inline-start: 10px;
+    }
+
+    .choose-list .item .details h3 {
+        font-size: 16px;
+        line-height: 26px;
+        margin-bottom: 3px;
+    }
+
+    .choose-list .item .details p {
+        font-size: 12px;
+        line-height: 22px;
+    }
+
+    .choose-list .item {
+        padding-inline-end: 5px;
+    }
+
+    .destination-h {
+        padding: 40px 0;
+    }
+
+    .title h3 {
+        font-size: 28px;
+    }
+
+    .destination-h .col-md-3 {
+        width: 50%;
+        padding: 0 8px;
+    }
+
+    .dest-block {
+        height: 250px;
+    }
+
+    .dest-block .details {
+        padding: 10px;
+    }
+
+    .dest-block .details h3 {
+        font-size: 16px;
+        line-height: 26px;
+        margin-bottom: 5px;
+    }
+
+    .dest-block .details p {
+        font-size: 14px;
+        line-height: 24px;
+    }
+
+    .title {
+        margin-bottom: 20px;
+    }
+
+    .accordion-button {
+        font-size: 15px;
+        padding: 15px;
+    }
+
+    .accordion-body {
+        padding: 15px;
+    }
+
+    .accordion-body p {
+        font-size: 13px;
+        line-height: 23px;
+    }
+
+    .faq-h {
+        padding-bottom: 50px;
+    }
+
+    .footer-top {
+        padding: 40px 0;
+    }
+
+    .foot-block h3 {
+        margin: 30px 0 20px;
+    }
+
+    .footer-bottom {
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    .links-footer-bottom {
+        justify-content: center;
+        margin-top: 5px;
+    }
+
+    .trip-route-component .trip-route-con .list-component .list .list-con .right-side {
+        gap: 10px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .trip-route-component .trip-route-con .list-component .list .list-con {
+        /* flex-direction: column; */
+        align-items: start;
+        gap: 20px;
+    }
+
+    .trip-route-component .trip-route-con .list-component .list .list-con .right-side .bus-class-name.bus-class-name-deluxe {
+        min-width: auto;
+        font-size: 9px;
+        margin: 0;
+    }
+
+    .trip-route-component .trip-route-con .list-component .list .list-con .right-side .bus-icon {
+        margin: 0 7px;
+    }
+
+    .trip-route-component .trip-route-con .list-component .list .list-con .right-side .bus-icon span {
+        width: 26px;
+    }
+
+    .time-soon-in {
+        /* font-size: 13px; */
+    }
+
+    .trip-route-component .trip-route-con .list-component .list .list-con .left-side {
+        width: 60%;
+        margin: 10px 0 0;
+        gap: 20px;
+    }
+
+    .trip-route-component .trip-route-con .list-component .list .list-con .services {
+        width: 30%;
+        display: flex;
+        justify-content: end;
+    }
+
+    .booking-bus .all-chairs {
+        margin: 20px auto;
+    }
+
+    .booking-bus .chairs-deatils {
+        margin: 20px auto 0;
+    }
+
+    .booking-page .row.justify-content-between {
+        flex-direction: column-reverse;
+    }
+
+    .booking-payment div#stepone,
+    .booking-payment div#steptwo,
+    .booking-payment div#stepone,
+    .booking-payment div#stepthree {
+        min-height: 600px;
+    }
+
+    .booking-payment div#stepthree {
+        display: flex;
+        align-items: center;
+        -webkit-align-items: center;
+        align-content: center;
+    }
+}
+
+@media (max-width: 768px) {}
+
+@media (max-width: 767px) {}
+
+@media (max-width: 600px) {
+    .container {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {}
+
+@media (max-width: 390px) {}
+
+@media (max-width: 360px) {}

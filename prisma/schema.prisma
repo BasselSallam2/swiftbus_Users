@@ -1,0 +1,338 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Trip {  
+  id                       String @id @default(uuid())
+  rrule                    String
+  routes                   Json
+  payment                  Json
+  cahslimit                Int
+  expireHours              Int
+  avaliableseats           Int
+  busid                    String
+  Bus                      Bus  @relation(fields: [busid] , references: [id])
+  inactive                 Boolean @default(false)
+  isDeleted                Boolean @default(false)
+
+  Gotrip_id        Ticket[] @relation("Gotrip")
+  Backtrip_id     Ticket[] @relation("Backtrip")
+  StationDetails           StationDetails[]
+  Reservations             Reservation[]
+  TempReservations         TempReservation[]
+  cost                     Cost[]
+
+}
+
+model City {
+  id           String @id @default(uuid())
+  name         String @unique
+  isDeleted       Boolean @default(false)
+  Arabicname String @default("null")
+
+
+  stations      Station[]
+  FromTrips    Cost[] @relation(name: "FromCityRelation")
+  ToTrips      Cost[] @relation(name: "ToCityRelation")
+}
+
+
+model Station {
+  id              String @id @default(uuid())
+  name            String @unique
+  location        String @unique
+  cityId          String
+  city     City   @relation(fields: [cityId], references: [id]) 
+  isDeleted       Boolean @default(false)
+  address         String?
+  Arabicname String @default("null")
+  
+  station_details    StationDetails[]
+}
+
+model StationDetails {
+  id                   String @id @default(uuid())
+  stationId            String
+  station              Station @relation(fields: [stationId] , references: [id])
+  arrivaleTime         String
+  trip_id              String
+  Trip                 Trip  @relation(fields:[trip_id] , references:[id])
+}
+
+model Bus {
+    id              String @id @default(uuid())
+    type            String @unique 
+    layout          String         
+    seats           Int 
+    specialseats    Json  
+   isDeleted       Boolean @default(false)
+   Trips           Trip[]
+
+}
+
+model Cost {
+  id              String @id @default(uuid())
+  fromCityId      String
+  toCityId        String
+  FromCity        City @relation(name: "FromCityRelation", fields: [fromCityId], references: [id]) 
+  Tocity          City @relation(name: "ToCityRelation", fields: [toCityId], references: [id]) 
+  trip_id              String 
+  Trip                 Trip  @relation(fields:[trip_id] , references:[id])
+  fare                 Int
+  specialfare          Int
+  twowaydiscount       Int 
+}
+
+model Reservation {
+   id                       String @id @default(uuid())
+   trip_id                  String 
+   trip_date                String
+   reservedSeats_counter    Int
+   reservedSeats           Json
+   Trips                   Trip @relation(fields:[trip_id] , references:[id])
+   Gotickets                Ticket[] @relation("Goreservation")
+   Backtickets                Ticket[] @relation("Backreservation")
+}
+
+
+model Employee{
+  id              String @id @default(uuid())
+  type            String
+  name            String
+  phone           String
+  nationalid      String? @unique
+  address         String
+  percentage     Int?
+  Totalsales     Int?
+  neededcommetions Int?
+  setteled         Int?
+  tickets_id     Ticket[] @relation("BookedBy")
+  cancelTickets   Ticket[] @relation("CancelledBy")
+  isDeleted        Boolean @default(false)
+  User             User?    @relation(fields: [UserID], references: [id]) 
+
+  UserID           String?  @unique
+}
+
+model Ticket {
+  id              String @id @default(uuid())
+  pay_id          BigInt?    @unique
+  ticket_code     Int     @unique @default(autoincrement()) 
+  trip_id         String
+  Back_trip_id    String?
+  trip_date       String 
+  Back_trip_date       String? 
+  Coustmer_id     String
+  book_id         String?
+  cancel_id       String?
+  status          String
+  paymentMethod  String
+  seatsCounter   Int
+  Back_seatsCounter   Int?
+  seats          Json
+  Backseats      Json?
+  cancelReason  String?
+  reservation_id  String?
+  Backreservation_id  String?
+  CityRoutes      Json
+  Back_CityRoutes Json?
+  StationRoutes   Json
+  Back_StationRoutes   Json?
+  voucher_id      String?
+  takeoff         String
+  Back_takeoff   String?
+  arrive          String
+  Back_arrive     String?
+  price           Int
+  settledprice    Int @default(0)
+  refundAmount    Int?
+  lastedit        String?
+
+  voucher         voucher?    @relation(fields:[voucher_id] , references:[id]) 
+  GoReservation    Reservation? @relation("Goreservation" ,fields:[reservation_id] , references:[id])
+  BackReservation    Reservation? @relation("Backreservation" ,fields:[Backreservation_id] , references:[id])
+  BookEmployeeID    Employee?     @relation("BookedBy" , fields:  [book_id] , references: [id])
+  CancelEmployeeID    Employee?  @relation("CancelledBy" , fields: [cancel_id] , references: [id])
+  CoustmerID           Coustmer @relation(fields:[Coustmer_id] , references: [id])
+  trip                 Trip      @relation("Gotrip" , fields:  [trip_id] , references: [id])
+  back_trip            Trip?     @relation("Backtrip" , fields:[Back_trip_id] , references:[id])
+  CreatedAt           DateTime   @default(now())
+}
+
+model Coustmer {
+  id              String @id @default(uuid())
+  phone           String @unique
+  name            String
+  tickets         Ticket[]
+}
+
+model MarktingLines {
+  id             String @id @default(uuid())
+  Arabiccity           String
+  Arabicsubtitle     String
+  Englishcity           String
+  Englishsubtitle     String
+  image_path     String
+}
+
+model User {
+  id            String @id @default(uuid())
+  email         String @unique
+  password      String 
+  role          Json
+
+  Employee   Employee?
+}
+
+model FrontpageArabic {
+   id            Int @unique @default(1)
+   Title1        String
+   Subtitle1      String
+   phone         String
+   WorkingHours  String
+   Title2        String
+   SubTitle2     String
+   RightNumber   String
+   LeftNumber    String
+   TitleRightNumber String
+   TitleLeftNumber  String
+   SubTitleRightNumber String
+   SubTitleLeftNumber String
+   WhyusTitle String
+   RightTopTitle String
+   LeftTopTitle String
+   RightDownTitle String
+   LeftDownTitle String
+   RightTopSubTitle String
+   LeftTopSubTitle String
+   RightDownSubTitle String
+   LeftDownSubTitle String
+   FooterTitle String
+   address String
+   Title2Picture String?
+}
+
+
+model FrontpageEnglish {
+   id            Int @unique @default(1)
+   Title1        String
+   Subtitle1      String
+   phone         String
+   WorkingHours  String
+   Title2        String
+   SubTitle2     String
+   RightNumber   String
+   LeftNumber    String
+   TitleRightNumber String
+   TitleLeftNumber  String
+   SubTitleRightNumber String
+   SubTitleLeftNumber String
+   WhyusTitle String
+   RightTopTitle String
+   LeftTopTitle String
+   RightDownTitle String
+   LeftDownTitle String
+   RightTopSubTitle String
+   LeftTopSubTitle String
+   RightDownSubTitle String
+   LeftDownSubTitle String
+   FooterTitle String
+   address String
+   Title2Picture String?
+}
+
+model FreqQuestionsArabic {
+  id            Int @unique @default(1)
+  Title         String
+  Questions     Question[]
+
+}
+
+model FreqQuestionsEnglish {
+  id            Int @unique @default(1)
+  Title         String
+  Questions     Question[]
+}
+
+model Question {
+  id                        String  @id @default(uuid())
+  question                  String
+  answer                    String
+  FreqQuestionsArabic_id    Int? 
+  FreqQuestionsEnglish_id   Int? 
+  FreqQuestionsArabic       FreqQuestionsArabic? @relation(fields: [FreqQuestionsArabic_id], references: [id])
+  FreqQuestionsEnglish      FreqQuestionsEnglish? @relation(fields: [FreqQuestionsEnglish_id], references: [id])
+}
+
+
+model Info {
+id            Int @unique @default(1)
+email String?
+phone String?
+facebook String?
+instegram String?
+youtube String?
+twiter String?
+}
+
+model voucher {
+  id String  @id @default(uuid())
+  code String @unique
+  avaliable     Int 
+  consumed Int @default(0)
+  percentage Int 
+  maximum Int
+  isActive Boolean @default(true)
+  Tickets Ticket[]
+}
+
+
+model TempReservation {
+   id                       String @id @default(uuid())
+   trip_id                  String 
+   trip_date                String
+   reservedSeats_counter    Int
+   reservedSeats           Json
+   Trips                   Trip @relation(fields:[trip_id] , references:[id])
+   CreatedAt           DateTime   @default(now())
+
+}
+
+model Fingerprint {
+  fingerprint    String @unique 
+   CreatedAt           DateTime   @default(now())
+}
+
+model EnglishInstructions {
+  Instructions  String @unique
+}
+
+model ArabicInstructions {
+  Instructions  String @unique
+}
+
+model ArabicTerms {
+  term String @unique 
+  rule String 
+}
+
+model EnglishTerms {
+  term String @unique 
+  rule String 
+}
+
+model Whatsapp {
+   id                       String @id @default(uuid())
+  token String
+  client String
+}
+
+
+
+

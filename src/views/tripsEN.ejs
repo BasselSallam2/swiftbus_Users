@@ -1,0 +1,1058 @@
+<% if(radio=='oneWay')  { %>
+
+<!DOCTYPE html>
+<!-- Lang AR -->
+<!-- <html dir="ltr"> -->
+<html dir="rtl">
+
+<head>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta charset="utf-8">
+    <meta name="author" content="Arboon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0D3558">
+    <title>Home Page - Booking</title>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/logo.png" />
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="assets/css/style-en.css" rel="stylesheet" type="text/css" /> -->
+    <link href="assets/css/mobile.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+    <!-- Start Header -->
+    <header class="sticky">
+        <!-- Start Header-med -->
+        <div class="header-med">
+            <div class="container">
+                <div class="row">
+                    <!-- Col -->
+                    <div class="col-md-12">
+                        <div class="head-inner">
+                            <div class="logo-h">
+                                <a href="/en">
+                                    <img src="assets/images/logo.png" alt="#" />
+                                </a>
+                            </div>
+
+                            <div class="menu-left">
+                                <div class="info-h">
+                                    <div class="info-item">
+                                        <i class="fa fa-business-time"></i>
+                                        <div class="details">
+                                            <h3>
+                                                Working Hours
+                                             </h3>
+                                             <span>
+                                                 <%=EnglishFrontpage.WorkingHours%>
+                                             </span>
+                                         </div>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fa fa-phone"></i>
+                                        <div class="details">
+                                            <h3>
+                                                Calling Center
+                                            </h3>
+                                            <span>
+                                                <u>
+                                                    <%=EnglishFrontpage.phone%>
+                                                </u>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Col -->
+                </div>
+            </div>
+        </div>
+        <!-- End Header-Med -->
+    </header>
+
+    <main class="main-content">
+
+        <!-- Start Search-page -->
+        <section class="search-page body-inner">
+            <div class="container">
+                <div class="row">
+                    <!-- Col -->
+                    <div class="col-md-8">
+                        <div class="trip-route-component">
+                            <div class="trip-route-con">
+                                <div class="list-component">
+                                    <div class="list-component-con">
+                                        <div class="list-head">
+                                            <% if (GoResult.length===0) { %>
+                                                <!-- Col -->
+                                                <div class="col-md-4">
+                                                    <div class="sidebar-search" id="sidebarSearch">
+                                                        <div class="booking-now">
+                                                            <div class="blue-card">
+                                                                <span class="flag">
+                                                                    <img src="assets/images/flag.png" alt="flag">
+                                                                </span>
+                                                                <div class="stepone" id="stepone">
+                                                                    <div class="top">
+                                                                        <img src="assets/images/percent.png"
+                                                                            alt="percent">
+                                                                            <p> Sorry, when booking a trip for today, please contact our representative at <%= EnglishFrontpage.phone%> </p>
+                                                                    </div>
+                                                                    <div class="bottom">
+                                                                        <button type="button" id="btn-one"
+                                                                            onclick="window.location.href='/en'"> click here
+                                                                            </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /Col -->
+
+
+                                                    <% } else { %>
+                                                        <h4><span> travel from <%=GoResult[0].cityfrom%></span>
+                                                            <%=GoResult[0].stationfrom%>
+                                                        </h4>
+                                                        <div><i class="fas fa-bus"></i><i
+                                                                class="fas fa-long-arrow-alt-left"></i>
+                                                        </div>
+                                                        <h4><span> arrive to <%=GoResult[0].cityto%></span>
+                                                            <%=GoResult[0].stationto%>
+                                                        </h4>
+                                                </div>
+                                                <div class="trip-date">
+                                                    <%=GoResult[0].day%>
+                                                        <%=GoResult[0].date%>
+                                                </div>
+
+                                                <% GoResult.forEach(function(trip) { %>
+                                                    <!-- Start List -->
+                                                    <div class="list">
+                                                        <div class="list-con">
+                                                            <div class="right-side">
+                                                                <h4>
+                                                                    <p>
+                                                                         travel from <%=trip.stationfrom%>
+                                                                    </p>
+                                                                   at <%=trip.details.fromarrivaleTime.split(" ")[0]%> <%=trip.details.fromarrivaleTime.split(" ")[1]%> 
+
+                                                                </h4>
+                                                                <strong class="bus-class-name bus-class-name-deluxe">
+                                                                    <%=trip.details.bus%>
+                                                                </strong>
+                                                                <div class="bus-icon">
+                                                                    <img src="assets/images/<%=trip.details.bus%>.png" alt="bus" />
+                                                                    <span></span>
+                                                                </div>
+                                                                <div class="position-relative">
+                                                                    <h5>
+                                                                        <p>  arrive to <%=trip.stationto%>
+                                                                        </p>
+                                                                        <div class="time-soon-in">
+                                                                            <span
+                                                                                    class="text-muted">(Approximately)</span>
+                                                                            <%=trip.details.toarrivaleTime%> 
+                                                                                
+                                                                        </div>
+                                                                    </h5>
+                                                                </div>
+                                                            </div>
+                                                            <div class="left-side">
+                                                         <% if (radio=='oneWay' ) { %>
+                                                                <form action="/en/selectsingletrip" method="POST">
+                                                                    <input type="hidden" name="trip_id"
+                                                                        value="<%=trip.id%>">
+                                                                        <input type="hidden" name="trip_date"
+                                                                        value="<%=trip.date%>">
+                                                                    <input type="hidden" name="bus_type"
+                                                                        value="<%=trip.details.bus%>">
+                                                                     <input type="hidden" name="trip_day"
+                                                                        value="<%=trip.day%>">
+                                                                        <input type="hidden" name="trip_takeoff"
+                                                                        value="<%=trip.details.fromarrivaleTime%>">
+                                                                        <input type="hidden" name="trip_arrive"
+                                                                        value="<%=trip.details.toarrivaleTime%>">
+                                                                        <input type="hidden" name="trip_from"
+                                                                        value="<%=trip.stationfrom%>">
+                                                                        <input type="hidden" name="trip_to"
+                                                                        value="<%=trip.stationto%>">
+                                                                        <input type="hidden" name="trip_fare"
+                                                                        value="<%=trip.details.normalfare%>">
+                                                                        <input type="hidden" name="trip_specialfare"
+                                                                        value="<%=trip.details.specialfare%>">
+                                                                        <input type="hidden" name="city_from"
+                                                                        value="<%=trip.cityfrom%>">
+                                                                        <input type="hidden" name="city_to"
+                                                                        value="<%=trip.cityto%>">
+                                                                        <input type="hidden" name="payment"
+                                                                        value="<%=trip.details.payment%>">
+                                                                        <input type="hidden" name="chairsNumber"
+                                                                        value="<%=trip.seats%>">
+                                                                
+                                                                  
+                                                         <% } %>
+                                                        
+                                                        
+                                                                    <div class="btn-container">
+                                                                        <button type="submit"
+                                                                            class="btn position-relative">
+                                                                            <span> select this trip </span>
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
+                                                                <h4>
+                                                                    <%=trip.details.normalfare%>
+                                                                        <span>EGP for one seat</span>
+                                                                        <span>
+                                                                            <%=trip.details.availableseats%> Available seats
+                                                                        </span>
+                                                                </h4>
+                                                            </div>
+
+                                                            <div class="services">
+                                                                <ul>
+                                                                    <li>
+                                                                        <img class="svc-img" title="TV"
+                                                                            src="assets/images/tv.png" alt="svcimg" />
+                                                                        <span class="title">TV</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <img class="svc-img" title="Air Conditioner"
+                                                                            src="assets/images/conditioner.png"
+                                                                            alt="svcimg" />
+                                                                        <span class="title">Air Conditioner</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End List -->
+                                                    <% }); %>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Col -->
+                        <% if (radio=='oneWay' ) { %>
+                            <!-- Col -->
+                            <div class="col-md-4">
+                                <div class="sidebar-search" id="sidebarSearch">
+                                    <div class="booking-now">
+                                        <div class="blue-card">
+                                            <span class="flag">
+                                                <img src="assets/images/flag.png" alt="flag">
+                                            </span>
+                                            <div class="stepone" id="stepone">
+                                                <div class="top">
+                                                    <img src="assets/images/percent.png" alt="percent">
+                                                    <p>Book a return trip and get a special discount</p>
+                                                </div>
+                                                <div class="bottom">
+                                                    <button type="button" id="btn-one"
+                                                        onclick="window.location.href='/en'">Select a return trip</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Col -->
+                                <% } %>
+                                    <% } %>
+                            </div>
+                    </div>
+                </div>
+        </section>
+        <!-- End Search-page -->
+
+    </main>
+
+    <!-- Start Footer -->
+    <footer>
+        <!-- Start Footer-top -->
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <!-- Col -->
+                    <div class="col-md-6">
+                        <a href="#" class="logo-f">
+                            <img src="assets/images/logo.png" alt="#" />
+                        </a>
+                        <p>
+                            <%=EnglishFrontpage.FooterTitle%>
+                        </p>
+                        <a href="tel:01541" class="callNow2">
+                            <i class="fa fa-phone"></i>
+                            <span>
+                                <%=EnglishFrontpage.phone%>
+                            </span>
+                        </a>
+                    </div>
+                    <!-- /Col -->
+
+                    <!-- Col -->
+                    <div class="col-md-6">
+                        <div class="foot-block">
+                            <h3>
+                                Contact us
+                            </h3>
+                            <div class="info-f">
+                                <ul>
+                                    <li>
+                                        <i class="fa fa-map-marker-alt" style="color: white;"></i>
+                                        <span style="color: white;"><%= EnglishFrontpage.address %></span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-envelope" style="color: white;"></i>
+                                        <span style="color: white;"><%= footerinfo.email %></span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-phone" style="color: white;"></i>
+                                        <span style="color: white;"><%= EnglishFrontpage.phone %></span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            
+                            <div class="s-h">
+                                <span>
+                                    Follow us on:
+                                </span>
+                                <% if (footerinfo.facebook) { %>
+                                <a href="<%=footerinfo.facebook%>" target="_blank" rel="noopener">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <% } %>
+                                <% if (footerinfo.instegram) { %>
+                                <a href="<%=footerinfo.instegram%>" target="_blank" rel="noopener">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <% } %>
+                                <% if (footerinfo.twiter) { %>
+                                <a href="<%=footerinfo.twiter%>" target="_blank" rel="noopener">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <% } %>
+                                <% if (footerinfo.youtube) { %>
+                                <a href="<%=footerinfo.youtube%>" target="_blank" rel="noopener">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Col -->
+                </div>
+            </div>
+        </div>
+        <!-- End Footer-top -->
+
+    </footer>
+    <!-- End Footer -->
+    </div>
+ <!-- CDN JS Libraries -->
+ <script src="assets/vendor/jquery/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+ <script src="assets/js/wow.min.js"></script>
+ <script src="assets/vendor/fancyBox/jquery.fancybox.js"></script>
+ <script src="assets/vendor/slick/slick.min.js"></script>
+ <script src="assets/vendor/odometer/odometer.min.js"></script>
+ <script src="assets/vendor/odometer/viewport.jquery.js"></script>
+ <script src="assets/vendor/niceSelect/jquery.nice-select.min.js"></script>
+ <script src="assets/vendor/jqueryUi/jquery-ui.js"></script>
+ <script src="assets/js/main.js"></script>
+
+</body>
+
+
+</html>
+
+<% } %>
+
+<% if(radio=='twoWay')  { %>
+
+    <!DOCTYPE html>
+    <!-- Lang AR -->
+    <!-- <html dir="ltr"> -->
+    <html dir="rtl">
+    
+    <head>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta charset="utf-8">
+        <meta name="author" content="Arboon">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="theme-color" content="#0D3558">
+        <title>Home Page - Booking</title>
+        <link rel="shortcut icon" type="image/x-icon" href="assets/images/logo.png" />
+        <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+        <!-- <link href="assets/css/style-en.css" rel="stylesheet" type="text/css" /> -->
+        <link href="assets/css/mobile.css" rel="stylesheet" type="text/css" />
+    </head>
+    
+    <body>
+        
+    
+    <!-- Start Header -->
+    <header class="sticky">
+        <!-- Start Header-med -->
+        <div class="header-med">
+            <div class="container">
+                <div class="row">
+                    <!-- Col -->
+                    <div class="col-md-12">
+                        <div class="head-inner">
+                            <div class="logo-h">
+                                <a href="/en">
+                                    <img src="assets/images/logo.png" alt="#" />
+                                </a>
+                            </div>
+
+                            <div class="menu-left">
+                                <div class="info-h">
+                                    <div class="info-item">
+                                        <i class="fa fa-business-time"></i>
+                                        <div class="details">
+                                            <h3>
+                                                Working Hours
+                                             </h3>
+                                             <span>
+                                                 <%=EnglishFrontpage.WorkingHours%>
+                                             </span>
+                                         </div>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fa fa-phone"></i>
+                                        <div class="details">
+                                            <h3>
+                                                Calling Center
+                                            </h3>
+                                            <span>
+                                                <u>
+                                                    <%=EnglishFrontpage.phone%>
+                                                </u>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Col -->
+                </div>
+            </div>
+        </div>
+        <!-- End Header-Med -->
+    </header>
+    
+        <main class="main-content">
+    
+            <!-- Start Search-page -->
+            <section class="search-page body-inner">
+                <div class="container">
+                    <div class="row">
+                        <!-- Col -->
+                        <div class="col-md-8">
+                            <div class="trip-route-component">
+                                <div class="trip-route-con">
+                                    <div class="list-component">
+                                        <div class="list-component-con">
+                                            <div class="list-head">
+                                                <% if (GoResult.length===0) { %>
+                                                    <!-- Col -->
+                                                    <div class="col-md-4">
+                                                        <div class="sidebar-search" id="sidebarSearch">
+                                                            <div class="booking-now">
+                                                                <div class="blue-card">
+                                                                    <span class="flag">
+                                                                        <img src="assets/images/flag.png" alt="flag">
+                                                                    </span>
+                                                                    <div class="stepone" id="stepone">
+                                                                        <div class="top">
+                                                                            <img src="assets/images/percent.png"
+                                                                                alt="percent">
+                                                                            <p> Sorry, there are no outbound trips available on the date you entered. Please go back and select a different date </p>
+                                                                        </div>
+                                                                        <div class="bottom">
+                                                                            <button type="button" id="btn-one"
+                                                                                onclick="window.location.href='/en'"> click here
+                                                                                </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /Col -->
+    
+    
+                                                        <% } else { %>
+                                                            <h4><span> travel from <%=GoResult[0].cityfrom%></span>
+                                                                <%=GoResult[0].stationfrom%>
+                                                            </h4>
+                                                            <div><i class="fas fa-bus"></i><i
+                                                                    class="fas fa-long-arrow-alt-left"></i>
+                                                            </div>
+                                                            <h4><span> arrive to <%=GoResult[0].cityto%></span>
+                                                                <%=GoResult[0].stationto%>
+                                                            </h4>
+                                                    </div>
+                                                    <div class="trip-date">
+                                                        <%=GoResult[0].day%>
+                                                            <%=GoResult[0].date%>
+                                                    </div>
+    
+                                                    <% GoResult.forEach(function(trip) { %>
+                                                        <!-- Start List -->
+                                                        <div class="list">
+                                                            <div class="list-con">
+                                                                <div class="right-side">
+                                                                    <h4>
+                                                                        <p>
+                                                                            Travel from <%=trip.stationfrom%>
+                                                                        </p>
+                                                                       at <%=trip.details.fromarrivaleTime.split(" ")[0]%> <%=trip.details.fromarrivaleTime.split(" ")[1]%>
+    
+                                                                    </h4>
+                                                                    <strong class="bus-class-name bus-class-name-deluxe">
+                                                                        <%=trip.details.bus%>
+                                                                    </strong>
+                                                                    <div class="bus-icon">
+                                                                        <img src="assets/images/<%=trip.details.bus%>.png" alt="bus" />
+                                                                        <span></span>
+                                                                    </div>
+                                                                    <div class="position-relative">
+                                                                        <h5>
+                                                                            <p>  Arrive to <%=trip.stationto%>
+                                                                            </p>
+                                                                            
+                                                                            <div class="time-soon-in"> (Approximately)
+                                                                                <%=trip.details.toarrivaleTime%> <span
+                                                                                class="text-muted"></span>
+                                                                                    
+                                                                            </div>
+                                                                        </h5>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="left-side">
+                                                                    <form action="/selectdoubletrip" method="POST" id="tripForm">
+                                                                        <input type="hidden" name="trip_id1" value="<%=trip.id%>">
+                                                                        <input type="hidden" name="trip_date1" value="<%=trip.date%>">
+                                                                        <input type="hidden" name="bus_type1" value="<%=trip.details.bus%>">
+                                                                        <input type="hidden" name="trip_day1" value="<%=trip.day%>">
+                                                                        <input type="hidden" name="trip_takeoff1" value="<%=trip.details.fromarrivaleTime%>">
+                                                                        <input type="hidden" name="trip_arrive1" value="<%=trip.details.toarrivaleTime%>">
+                                                                        <input type="hidden" name="trip_from1" value="<%=trip.stationfrom%>">
+                                                                        <input type="hidden" name="trip_to1" value="<%=trip.stationto%>">
+                                                                        <input type="hidden" name="trip_fare1" value="<%=trip.details.normalfare%>">
+                                                                        <input type="hidden" name="trip_specialfare1" value="<%=trip.details.specialfare%>">
+                                                                        <input type="hidden" name="city_from1" value="<%=trip.cityfrom%>">
+                                                                        <input type="hidden" name="city_to1" value="<%=trip.cityto%>">
+                                                                        <input type="hidden" name="payment1" value="<%=trip.details.payment%>">
+                                                                        <input type="hidden" name="chairsNumber1" value="<%=trip.seats%>">
+                                                                        <input type="hidden" name="twowaydiscount1" value="<%=trip.details.twowaydiscount%>">
+                                                                        <div class="btn-container">
+                                                                            <button type="submit" class="btn position-relative" id="gotrip-<%=trip.id%>">
+                                                                                <span> select this trip</span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </form>
+                                                                    <h4>
+                                                                        <%=trip.details.normalfare%>
+                                                                            <span>EGP for one seat</span>
+                                                                            <span>
+                                                                                <%=trip.details.availableseats%>  Available seats
+                                                                            </span>
+                                                                    </h4>
+                                                                </div>
+    
+                                                                <div class="services">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <img class="svc-img" title="TV"
+                                                                                src="assets/images/tv.png" alt="svcimg" />
+                                                                            <span class="title">تلفزيون</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <img class="svc-img" title="Air Conditioner"
+                                                                                src="assets/images/conditioner.png"
+                                                                                alt="svcimg" />
+                                                                            <span class="title">مكيف</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- End List -->
+                                                        <% }); %>
+    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Col -->
+                            <!-- /Col -->
+                      
+                            <!-- Col -->
+                            <div class="col-md-4">
+                                <div class="sidebar-search" id="sidebarSearch">
+                                    <div class="booking-now">
+                                        <div class="blue-card">
+                                            <span class="flag">
+                                                <img src="assets/images/flag.png" alt="flag">
+                                            </span>
+                                            <div class="stepone" id="stepone">
+                                                <div class="top">
+                                                   
+                                                    <h3 style="font-family: Arial, sans-serif;">Discounts on both outbound and return trips up to 20%</h3>
+                                                    <!-- <img src="assets/images/percent.png" alt="percent"> -->
+                                                   
+                                                </div>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Col -->
+                              
+                                        <% } %>
+                                </div>
+                        </div>
+                    </div>
+            </section>
+            <!-- End Search-page -->
+
+            <h2 style="text-align: center; width: 80%; position: relative; left: 50px; top: -70px;">
+                Please select a return trip
+            </h2>
+            
+            
+
+
+             <!-- Start Search-page -->
+             <section class="search-page body-inner" style="position: relative; top: -140px;" >
+                <div class="container">
+                    <div class="row">
+                        <!-- Col -->
+                        <div class="col-md-8">
+                            <div class="trip-route-component">
+                                <div class="trip-route-con">
+                                    <div class="list-component">
+                                        <div class="list-component-con">
+                                            <div class="list-head">
+                                                <% if (BackResult.length===0) { %>
+                                                    <!-- Col -->
+                                                    <div class="col-md-4">
+                                                        <div class="sidebar-search" id="sidebarSearch">
+                                                            <div class="booking-now">
+                                                                <div class="blue-card">
+                                                                    <span class="flag">
+                                                                        <img src="assets/images/flag.png" alt="flag">
+                                                                    </span>
+                                                                    <div class="stepone" id="stepone">
+                                                                        <div class="top">
+                                                                            <img src="assets/images/percent.png"
+                                                                                alt="percent">
+                                                                            <p> Sorry, there are no return trips available on the date you entered. Please go back and select a different date</p>
+                                                                        </div>
+                                                                        <div class="bottom">
+                                                                            <button type="button" id="btn-one"
+                                                                                onclick="window.location.href='/en'"> click here
+                                                                                </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /Col -->
+    
+    
+                                                        <% } else { %>
+                                                            <h4><span>Travel from <%=BackResult[0].cityfrom%></span>
+                                                                <%=BackResult[0].stationfrom%>
+                                                            </h4>
+                                                            <div><i class="fas fa-bus"></i><i
+                                                                    class="fas fa-long-arrow-alt-left"></i>
+                                                            </div>
+                                                            <h4><span> Arrive to <%=BackResult[0].cityto%></span>
+                                                                <%=BackResult[0].stationto%>
+                                                            </h4>
+                                                    </div>
+                                                    <div class="trip-date">
+                                                        <%=BackResult[0].day%>
+                                                            <%=BackResult[0].date%>
+                                                    </div>
+    
+                                                    <% BackResult.forEach(function(trip) { %>
+                                                        <!-- Start List -->
+                                                        <div class="list">
+                                                            <div class="list-con">
+                                                                <div class="right-side">
+                                                                    <h4>
+                                                                        <p>
+                                                                             travel from <%=trip.stationfrom%>
+                                                                        </p>
+                                                                         at <%=trip.details.fromarrivaleTime.split(" ")[0]%> <%=trip.details.fromarrivaleTime.split(" ")[1]%>
+    
+                                                                    </h4>
+                                                                    <strong class="bus-class-name bus-class-name-deluxe">
+                                                                        <%=trip.details.bus%>
+                                                                    </strong>
+                                                                    <div class="bus-icon">
+                                                                        <img src="assets/images/<%=trip.details.bus%>.png" alt="bus" />
+                                                                        <span></span>
+                                                                    </div>
+                                                                    <div class="position-relative">
+                                                                        <h5>
+                                                                            <p>  arrive to <%=trip.stationto%>
+                                                                            </p>
+                                                                            <div class="time-soon-in">
+                                                                                (Approximately)  <%=trip.details.toarrivaleTime%> 
+                                                                                    <span
+                                                                                        class="text-muted"></span>
+                                                                            </div>
+                                                                        </h5>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="left-side">
+                                                                    <form action="/selectdoubletrip" method="POST">
+                                                                        <input type="hidden" name="trip_id2"
+                                                                            value="<%=trip.id%>">
+                                                                            <input type="hidden" name="trip_date2"
+                                                                            value="<%=trip.date%>">
+                                                                        <input type="hidden" name="bus_type2"
+                                                                            value="<%=trip.details.bus%>">
+                                                                         <input type="hidden" name="trip_day2"
+                                                                            value="<%=trip.day%>">
+                                                                            <input type="hidden" name="trip_takeoff2"
+                                                                            value="<%=trip.details.fromarrivaleTime%>">
+                                                                            <input type="hidden" name="trip_arrive2"
+                                                                            value="<%=trip.details.toarrivaleTime%>">
+                                                                            <input type="hidden" name="trip_from2"
+                                                                            value="<%=trip.stationfrom%>">
+                                                                            <input type="hidden" name="trip_to2"
+                                                                            value="<%=trip.stationto%>">
+                                                                            <input type="hidden" name="trip_fare2"
+                                                                            value="<%=trip.details.normalfare%>">
+                                                                            <input type="hidden" name="trip_specialfare2"
+                                                                            value="<%=trip.details.specialfare%>">
+                                                                            <input type="hidden" name="city_from2"
+                                                                            value="<%=trip.cityfrom%>">
+                                                                            <input type="hidden" name="city_to2"
+                                                                            value="<%=trip.cityto%>">
+                                                                            <input type="hidden" name="payment2"
+                                                                            value="<%=trip.details.payment%>">
+                                                                            <input type="hidden" name="chairsNumber2"
+                                                                            value="<%=trip.seats%>">
+                                                                            <input type="hidden" name="twowaydiscount2" value="<%=trip.details.twowaydiscount%>">
+                                                            
+                                                                        <div class="btn-container">
+                                                                            <button type="submit" class="btn position-relative" id="backtrip-<%=trip.id%>">
+                                                                                <span> select this trip</span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </form>
+                                                                    <h4>
+                                                                        <%=trip.details.normalfare%>
+                                                                            <span>EGP for one seat</span>
+                                                                            <span>
+                                                                                <%=trip.details.availableseats%>  Available seats
+                                                                            </span>
+                                                                    </h4>
+                                                                </div>
+    
+                                                                <div class="services">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <img class="svc-img" title="TV"
+                                                                                src="assets/images/tv.png" alt="svcimg" />
+                                                                            <span class="title">تلفزيون</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <img class="svc-img" title="Air Conditioner"
+                                                                                src="assets/images/conditioner.png"
+                                                                                alt="svcimg" />
+                                                                            <span class="title">مكيف</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- End List -->
+                                                        <% }); %>
+    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Col -->
+                           
+                                        <% } %>
+                                </div>
+                        </div>
+                    </div>
+            </section>
+            <!-- End Search-page -->
+    
+        </main>
+    
+    <!-- Start Footer -->
+    <footer>
+        <!-- Start Footer-top -->
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <!-- Col -->
+                    <div class="col-md-6">
+                        <a href="#" class="logo-f">
+                            <img src="assets/images/logo.png" alt="#" />
+                        </a>
+                        <p>
+                            <%=EnglishFrontpage.FooterTitle%>
+                        </p>
+                        <a href="tel:01541" class="callNow2">
+                            <i class="fa fa-phone"></i>
+                            <span>
+                                <%=EnglishFrontpage.phone%>
+                            </span>
+                        </a>
+                    </div>
+                    <!-- /Col -->
+
+                    <!-- Col -->
+                    <div class="col-md-6">
+                        <div class="foot-block">
+                            <h3>
+                                Contact us
+                            </h3>
+                            <div class="info-f">
+                                <ul>
+                                    <li>
+                                        <i class="fa fa-map-marker-alt" style="color: white;"></i>
+                                        <span style="color: white;"><%= EnglishFrontpage.address %></span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-envelope" style="color: white;"></i>
+                                        <span style="color: white;"><%= footerinfo.email %></span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-phone" style="color: white;"></i>
+                                        <span style="color: white;"><%= EnglishFrontpage.phone %></span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            
+                            <div class="s-h">
+                                <span>
+                                    Follow us on:
+                                </span>
+                                <% if (footerinfo.facebook) { %>
+                                <a href="<%=footerinfo.facebook%>" target="_blank" rel="noopener">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <% } %>
+                                <% if (footerinfo.instegram) { %>
+                                <a href="<%=footerinfo.instegram%>" target="_blank" rel="noopener">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <% } %>
+                                <% if (footerinfo.twiter) { %>
+                                <a href="<%=footerinfo.twiter%>" target="_blank" rel="noopener">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <% } %>
+                                <% if (footerinfo.youtube) { %>
+                                <a href="<%=footerinfo.youtube%>" target="_blank" rel="noopener">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Col -->
+                </div>
+            </div>
+        </div>
+        <!-- End Footer-top -->
+    
+        </footer>
+        <!-- End Footer -->
+        </div>
+    
+     <!-- CDN JS Libraries -->
+   <script src="assets/vendor/jquery/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+   <script src="assets/js/wow.min.js"></script>
+   <script src="assets/vendor/fancyBox/jquery.fancybox.js"></script>
+   <script src="assets/vendor/slick/slick.min.js"></script>
+   <script src="assets/vendor/odometer/odometer.min.js"></script>
+   <script src="assets/vendor/odometer/viewport.jquery.js"></script>
+   <script src="assets/vendor/niceSelect/jquery.nice-select.min.js"></script>
+   <script src="assets/vendor/jqueryUi/jquery-ui.js"></script>
+   <script src="assets/js/main.js"></script>
+
+        <script>
+      document.addEventListener("DOMContentLoaded", function () {
+                let selectedGoTrip = null; // Stores the selected Go trip
+                let selectedBackTrip = null; // Stores the selected Back trip
+
+
+ 
+                document.querySelectorAll(".trip-route-component:first-of-type .btn-container button").forEach(button => {
+                    button.addEventListener("click", function (event) {
+                        event.preventDefault(); // Prevent form submission
+                        
+                        let form = this.closest("form");
+                        let tripId = form.querySelector('input[name="trip_id1"]').value;
+                        let buttonId = `gotrip-${tripId}`;
+        
+                        if (!selectedGoTrip) {
+                            selectedGoTrip = {}; // Store Go trip details
+        
+                            let formData = new FormData(form);
+                            formData.forEach((value, key) => {
+                                selectedGoTrip[key] = value;
+                            });
+
+                            
+        
+                            console.log("Selected Go Trip:", selectedGoTrip); // Debugging purposes
+
+                            
+                            if(selectedGoTrip) {
+                                document.querySelectorAll("[id^='gotrip-']").forEach(button => {
+                          button.disabled = true;
+                          button.classList.add("disabled-button"); 
+                                    });
+        
+                            }
+        
+                            // Disable other buttons with the same GotripID
+                            document.querySelectorAll(`#${buttonId}`).forEach(btn => {
+                                if (btn !== this) {
+                                    btn.disabled = true;
+                                    btn.classList.add("disabled-button");
+                                }
+                            });
+        
+                            this.textContent = "Selected";
+                            this.classList.add("selected-button");
+
+                            
+                 
+
+
+                           
+                            
+
+                            // Check if both trips are selected, then submit
+                            if (selectedGoTrip && selectedBackTrip) {
+                                submitBothTrips();
+                            }
+                        }
+                    });
+                });
+        
+                document.querySelectorAll(".trip-route-component:last-of-type .btn-container button").forEach(button => {
+                    button.addEventListener("click", function (event) {
+                        event.preventDefault(); // Prevent form submission
+                        
+                        let form = this.closest("form");
+                        let tripId = form.querySelector('input[name="trip_id2"]').value;
+                        let buttonId = `backtrip-${tripId}`;
+        
+                        if (!selectedBackTrip) {
+                            selectedBackTrip = {}; // Store Back trip details
+        
+                            let formData = new FormData(form);
+                            formData.forEach((value, key) => {
+                                selectedBackTrip[key] = value;
+                            });
+
+                            if(selectedBackTrip) {
+
+                                document.querySelectorAll("[id^='backtrip-']").forEach(button => {
+                          button.disabled = true;
+                          button.classList.add("disabled-button");
+                                    });
+        
+                            }
+                            
+        
+                            console.log("Selected Back Trip:", selectedBackTrip); // Debugging purposes
+        
+                            // Disable other buttons with the same BacktripID
+                            document.querySelectorAll(`#${buttonId}`).forEach(btn => {
+                                if (btn !== this) {
+                                    btn.disabled = true;
+                                    btn.classList.add("disabled-button");
+                                }
+                            });
+        
+                            this.textContent = "تم الاختيار";
+                            this.classList.add("selected-button");
+        
+                            // Check if both trips are selected, then submit
+                            if (selectedGoTrip && selectedBackTrip) {
+                                submitBothTrips();
+                            }
+                        }
+                    });
+                });
+        
+                function submitBothTrips() {
+                    let form = document.createElement("form");
+                    form.method = "POST";
+                    form.action = "/en/selectdoubletrip";
+        
+                    // Append Go trip data
+                    for (let key in selectedGoTrip) {
+                        let input = document.createElement("input");
+                        input.type = "hidden";
+                        input.name = key;
+                        input.value = selectedGoTrip[key];
+                        form.appendChild(input);
+                    }
+        
+                    // Append Back trip data
+                    for (let key in selectedBackTrip) {
+                        let input = document.createElement("input");
+                        input.type = "hidden";
+                        input.name = key;
+                        input.value = selectedBackTrip[key];
+                        form.appendChild(input);
+                    }
+        
+                    document.body.appendChild(form);
+                    form.submit(); // Submit form when both trips are selected
+                }
+            });
+        </script>
+        
+        <style>
+            .disabled-button {
+                background-color: gray !important;
+                cursor: not-allowed !important;
+            }
+        
+            .selected-button {
+                background-color: #28a745 !important; /* Keep original styling */
+                color: white !important;
+                font-weight: bold;
+            }
+        </style>
+        
+
+    </body>
+    
+    
+    </html>
+    
+    <% } %>

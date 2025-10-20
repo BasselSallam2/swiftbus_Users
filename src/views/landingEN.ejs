@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<!-- Lang EN -->
+<html lang="en" dir="ltr">
+
+<head>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta charset="utf-8">
+    <meta name="author" content="Arboon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0D3558">
+    <title>Home Page - Booking</title>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/logo.png" />
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="assets/css/style-en.css" rel="stylesheet" type="text/css" /> -->
+    <link href="assets/css/mobile.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+    <!-- Start Header -->
+    <header class="sticky">
+        <!-- Start Header-med -->
+        <div class="header-med">
+            <div class="container">
+                <div class="row">
+                    <!-- Col -->
+                    <div class="col-md-12">
+                        <div class="head-inner">
+                            <div class="logo-h">
+                                <img src="https://i.imgur.com/zb8LEyv.png" alt="#" />
+                                </a>
+                            </div>
+
+
+                            <div class="menu-left">
+                                <div class="info-h">
+
+                                    <div class="info-item">
+                                        <i class="fa fa-download"></i>
+                                        <div class="details">
+                                            <h3>
+                                                Download the Application
+                                            </h3>
+                                            <a href="/download" class="download-btn" style="color: white;">
+                                                Download Now
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="info-item">
+                                        <i class="fa fa-phone"></i>
+                                        <div class="details">
+                                            <h3>
+                                                Calling Center
+                                            </h3>
+                                            <span>
+                                                <u>
+                                                    <%=EnglishFrontpage.phone%>
+                                                </u>
+                                            </span>
+                                        </div>
+                                        
+                               <!-- Language Switch Button -->
+                        <div class="language-switch">
+                            <a href="/" class="lang-btn">
+                                <i class="fa fa-globe"></i>عربي
+                            </a>
+                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!-- /Col -->
+                </div>
+            </div>
+        </div>
+        <!-- End Header-Med -->
+    </header>
+
+    <!-- CSS Styling -->
+<style>
+  .language-switch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.lang-btn {
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lang-btn i {
+    font-size: 20px; /* Adjust icon size */
+    margin-bottom: 5px; /* Space between icon and text */
+}
+
+.lang-btn:hover {
+    background-color: #0b2d4a;
+}
+</style>
+
+
+
+    <main class="main-content">
+        <!-- Start Banner-h -->
+        <section class="banner-h">
+            <div class="overlay-img">
+                <img src="https://i.imgur.com/3F2XwUz.jpeg" alt="#" />
+            </div>
+            <div class="container">
+                <div class="row">
+                    <!-- Col -->
+                    <div class="col-md-6">
+                        <div class="banner-text">
+                            <h1>
+                                <%=EnglishFrontpage.Title1%>
+                            </h1>
+                            <p>
+                                <%=EnglishFrontpage.Subtitle1%>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- /Col -->
+                </div>
+            </div>
+            <div class="img-bus">
+                <img src="https://i.imgur.com/NiJFw1Q.png" alt="#" />
+            </div>
+        </section>
+        <!-- End Banner-h -->
+
+        <!-- Start Booking-h -->
+        <section class="booking-h">
+            <div class="container">
+                <div class="row">
+                    <!-- Col -->
+                    <div class="col-md-12">
+                        <div class="booking-form row">
+                            <!-- Col -->
+                            <div class="col-md-4">
+                                <div class="text-booking">
+                                    <h3>
+                                        !Call us now 
+                                    </h3>
+                                    <div class="callNow">
+                                        <div class="icon">
+                                            <i class="fa fa-phone"></i>
+                                        </div>
+                                        <div class="details">
+                                            <span>
+                                                Call for detailed information
+                                            </span>
+                                            <h2>
+                                                <u>
+                                                    <%=EnglishFrontpage.phone%>
+                                                </u>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Col -->
+
+                            <!-- Col -->
+                            <div class="col-md-8">
+                                <div class="booking-form-inner">
+                                    <h3>
+                                       Go with Switfbus
+                                    </h3>
+                                    <form action="/en/submit-booking" class="row" method="POST">
+                                        <input type="hidden" name="first_choice" id="firstChoiceInput" >
+                                        <input type="hidden" name="second_choice" id="secondChoiceInput" >
+                                        <!-- Col -->
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <div class="ChooseH">
+                                                   
+                                                    <label>
+                                                        <input type="radio" name="radio" id="oneWay" value="oneWay" checked />
+                                                        <h4>One Way</h4>
+                                                        
+                                                    </label>
+
+                                                    <label>
+                                                        <input type="radio" name="radio" id="roundTrip" value="twoWay" />
+                                                        <h4>
+                                                            <span class="discount-label">Special Discount</span> Twoways
+                                                        </h4>  
+                                                                    
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /Col -->
+                                       
+                                        <!-- Col -->
+                                        <div class="col-md-4">
+                                            <div class="form-group dropdown-container">
+                                                <label><i class="fa fa-map-marker-alt"></i> Boarding station</label>
+                                                <div class="selected-items" id="selectedItems1"> Click to select...</div>
+                                                <div class="dropdown" id="dropdownList1">
+                                                    <% let counter1=0; %>
+                                                    <% citywithstations.forEach(function(city) { %>
+                                                    <div data-value="<%=counter1++%>" class="itemSelect has-submenu">
+                                                        <span>
+                                                            <%=city.name%>
+                                                        </span>
+                                                        <div class="submenu">
+                                                            <button type="button" class="back-button">
+                                                                <i class="fa fa-arrow-left"></i>
+                                                            </button>
+                                                            <% city.stations.forEach(function(station) { %>
+                                                            <div class="itemSelect" data-value="<%=station.name%>" data-dodo="<%=station.name%>" ><%=station.name%></div>
+                                                            <% }); %>
+                                                
+                                                        </div>
+                                                    </div>
+                                                    <% }); %>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!-- /Col -->
+
+                                        <!-- Col -->
+                                        <div class="col-md-4">
+                                            <div class="form-group dropdown-container">
+                                                <label><i class="fa fa-map-marker-alt"></i> Drop-off station </label>
+                                                <div class="selected-items" id="selectedItems2">Click to select...</div>
+                                                <div class="dropdown" id="dropdownList2">
+                                                    <% let counter2=0; %>
+                                                    <% citywithstations.forEach(function(city) { %>
+                                                     <div data-value="<%=counter2++%>" class="itemSelect has-submenu">
+                                                        <span>
+                                                            <%=city.name%>
+                                                        </span>
+                                                        <div class="submenu">
+                                                            <button type="button" class="back-button">
+                                                                <i class="fa fa-arrow-left"></i>
+                                                            </button>
+                                                            <% city.stations.forEach(function(station) { %> 
+                                                            <div class="itemSelect" data-value="<%=station.name%>" data-dodo="<%=station.name%>" ><%=station.name%></div>
+                                                            <% }); %>
+                                                        
+                                                        </div>
+                                                    </div>
+                                                    <% }); %>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <!-- /Col -->
+                                         
+                                        <!-- Col -->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><i class="fa fa-users"></i> Number of seats </label>
+                                                <div class="qty-container">
+                                                    <button class="qty-btn-minus btn-light" type="button"><i
+                                                            class="fa fa-minus"></i></button>
+                                                    <input type="text" name="qty" min="1" minlength="1" value="1"
+                                                        class="input-qty" />
+                                                    <button class="qty-btn-plus btn-light" type="button"><i
+                                                            class="fa fa-plus"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /Col -->
+                                         
+                                        <!--/col-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><i class="fa fa-calendar-alt"></i> Travel date </label>
+                                                <input type="text" class="form-control datepicker" id="from"
+                                                    name="travel_date" placeholder="MM/DD/YYYY" required />
+                                            </div>
+                                        </div>
+                                        <!--/col-->
+
+                                        <!-- Col -->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label><i class="fa fa-calendar-alt"></i> Return date </label>
+                                                <input type="text" class="form-control datepicker" id="to"
+                                                    name="back_date" placeholder="MM/DD/YYYY" disabled />
+                                            </div>
+                                        </div>
+                                        <!-- /Col -->
+
+                                        <!-- Col -->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <button type="submit" class="btn">
+                                                    <span>Show trips</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- /Col -->
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- /Col -->
+                        </div>
+                    </div>
+                    <!-- /Col -->
+                </div>
+            </div>
+        </section>
+        <!-- End Booking-h -->
+
+        <!-- Start About-h -->
+        <section class="about-h">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Col -->
+                    <div class="col-md-6">
+                        <div class="text-about">
+                            <h3>
+                                <%=EnglishFrontpage.Title2%>
+                            </h3>
+                            <p>
+                                <%=EnglishFrontpage.SubTitle2%>
+                            </p>
+
+                            <div class="all-items">
+                                <div class="about-count">
+                                    <h3 class="counter-item">
+                                        <span class="odometer"
+                                            data-odometer-final="<%=EnglishFrontpage.RightNumber%>"></span> +
+                                    </h3>
+                                    <h4>
+                                        <%=EnglishFrontpage.TitleRightNumber%>
+                                    </h4>
+                                    <p>
+                                        <%=EnglishFrontpage.SubTitleRightNumber%>
+                                    </p>
+                                </div>
+
+                                <div class="about-count">
+                                    <h3 class="counter-item">
+                                        <span class="odometer"
+                                            data-odometer-final="<%=EnglishFrontpage.LeftNumber%>"></span> %
+                                    </h3>
+                                    <h4>
+                                        <%=EnglishFrontpage.TitleLeftNumber%>
+                                    </h4>
+                                    <p>
+                                        <%=EnglishFrontpage.SubTitleLeftNumber%>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Col -->
+
+                    <!-- Col -->
+                    <div class="col-md-6">
+                        <div class="img-about">
+                            <div class="img img-2">
+                                <img src="<%=EnglishFrontpage.Title2Picture%>" alt="#" loading="lazy" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Col -->
+                </div>
+            </div>
+        </section>
+        <!-- End About-h -->
+
+        <!-- Start Clients-h -->
+        <section class="clients-h">
+            <div class="container">
+                <div class="row">
+                    <!-- Col -->
+                    <div class="col-md-3">
+                        <div class="title">
+                            <h3>
+                                Payment Methods:
+                            </h3>
+                        </div>
+                    </div>
+                    <!-- /Col -->
+
+                    <!-- Col -->
+                    <div class="col-md-9">
+
+                        <div class="all-clients row">
+                            <!-- Col -->
+                            <div class="col-md-4">
+                                <div class="client-block">
+                                    <img src="https://i.imgur.com/djS3FCd.png" loading="lazy" alt="#" />
+                                </div>
+                            </div>
+                            <!-- /Col -->
+
+                            <!-- Col -->
+                            <div class="col-md-4">
+                                <div class="client-block">
+                                    <img src="https://i.imgur.com/svQ4Uuj.png" loading="lazy" alt="#" />
+                                </div>
+                            </div>
+                            <!-- /Col -->
+
+                            <!-- Col -->
+                            <div class="col-md-4">
+                                <div class="client-block">
+                                    <img src="https://i.imgur.com/CQIv7zf.png" loading="lazy" alt="#" />
+                                </div>
+                            </div>
+                            <!-- /Col -->
+                        </div>
+                    </div>
+                    <!-- /Col -->
+                </div>
+            </div>
+        </section>
+        <!-- End Clients-h -->
+
+        <!-- Start ChooseUs-h -->
+        <section class="chooseUs-h">
+            <div class="overlay-img">
+                <img src="https://i.imgur.com/pdR7bNm.jpeg" loading="lazy" alt="#" />
+            </div>
+            <div class="container">
+                <div class="row">
+                    <!-- Col -->
+                    <div class="col-md-7">
+                        <div class="text-choose">
+                            <div class="title">
+                                <span>
+                                    ?Why choosing us
+                                </span>
+                                <h3>
+                                    <%=EnglishFrontpage.WhyusTitle%>
+                                </h3>
+                            </div>
+
+                            <div class="choose-list">
+                                <div class="item">
+                                    <div class="icon">
+                                        <i class="fa fa-check"></i>
+                                    </div>
+                                    <div class="details">
+                                        <h3>
+                                            <%=EnglishFrontpage.RightTopTitle%>
+                                        </h3>
+                                        <p>
+                                            <%=EnglishFrontpage.RightTopSubTitle%>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="icon">
+                                        <i class="fa fa-check"></i>
+                                    </div>
+                                    <div class="details">
+                                        <h3>
+                                            <%=EnglishFrontpage.LeftTopTitle%>
+                                        </h3>
+                                        <p>
+                                            <%=EnglishFrontpage.LeftTopSubTitle%>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="icon">
+                                        <i class="fa fa-check"></i>
+                                    </div>
+                                    <div class="details">
+                                        <h3>
+                                            <%=EnglishFrontpage.RightDownTitle%>
+                                        </h3>
+                                        <p>
+                                            <%=EnglishFrontpage.RightDownSubTitle%>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="icon">
+                                        <i class="fa fa-check"></i>
+                                    </div>
+                                    <div class="details">
+                                        <h3>
+                                            <%=EnglishFrontpage.LeftDownTitle%>
+                                        </h3>
+                                        <p>
+                                            <%=EnglishFrontpage.LeftDownSubTitle%>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Col -->
+                </div>
+            </div>
+        </section>
+        <!-- End ChooseUs-h -->
+
+        <!-- Start Destination-h -->
+        <section class="destination-h">
+            <div class="container">
+                <div class="row">
+                    <!-- Col -->
+                    <div class="col-md-12">
+                        <div class="title title-after">
+                            <span>
+                                Destination
+                            </span>
+                            <h3>
+                                Favorite destinations
+                            </h3>
+                        </div>
+                    </div>
+                    <!-- /Col -->
+                    <% Markting.forEach(function(cities) { %>
+                        <!-- Col -->
+                        <div class="col-md-3">
+                            <div class="dest-block">
+                                <div class="img">
+                                    <img src="<%=cities.image_path%>" loading="lazy" alt="#" />
+                                </div>
+                                <div class="details">
+                                    <h3>
+                                        <%=cities.Englishcity%>
+                                    </h3>
+                                    <p>
+                                        <%=cities.Englishsubtitle%>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Col -->
+
+                        <% }); %>
+
+
+
+
+                </div>
+            </div>
+        </section>
+        <!-- End Destination-h -->
+
+        <!-- Start Faq-h -->
+        <section class="faq-h">
+            <div class="container">
+                <div class="row">
+                    <!-- Col -->
+                    <div class="col-md-4">
+                        <div class="title title-after">
+                            <h3>
+                                Frequently Asked Questions
+                            </h3>
+                            <p>
+                                <%=Englishfreqquestion.Title%>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- /Col -->
+                    <!-- Col -->
+                    <div class="col-md-8">
+                        <div class="all-faqs">
+                            <div class="accordion" id="accordionFaq">
+                                <% Englishfreqquestion.Questions.forEach((question, index)=> { %>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading-<%= index %>">
+                                            <button class="accordion-button <%= index === 0 ? '' : 'collapsed' %>"
+                                                type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapse-<%= index %>"
+                                                aria-expanded="<%= index === 0 ? 'true' : 'false' %>"
+                                                aria-controls="collapse-<%= index %>">
+                                                <%= question.question %>
+                                            </button>
+                                        </h2>
+                                        <div id="collapse-<%= index %>"
+                                            class="accordion-collapse collapse <%= index === 0 ? 'show' : '' %>"
+                                            aria-labelledby="heading-<%= index %>" data-bs-parent="#accordionFaq">
+                                            <div class="accordion-body">
+                                                <p>
+                                                    <%= question.answer %>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% }); %>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Col -->
+
+                </div>
+            </div>
+        </section>
+        <!-- End Faq-h -->
+    </main>
+
+    <!-- Start Footer -->
+    <footer>
+        <!-- Start Footer-top -->
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <!-- Col -->
+                    <div class="col-md-6">
+                        <a href="#" class="logo-f">
+                            <img src="https://i.imgur.com/zb8LEyv.png" loading="lazy" alt="#" />
+                        </a>
+                        <p>
+                            <%=EnglishFrontpage.FooterTitle%>
+                        </p>
+                        <a href="tel:01541" class="callNow2">
+                            <i class="fa fa-phone"></i>
+                            <span>
+                                <%=EnglishFrontpage.phone%>
+                            </span>
+                        </a>
+                    </div>
+                    <!-- /Col -->
+
+                    <!-- Col -->
+                    <div class="col-md-6">
+                        <div class="foot-block">
+                            <h3>
+                                Contact us
+                            </h3>
+                            <div class="info-f">
+                                <ul>
+                                    <li>
+                                        <i class="fa fa-map-marker-alt" style="color: white;"></i>
+                                        <span style="color: white;"><%= EnglishFrontpage.address %></span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-envelope" style="color: white;"></i>
+                                        <span style="color: white;"><%= footerinfo.email %></span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-phone" style="color: white;"></i>
+                                        <span style="color: white;"><%= EnglishFrontpage.phone %></span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            
+                            <div class="s-h">
+                                <span>
+                                    Follow us on:
+                                </span>
+                                <% if (footerinfo.facebook) { %>
+                                <a href="<%=footerinfo.facebook%>" target="_blank" rel="noopener">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <% } %>
+                                <% if (footerinfo.instegram) { %>
+                                <a href="<%=footerinfo.instegram%>" target="_blank" rel="noopener">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <% } %>
+                                <% if (footerinfo.twiter) { %>
+                                <a href="<%=footerinfo.twiter%>" target="_blank" rel="noopener">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <% } %>
+                                <% if (footerinfo.youtube) { %>
+                                <a href="<%=footerinfo.youtube%>" target="_blank" rel="noopener">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Col -->
+                </div>
+            </div>
+        </div>
+        <!-- End Footer-top -->
+
+        <!-- Start Footer-bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <!-- Col -->
+                    <div class="col-md-6">
+                        <div class="copy-right">
+                            <p>
+                                © 2025 جميع الحقوق محفوظة لشركة الدهباوي للرحلات و النقل البري
+                            </p>
+                        </div>
+                    </div>
+                    <!-- /Col -->
+
+                    <!-- Col -->
+                    <div class="col-md-6">
+                        <div class="links-footer-bottom">
+                            <a href="/terms/en">
+                                Terms And Conditions
+                            </a>
+                            <a href="/policy/en">
+                                Privacy Policy
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /Col -->
+                </div>
+            </div>
+        </div>
+        <!-- End Footer-bottom -->
+    </footer>
+     <!-- End Footer -->
+    </div>
+
+   <!-- CDN JS Libraries -->
+   <script src="assets/vendor/jquery/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+   <script src="assets/js/wow.min.js"></script>
+   <script src="assets/vendor/fancyBox/jquery.fancybox.js"></script>
+   <script src="assets/vendor/slick/slick.min.js"></script>
+   <script src="assets/vendor/odometer/odometer.min.js"></script>
+   <script src="assets/vendor/odometer/viewport.jquery.js"></script>
+   <script src="assets/vendor/niceSelect/jquery.nice-select.min.js"></script>
+   <script src="assets/vendor/jqueryUi/jquery-ui.js"></script>
+   <script src="assets/js/main.js"></script>
+
+
+<!-- Custom JS files (keep locally) -->
+
+<script src="assets/js/backdate.js"></script>
+<script src="assets/js/choose.js"></script>
+<script src="assets/js/date.js"></script>
+
+    <script>
+       function setupDropdown(dropdownId,selectedItemsId,otherDropdownId,otherSelectedId){const dropdown=document.getElementById(dropdownId);const selectedItems=document.getElementById(selectedItemsId);const otherDropdown=document.getElementById(otherDropdownId);const otherSelectedItems=document.getElementById(otherSelectedId);let selectedItemValue=null;selectedItems.addEventListener('click',()=>{if(selectedItemValue){removeItem(selectedItems,dropdown,otherDropdown,otherSelectedItems,selectedItemValue);selectedItemValue=null}else{dropdown.style.display=dropdown.style.display==='block'?'none':'block'}});document.addEventListener('click',(event)=>{if(!selectedItems.contains(event.target)&&!dropdown.contains(event.target)){dropdown.style.display='none'}});dropdown.querySelectorAll('.itemSelect').forEach(item=>{item.addEventListener('click',function(e){if(e.target===item){if(item.classList.contains('has-submenu')){showSubmenu(item)}else{selectItem(selectedItems,dropdown,otherDropdown,otherSelectedItems,this)}}})});dropdown.querySelectorAll('.back-button').forEach(button=>{button.addEventListener('click',function(){goBackToMainMenu(dropdown)})});function showSubmenu(item){const submenu=item.querySelector('.submenu');submenu.style.display=submenu.style.display==='block'?'none':'block';submenu.addEventListener('click',function(e){if(e.target===submenu){e.stopPropagation()}})}
+function selectItem(selectedItems,dropdown,otherDropdown,otherSelectedItems,item){let value=item.dataset.value;if(selectedItemValue!==null){let otherItem=otherDropdown.querySelector(`[data-value="${selectedItemValue}"]`);if(otherItem){otherItem.style.display='block'}}
+selectedItemValue=value;selectedItems.innerHTML="";let span=document.createElement('span');span.textContent=item.textContent;span.dataset.value=value;span.addEventListener('click',function(){removeItem(selectedItems,dropdown,otherDropdown,otherSelectedItems,value)});selectedItems.appendChild(span);markSelected(item,dropdown);dropdown.style.display='none';let parentItem=item.closest('.has-submenu');if(parentItem){let parentValue=parentItem.dataset.value;let otherParentItem=otherDropdown.querySelector(`[data-value="${parentValue}"]`);if(otherParentItem){otherParentItem.style.display='none'}}
+removeFromOtherDropdown(value,otherDropdown,otherSelectedItems)}
+function markSelected(item,dropdown){dropdown.querySelectorAll('.itemSelect').forEach(div=>div.classList.remove('selected'));item.classList.add('selected')}
+function removeFromOtherDropdown(value,otherDropdown,otherSelectedItems){let otherItem=otherDropdown.querySelector(`[data-value="${value}"]`);if(otherItem){otherItem.style.display='none'}
+let otherSelectedSpan=otherSelectedItems.querySelector(`span[data-value="${value}"]`);if(otherSelectedSpan){otherSelectedSpan.remove()}}
+function removeItem(selectedItems,dropdown,otherDropdown,otherSelectedItems,value){let otherItem=otherDropdown.querySelector(`[data-value="${value}"]`);if(otherItem){otherItem.style.display='block'}
+let itemInDropdown=dropdown.querySelector(`[data-value="${value}"]`);if(itemInDropdown){let parentItem=itemInDropdown.closest('.has-submenu');if(parentItem){let parentValue=parentItem.dataset.value;let otherParentItem=otherDropdown.querySelector(`[data-value="${parentValue}"]`);if(otherParentItem){otherParentItem.style.display='block'}
+const submenu=parentItem.querySelector('.submenu');if(submenu){submenu.style.display='block'}}}
+selectedItems.innerHTML="اضغط للاختيار...";dropdown.querySelectorAll('.itemSelect').forEach(div=>div.classList.remove('selected'))}
+function goBackToMainMenu(dropdown){const submenus=dropdown.querySelectorAll('.submenu');submenus.forEach(submenu=>submenu.style.display='none');dropdown.style.display='block'}}
+setupDropdown("dropdownList1","selectedItems1","dropdownList2","selectedItems2");setupDropdown("dropdownList2","selectedItems2","dropdownList1","selectedItems1");document.addEventListener('DOMContentLoaded',()=>{const minusButton=document.querySelector('.qty-btn-minus');const plusButton=document.querySelector('.qty-btn-plus');const inputQty=document.querySelector('.input-qty');if(minusButton&&plusButton&&inputQty){minusButton.addEventListener('click',()=>{let currentValue=parseInt(inputQty.value);if(currentValue>1){inputQty.value=currentValue-1}});plusButton.addEventListener('click',()=>{let currentValue=parseInt(inputQty.value);inputQty.value=currentValue+1})}else{console.error('عناصر زيادة أو نقصان العدد غير موجودة!')}})
+            </script>
+        
+</body>
+
+</html>

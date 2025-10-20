@@ -1,0 +1,66 @@
+{
+	"name": "swift-bus-backend",
+	"version": "1.0.0",
+	"description": "swift-bus-backend",
+	"main": "dist/server.js",
+	"type": "module",
+	"scripts": {
+		"build": "bunx tsc",
+		"start": "node dist/server.js",
+		"dev": "tsx --watch ./src/server.ts",
+		"format": "prettier --write 'src/**/*.ts'",
+		"type-check": "tsc --noEmit",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
+		"postinstall": "prisma generate",
+		"prisma:generate": "prisma generate",
+		"prisma:migrate": "prisma db push",
+		"prepare": "husky"
+	},
+	"lint-staged": {
+		"*.{ts,tsx}": [
+			"eslint --fix",
+			"prettier --write"
+		]
+	},
+	"dependencies": {
+		"@prisma/client": "^6.2.1",
+		"@sendgrid/mail": "^8.1.4",
+		"axios": "^1.7.9",
+		"body-parser": "^1.20.3",
+		"cors": "^2.8.5",
+		"dotenv": "^16.4.7",
+		"ejs": "^3.1.10",
+		"eslint-config-prettier": "^10.0.1",
+		"express": "^4.18.2",
+		"express-fingerprint": "^1.2.2",
+		"get-stream": "^9.0.1",
+		"husky": "^9.1.7",
+		"lint-staged": "^15.3.0",
+		"luxon": "^3.5.0",
+		"pdfkit": "^0.16.0",
+		"prettier": "^3.4.2",
+		"prisma": "^6.2.1",
+		"rrule": "^2.8.1",
+		"tsx": "^4.19.2",
+		"typescript-eslint": "^8.22.0",
+		"winston": "^3.17.0",
+		"winston-daily-rotate-file": "^5.0.0",
+		"zod": "^3.24.1"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.18.0",
+		"@types/cors": "^2.8.17",
+		"@types/express": "^5.0.0",
+		"@types/luxon": "^3.4.2",
+		"@types/node": "^22.10.10",
+		"@types/pdfkit": "^0.13.9",
+		"eslint": "^9.18.0",
+		"globals": "^15.14.0",
+		"nodemon": "^3.1.9",
+		"purgecss": "^7.0.2",
+		"ts-node": "^10.9.2",
+		"tslib": "^2.8.1",
+		"typescript": "^5.7.3"
+	}
+}

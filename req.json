@@ -1,0 +1,30 @@
+{
+	"body": {
+		"routes": ["city1.id", "city3.id", "city4.id", "city2.id"],
+		"payment": ["VFcash", "Visa"],
+		"cahslimit": 4,
+		"expireHours": 3,
+		"avaliableseats": 50,
+		"busid": "<busid>",
+		"start_date": "2025-1-20",
+		"end_date": "2025-7-25",
+		"sation_details": [
+			{ "station_id": "station1.id", "arrival_time": "12:00" },
+			{ "station_id": "station2.id", "arrival_time": "14:00" }
+		],
+		"cost": [
+			{
+				"from": "station1.id",
+				"to": "station2.id",
+				"normal_cost": 200,
+				"special_cost": 300
+			},
+			{
+				"from": "station2.id",
+				"to": "station3.id",
+				"normal_cost": 200,
+				"special_cost": 300
+			}
+		]
+	}
+}
