@@ -5,7 +5,7 @@
 	"main": "dist/server.js",
 	"type": "module",
 	"scripts": {
-		"build": "bunx tsc",
+		"build": "tsc && cp -r src/views dist/views && cp -r src/public dist/public",
 		"start": "node dist/server.js",
 		"dev": "tsx --watch ./src/server.ts",
 		"format": "prettier --write 'src/**/*.ts'",
