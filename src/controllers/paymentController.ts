@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import prisma from "../lib/prisma.js";
 import axios from "axios";
 import dotenv from "dotenv";
+
 dotenv.config();
 import sgMail from "@sendgrid/mail";
 
@@ -112,7 +113,7 @@ const Cashpayment = async (PaymentData: any) => {
 		});
 		const firstStation = await prisma.station.findFirst({
 			where: { name: station_from },
-			select: { Arabicname: true },
+			select: { Arabicname: true , address: true , location: true},
 		});
 		const secondStation = await prisma.station.findFirst({
 			where: { name: station_to },
@@ -138,6 +139,9 @@ const Cashpayment = async (PaymentData: any) => {
 تفاصيل الرحلة:
 محطة الركوب ${firstStation?.Arabicname} الساعه${TAKEOFF} بتاريخ ${date}
 محطة الوصول ${secondStation?.Arabicname}  الساعه ${ARRIVE} 
+
+عنوان محطة الركوب: ${firstStation?.address}
+لوكيشن محطة الركوب: ${firstStation?.location}
 
 برجاء الاحتفاظ بالتذكرة: 
 https://www.swiftbusegypt.com/ticket?id=${NewTicket.pay_id}`,
@@ -383,7 +387,7 @@ const DoubleCashpayment = async (PaymentData: any) => {
 
 		const firstStation1 = await prisma.station.findFirst({
 			where: { name: station_from1 },
-			select: { Arabicname: true },
+			select: { Arabicname: true , location:true , address: true  },
 		});
 		const secondStation1 = await prisma.station.findFirst({
 			where: { name: station_to1 },
@@ -423,6 +427,9 @@ const DoubleCashpayment = async (PaymentData: any) => {
 تفاصيل رحلة الذهاب:
 محطة الركوب ${firstStation1?.Arabicname} الساعه${TAKEOFF1} بتاريخ ${date1}
 محطة الوصول ${secondStation1?.Arabicname}  الساعه ${ARRIVE1} 
+
+عنوان محطة الركوب: ${firstStation1?.address}
+لوكيشن محطة الركوب: ${firstStation1?.location}
 
 تفاصيل رحلة العودة:
 محطة الركوب ${firstStation2?.Arabicname} الساعه${TAKEOFF2} بتاريخ ${date2}
@@ -608,7 +615,7 @@ export const paymentCallback = async (
 
 			const firstStation = await prisma.station.findFirst({
 				where: { name: station_from },
-				select: { Arabicname: true },
+				select: { Arabicname: true , address:true , location:true },
 			});
 			const secondStation = await prisma.station.findFirst({
 				where: { name: station_to },
@@ -634,6 +641,9 @@ export const paymentCallback = async (
 تفاصيل الرحلة:
 محطة الركوب ${firstStation?.Arabicname} الساعه${TAKEOFF} بتاريخ ${date}
 محطة الوصول ${secondStation?.Arabicname}  الساعه ${ARRIVE} 
+
+عنوان محطة الركوب: ${firstStation?.address}
+لوكيشن محطة الركوب: ${firstStation?.location}
 
 برجاء الاحتفاظ بالتذكرة: 
 https://www.swiftbusegypt.com/ticket?id=${NewTicket.pay_id}`,
@@ -785,7 +795,7 @@ https://www.swiftbusegypt.com/ticket?id=${NewTicket.pay_id}`,
 
 			const firstStation1 = await prisma.station.findFirst({
 				where: { name: station_from1 },
-				select: { Arabicname: true },
+				select: { Arabicname: true , location:true , address: true },
 			});
 			const secondStation1 = await prisma.station.findFirst({
 				where: { name: station_to1 },
@@ -827,6 +837,9 @@ https://www.swiftbusegypt.com/ticket?id=${NewTicket.pay_id}`,
 تفاصيل رحلة الذهاب:
 محطة الركوب ${firstStation1?.Arabicname} الساعه${TAKEOFF1} بتاريخ ${date1}
 محطة الوصول ${secondStation1?.Arabicname}  الساعه ${ARRIVE1} 
+
+عنوان محطة الركوب: ${firstStation1?.address}
+لوكيشن محطة الركوب: ${firstStation1?.location}
 
 تفاصيل رحلة العودة:
 محطة الركوب ${firstStation2?.Arabicname} الساعه${TAKEOFF2} بتاريخ ${date2}

@@ -115,6 +115,7 @@ model Employee{
   tickets_id     Ticket[] @relation("BookedBy")
   cancelTickets   Ticket[] @relation("CancelledBy")
   isDeleted        Boolean @default(false)
+  allowedRoutes    Json?
   User             User?    @relation(fields: [UserID], references: [id]) 
 
   UserID           String?  @unique
