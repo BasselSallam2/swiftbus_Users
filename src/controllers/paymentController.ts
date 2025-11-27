@@ -141,10 +141,11 @@ const Cashpayment = async (PaymentData: any) => {
 محطة الوصول ${secondStation?.Arabicname}  الساعه ${ARRIVE} 
 
 عنوان محطة الركوب: ${firstStation?.address}
-لوكيشن محطة الركوب: ${firstStation?.location}
+لوكيشن محطة الركوب: 
+(${firstStation?.location})
 
 برجاء الاحتفاظ بالتذكرة: 
-https://www.swiftbusegypt.com/ticket?id=${NewTicket.pay_id}`,
+(https://www.swiftbusegypt.com/ticket?id=${NewTicket.pay_id})`,
 		};
 
 		const whatsappMSG = await fetch(
@@ -429,14 +430,15 @@ const DoubleCashpayment = async (PaymentData: any) => {
 محطة الوصول ${secondStation1?.Arabicname}  الساعه ${ARRIVE1} 
 
 عنوان محطة الركوب: ${firstStation1?.address}
-لوكيشن محطة الركوب: ${firstStation1?.location}
+لوكيشن محطة الركوب: 
+(${firstStation1?.location})
 
 تفاصيل رحلة العودة:
 محطة الركوب ${firstStation2?.Arabicname} الساعه${TAKEOFF2} بتاريخ ${date2}
 محطة الوصول ${secondStation2?.Arabicname}  الساعه ${ARRIVE2}
 
 برجاء الاحتفاظ بالتذكرة: 
-https://www.swiftbusegypt.com/ticket?id=${NewTicket.pay_id}`,
+(https://www.swiftbusegypt.com/ticket?id=${NewTicket.pay_id})`,
 		};
 
 		const whatsappMSG = await fetch(
@@ -643,10 +645,11 @@ export const paymentCallback = async (
 محطة الوصول ${secondStation?.Arabicname}  الساعه ${ARRIVE} 
 
 عنوان محطة الركوب: ${firstStation?.address}
-لوكيشن محطة الركوب: ${firstStation?.location}
+لوكيشن محطة الركوب: 
+(${firstStation?.location})
 
 برجاء الاحتفاظ بالتذكرة: 
-https://www.swiftbusegypt.com/ticket?id=${NewTicket.pay_id}`,
+(https://www.swiftbusegypt.com/ticket?id=${NewTicket.pay_id})`,
 			};
 
 			const whatsappMSG = await fetch(
@@ -839,14 +842,15 @@ https://www.swiftbusegypt.com/ticket?id=${NewTicket.pay_id}`,
 محطة الوصول ${secondStation1?.Arabicname}  الساعه ${ARRIVE1} 
 
 عنوان محطة الركوب: ${firstStation1?.address}
-لوكيشن محطة الركوب: ${firstStation1?.location}
+لوكيشن محطة الركوب: 
+(${firstStation1?.location})
 
 تفاصيل رحلة العودة:
 محطة الركوب ${firstStation2?.Arabicname} الساعه${TAKEOFF2} بتاريخ ${date2}
 محطة الوصول ${secondStation2?.Arabicname}  الساعه ${ARRIVE2}
 
 برجاء الاحتفاظ بالتذكرة: 
-https://www.swiftbusegypt.com/ticket?id=${NewTicket.pay_id}`,
+(https://www.swiftbusegypt.com/ticket?id=${NewTicket.pay_id})`,
 			};
 
 			const whatsappMSG = await fetch(
