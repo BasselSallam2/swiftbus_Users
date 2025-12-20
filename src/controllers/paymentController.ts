@@ -113,7 +113,7 @@ const Cashpayment = async (PaymentData: any) => {
 		});
 		const firstStation = await prisma.station.findFirst({
 			where: { name: station_from },
-			select: { Arabicname: true , address: true , location: true},
+			select: { Arabicname: true, address: true, location: true },
 		});
 		const secondStation = await prisma.station.findFirst({
 			where: { name: station_to },
@@ -126,7 +126,7 @@ const Cashpayment = async (PaymentData: any) => {
 		const whats = await prisma.whatsapp.findFirst();
 		const data = {
 			client_id: whats?.client,
-			mobile: `+2${actualCoustmer.phone}`,
+			mobile: `2${actualCoustmer.phone}@s.whatsapp.net`,
 			text: `تم حجز تذكرتك بنجاح و رقم التذكرة هو ${NewTicket.ticket_code}
 ب اسم ${actualCoustmer.name}
 تليفون ${actualCoustmer.phone}
@@ -142,102 +142,99 @@ const Cashpayment = async (PaymentData: any) => {
 
 عنوان محطة الركوب: ${firstStation?.address}
 لوكيشن محطة الركوب: 
-(${firstStation?.location})
+${firstStation?.location}
 
 برجاء الاحتفاظ بالتذكرة: 
-(https://www.swiftbusegypt.com/ticket?id=${NewTicket.pay_id})`,
+https://www.swiftbusegypt.com/ticket?id=${NewTicket.pay_id}
+
+برجاء تسجيل رقم الهاتف لتستطيع الضغط علي الروابط`,
 		};
 
-		const whatsappMSG = await fetch(
-			"https://v2.whats360.live/api/user/v2/send_message",
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization:
-						`Bearer ${whats?.token}`,
-				},
-				body: JSON.stringify(data),
-			}
-		);
+		const encodedMsg = encodeURIComponent(data.text);
 
-		const msg = {
-			to: "dahabawybus@gmail.com",
-			from: "	bassela.sallam@gmail.com",
-			subject: `🚌 New Cash Single Reservation (#${NewTicket.ticket_code})`,
-			html: `
-	<div style="font-family:Arial, sans-serif;max-width:600px;margin:auto;background:#f7f7f7;padding:20px;border-radius:10px;">
-	  <h2 style="color:#333;">🎟️ New Reservation Received!</h2>
-	  <p>You've received a new <strong>cash reservation</strong>. Here are the details:</p>
-	  <table style="width:100%;border-collapse:collapse;">
-		<tr>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Ticket Number:</strong></td>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;">#${NewTicket.ticket_code}</td>
-		</tr>
-		<tr>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Trip ID:</strong></td>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;">${trip_id}</td>
-		</tr>
-		<tr>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Customer name:</strong></td>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;">${actualCoustmer.name}</td>
-		</tr>
-		<tr>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Customer phone:</strong></td>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;">${actualCoustmer.phone}</td>
-		</tr>
-		<tr>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Trip Date:</strong></td>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;">${date}</td>
-		</tr>
-		<tr>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Departure:</strong></td>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;">${take_off}</td>
-		</tr>
-		<tr>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Arrival:</strong></td>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;">${arrive}</td>
-		</tr>
-		<tr>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Route:</strong></td>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;">${city_from} → ${city_to}</td>
-		</tr>
-		<tr>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Stations:</strong></td>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;">${station_from} → ${station_to}</td>
-		</tr>
-		<tr>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Seats Reserved:</strong></td>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;">${ReservedCounter} (${chairs})</td>
-		</tr>
-		<tr>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Voucher:</strong></td>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;">${actualvoucher?.code || "None"}</td>
-		</tr>
-		<tr>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Total Price:</strong></td>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;">${price}</td>
-		</tr>
-		<tr>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Payment Method:</strong></td>
-		  <td style="padding:8px;border-bottom:1px solid #ddd;">${paymentmethod}</td>
-		</tr>
-		<tr>
-		  <td style="padding:8px;"><strong>Status:</strong></td>
-		  <td style="padding:8px;color:#d9534f;"><strong>Cash Pending</strong></td>
-		</tr>
-	  </table>
-	  <p style="margin-top:20px;">
-		Please follow up to confirm payment and finalize this reservation.
-	  </p>
-	  <p style="color:#888;font-size:12px;">
-		This is an automated message from your booking system.
-	  </p>
-	</div>
-	`,
-		};
+		const url = `https://crm.whats360.live/api/v1/send-text?token=${whats?.token}&instance_id=${data.client_id}&jid=${data.mobile}&msg=${encodedMsg}`;
 
-		await sgMail.send(msg);
+		const whatsappMSG = await fetch(url, {
+			method: "GET",
+		});
+
+		// 	const msg = {
+		// 		to: "dahabawybus@gmail.com",
+		// 		from: "	bassela.sallam@gmail.com",
+		// 		subject: `🚌 New Cash Single Reservation (#${NewTicket.ticket_code})`,
+		// 		html: `
+		// <div style="font-family:Arial, sans-serif;max-width:600px;margin:auto;background:#f7f7f7;padding:20px;border-radius:10px;">
+		//   <h2 style="color:#333;">🎟️ New Reservation Received!</h2>
+		//   <p>You've received a new <strong>cash reservation</strong>. Here are the details:</p>
+		//   <table style="width:100%;border-collapse:collapse;">
+		// 	<tr>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Ticket Number:</strong></td>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;">#${NewTicket.ticket_code}</td>
+		// 	</tr>
+		// 	<tr>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Trip ID:</strong></td>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;">${trip_id}</td>
+		// 	</tr>
+		// 	<tr>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Customer name:</strong></td>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;">${actualCoustmer.name}</td>
+		// 	</tr>
+		// 	<tr>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Customer phone:</strong></td>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;">${actualCoustmer.phone}</td>
+		// 	</tr>
+		// 	<tr>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Trip Date:</strong></td>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;">${date}</td>
+		// 	</tr>
+		// 	<tr>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Departure:</strong></td>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;">${take_off}</td>
+		// 	</tr>
+		// 	<tr>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Arrival:</strong></td>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;">${arrive}</td>
+		// 	</tr>
+		// 	<tr>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Route:</strong></td>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;">${city_from} → ${city_to}</td>
+		// 	</tr>
+		// 	<tr>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Stations:</strong></td>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;">${station_from} → ${station_to}</td>
+		// 	</tr>
+		// 	<tr>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Seats Reserved:</strong></td>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;">${ReservedCounter} (${chairs})</td>
+		// 	</tr>
+		// 	<tr>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Voucher:</strong></td>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;">${actualvoucher?.code || "None"}</td>
+		// 	</tr>
+		// 	<tr>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Total Price:</strong></td>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;">${price}</td>
+		// 	</tr>
+		// 	<tr>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;"><strong>Payment Method:</strong></td>
+		// 	  <td style="padding:8px;border-bottom:1px solid #ddd;">${paymentmethod}</td>
+		// 	</tr>
+		// 	<tr>
+		// 	  <td style="padding:8px;"><strong>Status:</strong></td>
+		// 	  <td style="padding:8px;color:#d9534f;"><strong>Cash Pending</strong></td>
+		// 	</tr>
+		//   </table>
+		//   <p style="margin-top:20px;">
+		// 	Please follow up to confirm payment and finalize this reservation.
+		//   </p>
+		//   <p style="color:#888;font-size:12px;">
+		// 	This is an automated message from your booking system.
+		//   </p>
+		// </div>
+		// `,
+		// 	};
+
+		// 	await sgMail.send(msg);
 	} catch (error) {
 		console.log(error);
 	}
@@ -388,7 +385,7 @@ const DoubleCashpayment = async (PaymentData: any) => {
 
 		const firstStation1 = await prisma.station.findFirst({
 			where: { name: station_from1 },
-			select: { Arabicname: true , location:true , address: true  },
+			select: { Arabicname: true, location: true, address: true },
 		});
 		const secondStation1 = await prisma.station.findFirst({
 			where: { name: station_to1 },
@@ -413,8 +410,8 @@ const DoubleCashpayment = async (PaymentData: any) => {
 		const ARRIVE2 = `${arrive2.split(" ")[0]} ${ARRIVETYPE2}`;
 		const whats = await prisma.whatsapp.findFirst();
 		const data = {
-			client_id: whats?.client ,
-			mobile: `+2${actualCoustmer.phone}`,
+			client_id: whats?.client,
+			mobile: `2${actualCoustmer.phone}@s.whatsapp.net`,
 			text: `تم حجز تذكرتك بنجاح و رقم التذكرة هو ${NewTicket.ticket_code}
 ب اسم ${actualCoustmer.name}
 تليفون ${actualCoustmer.phone}
@@ -431,79 +428,76 @@ const DoubleCashpayment = async (PaymentData: any) => {
 
 عنوان محطة الركوب: ${firstStation1?.address}
 لوكيشن محطة الركوب: 
-(${firstStation1?.location})
+${firstStation1?.location}
 
 تفاصيل رحلة العودة:
 محطة الركوب ${firstStation2?.Arabicname} الساعه${TAKEOFF2} بتاريخ ${date2}
 محطة الوصول ${secondStation2?.Arabicname}  الساعه ${ARRIVE2}
 
 برجاء الاحتفاظ بالتذكرة: 
-(https://www.swiftbusegypt.com/ticket?id=${NewTicket.pay_id})`,
+https://www.swiftbusegypt.com/ticket?id=${NewTicket.pay_id}
+
+برجاء تسجيل رقم الهاتف لتستطيع الضغط علي الروابط`,
 		};
 
-		const whatsappMSG = await fetch(
-			"https://v2.whats360.live/api/user/v2/send_message",
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization:
-						`Bearer ${whats?.token}`,
-				},
-				body: JSON.stringify(data),
-			}
-		);
+		const encodedMsg = encodeURIComponent(data.text);
 
-		const msg = {
-			to: "dahabawybus@gmail.com",
-			from: "bassela.sallam@gmail.com",
-			subject: `🚌 New Cash Double Reservation (#${NewTicket.ticket_code})`,
-			html: `
-				<div style="font-family:Arial, sans-serif;max-width:650px;margin:auto;background:#f7f7f7;padding:20px;border-radius:10px;">
-				  <h2 style="color:#333;">🎟️ New Double Reservation Received!</h2>
-				  <p>You've received a new <strong>cash reservation (Round Trip)</strong>. Here are the complete details:</p>
-			  
-				  <h3 style="color:#007bff;">➡️ Going Trip</h3>
-				  <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
-					<tr><td><strong>Trip Date:</strong></td><td>${date1}</td></tr>
-					<tr><td><strong>Departure:</strong></td><td>${take_off1}</td></tr>
-					<tr><td><strong>Arrival:</strong></td><td>${arrive1}</td></tr>
-					<tr><td><strong>Route:</strong></td><td>${city_from1} → ${city_to1}</td></tr>
-					<tr><td><strong>Stations:</strong></td><td>${station_from1} → ${station_to1}</td></tr>
-					<tr><td><strong>Seats Reserved:</strong></td><td>${ReservedCounter} (${chairs1})</td></tr>
-				  </table>
-			  
-				  <h3 style="color:#28a745;">⬅️ Return Trip</h3>
-				  <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
-					<tr><td><strong>Trip Date:</strong></td><td>${date2}</td></tr>
-					<tr><td><strong>Departure:</strong></td><td>${take_off2}</td></tr>
-					<tr><td><strong>Arrival:</strong></td><td>${arrive2}</td></tr>
-					<tr><td><strong>Route:</strong></td><td>${city_from2} → ${city_to2}</td></tr>
-					<tr><td><strong>Stations:</strong></td><td>${station_from2} → ${station_to2}</td></tr>
-					<tr><td><strong>Seats Reserved:</strong></td><td>${ReservedCounter} (${chairs2})</td></tr>
-				  </table>
-			  
-				  <h3 style="color:#333;">📌 Customer & Payment Info</h3>
-				  <table style="width:100%;border-collapse:collapse;">
-					<tr><td><strong>Ticket Number:</strong></td><td>#${NewTicket.ticket_code}</td></tr>
-					<tr><td><strong>Customer Name:</strong></td><td>${actualCoustmer.name}</td></tr>
-					<tr><td><strong>Customer Phone:</strong></td><td>${actualCoustmer.phone}</td></tr>
-					<tr><td><strong>Total Price:</strong></td><td>${price}</td></tr>
-					<tr><td><strong>Payment Method:</strong></td><td>${paymentmethod}</td></tr>
-					<tr><td><strong>Status:</strong></td><td style="color:#d9534f;"><strong>Cash Pending</strong></td></tr>
-				  </table>
-			  
-				  <p style="margin-top:20px;">
-					Please follow up promptly to confirm the payment and finalize this double reservation.
-				  </p>
-				  <p style="color:#888;font-size:12px;">
-					This is an automated message from your booking system.
-				  </p>
-				</div>
-				`,
-		};
+		const url = `https://crm.whats360.live/api/v1/send-text?token=${whats?.token}&instance_id=${data.client_id}&jid=${data.mobile}&msg=${encodedMsg}`;
 
-		await sgMail.send(msg);
+		const whatsappMSG = await fetch(url, {
+			method: "GET",
+		});
+
+		// const msg = {
+		// 	to: "dahabawybus@gmail.com",
+		// 	from: "bassela.sallam@gmail.com",
+		// 	subject: `🚌 New Cash Double Reservation (#${NewTicket.ticket_code})`,
+		// 	html: `
+		// 		<div style="font-family:Arial, sans-serif;max-width:650px;margin:auto;background:#f7f7f7;padding:20px;border-radius:10px;">
+		// 		  <h2 style="color:#333;">🎟️ New Double Reservation Received!</h2>
+		// 		  <p>You've received a new <strong>cash reservation (Round Trip)</strong>. Here are the complete details:</p>
+
+		// 		  <h3 style="color:#007bff;">➡️ Going Trip</h3>
+		// 		  <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
+		// 			<tr><td><strong>Trip Date:</strong></td><td>${date1}</td></tr>
+		// 			<tr><td><strong>Departure:</strong></td><td>${take_off1}</td></tr>
+		// 			<tr><td><strong>Arrival:</strong></td><td>${arrive1}</td></tr>
+		// 			<tr><td><strong>Route:</strong></td><td>${city_from1} → ${city_to1}</td></tr>
+		// 			<tr><td><strong>Stations:</strong></td><td>${station_from1} → ${station_to1}</td></tr>
+		// 			<tr><td><strong>Seats Reserved:</strong></td><td>${ReservedCounter} (${chairs1})</td></tr>
+		// 		  </table>
+
+		// 		  <h3 style="color:#28a745;">⬅️ Return Trip</h3>
+		// 		  <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
+		// 			<tr><td><strong>Trip Date:</strong></td><td>${date2}</td></tr>
+		// 			<tr><td><strong>Departure:</strong></td><td>${take_off2}</td></tr>
+		// 			<tr><td><strong>Arrival:</strong></td><td>${arrive2}</td></tr>
+		// 			<tr><td><strong>Route:</strong></td><td>${city_from2} → ${city_to2}</td></tr>
+		// 			<tr><td><strong>Stations:</strong></td><td>${station_from2} → ${station_to2}</td></tr>
+		// 			<tr><td><strong>Seats Reserved:</strong></td><td>${ReservedCounter} (${chairs2})</td></tr>
+		// 		  </table>
+
+		// 		  <h3 style="color:#333;">📌 Customer & Payment Info</h3>
+		// 		  <table style="width:100%;border-collapse:collapse;">
+		// 			<tr><td><strong>Ticket Number:</strong></td><td>#${NewTicket.ticket_code}</td></tr>
+		// 			<tr><td><strong>Customer Name:</strong></td><td>${actualCoustmer.name}</td></tr>
+		// 			<tr><td><strong>Customer Phone:</strong></td><td>${actualCoustmer.phone}</td></tr>
+		// 			<tr><td><strong>Total Price:</strong></td><td>${price}</td></tr>
+		// 			<tr><td><strong>Payment Method:</strong></td><td>${paymentmethod}</td></tr>
+		// 			<tr><td><strong>Status:</strong></td><td style="color:#d9534f;"><strong>Cash Pending</strong></td></tr>
+		// 		  </table>
+
+		// 		  <p style="margin-top:20px;">
+		// 			Please follow up promptly to confirm the payment and finalize this double reservation.
+		// 		  </p>
+		// 		  <p style="color:#888;font-size:12px;">
+		// 			This is an automated message from your booking system.
+		// 		  </p>
+		// 		</div>
+		// 		`,
+		// };
+
+		// await sgMail.send(msg);
 	} catch (error) {
 		console.log(error);
 	}
@@ -617,7 +611,7 @@ export const paymentCallback = async (
 
 			const firstStation = await prisma.station.findFirst({
 				where: { name: station_from },
-				select: { Arabicname: true , address:true , location:true },
+				select: { Arabicname: true, address: true, location: true },
 			});
 			const secondStation = await prisma.station.findFirst({
 				where: { name: station_to },
@@ -627,10 +621,10 @@ export const paymentCallback = async (
 			const TAKEOFF = `${take_off.split(" ")[0]} ${TAKEOFFTYPE}`;
 			const ARRIVETYPE = arrive.split(" ")[1] === "AM" ? "صباحاً" : `مساءً`;
 			const ARRIVE = `${arrive.split(" ")[0]} ${ARRIVETYPE}`;
-			const whats = await prisma.whatsapp.findFirst();	
+			const whats = await prisma.whatsapp.findFirst();
 			const data = {
-				client_id:whats?.client ,
-				mobile: `+2${actualCoustmer.phone}`,
+				client_id: whats?.client,
+				mobile: `2${actualCoustmer.phone}@s.whatsapp.net`,
 				text: `تم حجز تذكرتك بنجاح و رقم التذكرة هو ${NewTicket.ticket_code}
 ب اسم ${actualCoustmer.name}
 تليفون ${actualCoustmer.phone}
@@ -646,24 +640,21 @@ export const paymentCallback = async (
 
 عنوان محطة الركوب: ${firstStation?.address}
 لوكيشن محطة الركوب: 
-(${firstStation?.location})
+${firstStation?.location}
 
 برجاء الاحتفاظ بالتذكرة: 
-(https://www.swiftbusegypt.com/ticket?id=${NewTicket.pay_id})`,
+https://www.swiftbusegypt.com/ticket?id=${NewTicket.pay_id}
+
+برجاء تسجيل رقم الهاتف لكي تستطيع الضغط علي الروابط`,
 			};
 
-			const whatsappMSG = await fetch(
-				"https://v2.whats360.live/api/user/v2/send_message",
-				{
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-						Authorization:
-							`Bearer ${whats?.token}`,
-					},
-					body: JSON.stringify(data),
-				}
-			);
+			const encodedMsg = encodeURIComponent(data.text);
+
+			const url = `https://crm.whats360.live/api/v1/send-text?token=${whats?.token}&instance_id=${data.client_id}&jid=${data.mobile}&msg=${encodedMsg}`;
+
+			const whatsappMSG = await fetch(url, {
+				method: "GET",
+			});
 		} else {
 			const {
 				trip_id1,
@@ -798,7 +789,7 @@ export const paymentCallback = async (
 
 			const firstStation1 = await prisma.station.findFirst({
 				where: { name: station_from1 },
-				select: { Arabicname: true , location:true , address: true },
+				select: { Arabicname: true, location: true, address: true },
 			});
 			const secondStation1 = await prisma.station.findFirst({
 				where: { name: station_to1 },
@@ -825,8 +816,8 @@ export const paymentCallback = async (
 			const ARRIVE2 = `${arrive2.split(" ")[0]} ${ARRIVETYPE2}`;
 			const whats = await prisma.whatsapp.findFirst();
 			const data = {
-				client_id:whats?.client ,
-				mobile: `+2${actualCoustmer.phone}`,
+				client_id: whats?.client,
+				mobile: `2${actualCoustmer.phone}@s.whatsapp.net`,
 				text: `تم حجز تذكرتك بنجاح و رقم التذكرة هو ${NewTicket.ticket_code}
 ب اسم ${actualCoustmer.name}
 تليفون ${actualCoustmer.phone}
@@ -843,28 +834,25 @@ export const paymentCallback = async (
 
 عنوان محطة الركوب: ${firstStation1?.address}
 لوكيشن محطة الركوب: 
-(${firstStation1?.location})
+${firstStation1?.location}
 
 تفاصيل رحلة العودة:
 محطة الركوب ${firstStation2?.Arabicname} الساعه${TAKEOFF2} بتاريخ ${date2}
 محطة الوصول ${secondStation2?.Arabicname}  الساعه ${ARRIVE2}
 
 برجاء الاحتفاظ بالتذكرة: 
-(https://www.swiftbusegypt.com/ticket?id=${NewTicket.pay_id})`,
+https://www.swiftbusegypt.com/ticket?id=${NewTicket.pay_id}
+
+برجاء تسجيل رقم الهاتف لكي تستطيع الضغط علي الروابط`,
 			};
 
-			const whatsappMSG = await fetch(
-				"https://v2.whats360.live/api/user/v2/send_message",
-				{
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-						Authorization:
-							`Bearer ${whats?.token}`,
-					},
-					body: JSON.stringify(data),
-				}
-			);
+			const encodedMsg = encodeURIComponent(data.text);
+
+			const url = `https://crm.whats360.live/api/v1/send-text?token=${whats?.token}&instance_id=${data.client_id}&jid=${data.mobile}&msg=${encodedMsg}`;
+
+			const whatsappMSG = await fetch(url, {
+				method: "GET",
+			});
 		}
 	} catch (error) {
 		next(error);
