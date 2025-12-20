@@ -330,8 +330,8 @@ model EnglishTerms {
 
 model Whatsapp {
    id                       String @id @default(uuid())
-  token String
-  client String
+  token String @db.Text
+  client String @db.Text
 }
 
 
